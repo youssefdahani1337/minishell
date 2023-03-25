@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:22:48 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/25 11:12:20 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:43:31 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 typedef struct s_env
 {
-	char			*key;
+	char			*var;
 	char			*value;
-	unsigned int	rank;
+	int				rank;
+	int				equal;
 	struct s_env	*next;
 }	t_env;
 
