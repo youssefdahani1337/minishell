@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:43:20 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/25 14:21:46 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/25 15:23:16 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	ft_minishell(char *line)
 {
-	t_tokens	*t =NULL;
-	ft_lexer(line, &t);
+	t_tokens	*token;
+
+	token = NULL;
+	ft_lexer(line, &token);
 	while (t)
 	{
 		printf("%s || %c\n", t->value, t->type);

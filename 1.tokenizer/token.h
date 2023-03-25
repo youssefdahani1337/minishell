@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:42:06 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/25 14:43:54 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/25 15:08:55 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef enum e_type
 	string,
 	equal = '=',
 	equal_plus = '+',
+	terminator
 }	t_type;
 
 typedef struct s_tokens
