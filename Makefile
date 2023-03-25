@@ -6,12 +6,12 @@
 #    By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 09:48:06 by yodahani          #+#    #+#              #
-#    Updated: 2023/03/15 12:36:56 by yodahani         ###   ########.fr        #
+#    Updated: 2023/03/22 07:25:48 by yodahani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra -I  ~/homebrew/opt/readline/include/readline -fsanitize=address -g3
 RM=rm -rf
 NAME=minishell
 GREEN=\033[0;32m
@@ -20,31 +20,43 @@ BLUE=\033[0;34m
 PURPLE=\033[0;35m
 COLOR_END=\033[0m
 allmsg="$(GREEN)DONE$(COLOR_END)"
-fcleanmsg="$(BLUE)Fclean$(COLOR_END)"
-cleanmsg="$(BLUE)Clean$(COLOR_END)"
+msgfclean="$(BLUE)Fclean$(COLOR_END)"
+msgclean="$(BLUE)Clean$(COLOR_END)"
 
 SRCS_DIR=./sources/
+SRCS=minishell.c ft_interperter.c
+
 EXEC_DIR=./execution/
-PARS_DIR=./parsing/
-SRCS=minishell.c
+#EXEC_SRCS=
+
+PARS_DIR=./parser/
+PARS_SRCS=ft_lexer.c lexer_helper.c lexer_santizer.c
+
+ADDS_DIR=./addons/
+ADDS_SRCS=ft_strjoin_m.c
+
 DEBUG=-Ldebug -ldebug
+
 LIBFT=-Llibft -lft
 RL=-lreadline
 
-OBJS=$(SRCS:%.c=$(SRCS_DIR)%.o)
+OBJS= $(SRCS:%.c=$(SRCS_DIR)%.o) $(PARS_SRCS:%.c=$(PARS_DIR)%.o) $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o)
 
-all: debug msg libft   $(NAME)
+all: debug msg libft $(NAME)
 	@echo $(allmsg)
+	clear
 	./minishell
+
 msg:
 	@echo "$(GREEN)Compiling MINISHELL... $(COLOR_END)"
 
 $(NAME):$(OBJS)
-	@$(CC) $(CFLAGS) $(LIBFT) $(RL) $(DEBUG) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIBFT) $(RL) -L ~/homebrew/opt/readline/lib $(DEBUG) $(OBJS) -o $(NAME)
 	@printf "\n"
 %.o: %.c
 	@$(CC) -c $(CFLAGS) -o $@ $<
 	@printf "$(GREEN)██"
+
 libft:
 	@$(MAKE) -C libft -s
 
@@ -52,7 +64,7 @@ debug:
 	@$(MAKE) -C debug -s
 
 clean:
-	@echo "$(RED)Delting files $(COLOR_END)"
+	@echo $(msgclean)
 	@$(RM) $(OBJS)
 	@$(MAKE) -C debug clean -s
 	@$(MAKE) -C libft clean -s
@@ -61,7 +73,7 @@ fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) -C debug fclean -s
 	@$(MAKE) -C libft fclean -s
-	@echo $(fcleanmsg)
+	@echo $(msgfclean)
 
 re:fclean all
 
