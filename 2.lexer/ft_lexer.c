@@ -6,39 +6,35 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:50:28 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/21 18:08:50 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:51:02 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "lexer.h"
+
+t_lexer	*init_lexer(const char *line)
+{
+	t_lexer	*lexer;
+
+	lexer = malloc(sizeof(t_lexer));
+	if (!lexer)
+		return (NULL);
+	lexer->src = line;
+	lexer->size = ft_strlen(line);
+	lexer->i = 0;
+	lexer->c = lexer->src[lexer->i];
+	return (lexer);
+}
 
 void	ft_lexer(char *line, t_tokens **t)
 {
-	int			i;
-	int			start;
-
-	i = 0;
-	start = 0;
-	while (line[i])
-	{
-		while (line[i] == 32 && ++i)
-			start ++;
-		if (ft_strchr("$|\"'<>", line[i]))
-		{
-			join_str(t, line, start, i - start);
-			if (line[i] == pip && ++i)
-				ft_tokenadd_back(t, ft_newtoken(NULL, pip, 0));
-			else if (ft_strchr("><", line[i]))
-				ft_red_find(t, line, &i);
-			else if (ft_strchr("\"'", line[i]))
-				ft_quote_find(t, line, &i);
-			else if (line[i] == var)
-				ft_var_find(t, line, &i);
-		}
-		else
-			i ++;
-	}
+	t_lexer	*lexer;
+	t_lexer	
+	lexer = init_lexer(line);
+	
+	while ()
 }
+
 
 void	ft_exit_lexer(t_tokens **t, char *line, char *msg)
 {
