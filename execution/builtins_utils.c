@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:57:05 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/25 14:55:16 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:36:01 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ char	**ft_fill_infos(char **infos, char *str, int len)
 {
 	infos[0] = malloc(sizeof(char) * (len + 1));
 	if (!infos[0])
-		return (ft_free(infos), NULL);
+		return (ft_free_dstr(infos, 1), NULL);
+	ft_strlcpy(infos[0], str, len + 1);
 	if (!str[len])
 	{
 		infos[1] = NULL;
@@ -26,14 +27,14 @@ char	**ft_fill_infos(char **infos, char *str, int len)
 	{
 		infos[1] = malloc(sizeof(char) * 2);
 		if (!infos[1])
-			return (ft_free(infos), NULL);
+			return (ft_free_dstr(infos, 2), NULL);
 		infos[1] = "=";
 		infos[2] = malloc(sizeof(char) * (ft_strlen(str + len + 1) + 1));
 		if (!infos[2])
-			return (ft_free(infos), NULL);
+			return (ft_free_dstr(infos, 3), NULL);
 		infos[2] = str + len + 1;
 	}
-	return(infos);
+	return (infos);
 }
 
 char	**ft_infos(char *str)
@@ -53,7 +54,7 @@ char	**ft_infos(char *str)
 
 t_env	*ft_envnew(char **infos, int i)
 {
-	t_env *lst;
+	t_env	*lst;
 
 	lst = malloc(sizeof(t_env));
 	if (!lst)
