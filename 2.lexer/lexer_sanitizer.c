@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:10:47 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/25 18:05:50 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:06:28 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_tokens	*ft_lexer_str(t_lexer *lexer)
 
 	value = malloc(sizeof(char));
 	if (!value)
-		return (value);
+		return (NULL);
 	value[0] = '\0';
 	while (lexer->c != '\0' && !ft_strchr(" '\"<>|", lexer->c))
 	{
@@ -30,32 +30,48 @@ t_tokens	*ft_lexer_str(t_lexer *lexer)
 
 t_tokens	*lexer_red(t_lexer *lexer)
 {
+	unsigned	int	i;
+
+	i = lexer->i + 1 ; 
 	if (lexer->c == red_in)
 	{
-		if (lexer->i + 1 < lexer->size)
+		if (i < lexer->size)
 		{
-			lexer_iter(lexer);
-			if (lexer->c == red_in)
-				return (ft_newtoken(NULL, herdoc, 0));	
+			if (lexer->src[i] == red_in)
+				return (lexer_iter(lexer), ft_newtoken(NULL, herdoc, 0));	
 			return (ft_newtoken(NULL, red_in, 0));	
 		}
 			return (ft_newtoken(NULL, red_in, 0));
 	}
 	else
 	{
-		if (lexer->i + 1 < lexer->size)
+		if (i < lexer->size)
 		{
-			lexer_iter(lexer);
-			if (lexer->c == red_out)
-				return (ft_newtoken(NULL, red_app, 0));	
+			if (lexer->src[i] == red_out)
+				return (lexer_iter(lexer), ft_newtoken(NULL, red_app, 0));	
 			return (ft_newtoken(NULL, red_out, 0));
 		}
 		return (ft_newtoken(NULL, red_out, 0));
 	}
 }
 
-t_token		*lexer_quote(t_lexer)
+t_tokens	*lexer_quote(t_lexer *lexer)
 {
-	
-	
+	int			type;
+	char		*value;
+	int			join;
+
+	join = previous_quote_str(lexer);
+	type = lexer->c;
+	value = ft_strdup("");
+	lexer_iter(lexer);
+	while (lexer->c != '\0' && lexer->c != type)
+	{
+		value = ft_join_char(value, lexer->c);		
+		lexer_iter(lexer);
+	}
+	if (lexer->c == '\0')
+		return(free(value), ft_newtoken(ft_strdup("Unclosed quote"),error ,0));
+	join += next_quote_str(lexer);
+	return(ft_newtoken(value, type, join));
 }

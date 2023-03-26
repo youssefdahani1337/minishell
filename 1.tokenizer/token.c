@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:35:57 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/25 14:43:17 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/26 13:25:00 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,8 @@ void	ft_cleartoken(t_tokens *t)
 
 	while (t)
 	{
-		free(t->value);
 		del = t->next;
-		free(t);
+		free_token(t);
 		t = del;
 	}
 }

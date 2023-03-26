@@ -6,13 +6,14 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:42:06 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/25 15:08:55 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/26 11:20:12 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef TOKEN_H
 # define TOKEN_H
+#include "../0.addons/addons.h"
 
 typedef enum e_type
 {
@@ -28,7 +29,8 @@ typedef enum e_type
 	string,
 	equal = '=',
 	equal_plus = '+',
-	terminator
+	terminator,
+	error
 }	t_type;
 
 typedef struct s_tokens
@@ -39,7 +41,6 @@ typedef struct s_tokens
 	struct s_tokens	*next;
 }		t_tokens;
 
-void		ft_lexer(char *line, t_tokens **t);
 void		ft_tokenadd_back(t_tokens **tokens, t_tokens *new);
 t_tokens	*ft_newtoken(char *value, int type, int join);
 void		free_token(t_tokens *t);

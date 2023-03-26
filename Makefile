@@ -6,12 +6,13 @@
 #    By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 09:48:06 by yodahani          #+#    #+#              #
-#    Updated: 2023/03/25 15:01:01 by yodahani         ###   ########.fr        #
+#    Updated: 2023/03/26 12:28:20 by yodahani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
-CFLAGS= -Wall -Werror -Wextra -I  ~/homebrew/opt/readline/include/readline -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra 
+
 RM=rm -rf
 NAME=minishell
 GREEN=\033[0;32m
@@ -26,7 +27,7 @@ msgclean="$(BLUE)Clean$(COLOR_END)"
 TOKEN_DIR=./1.tokenizer/
 TOKEN_SRCS= token.c
 LXR_DIR=./2.lexer/
-LXR_SRCS=ft_lexer.c lexer_helper.c lexer_santizer.c
+LXR_SRCS=ft_lexer.c lexer_helper.c lexer_sanitizer.c
 
 SRCS_DIR=./sources/
 SRCS=minishell.c ft_interperter.c
@@ -36,8 +37,8 @@ EXEC_DIR=./execution/
 
 
 
-ADDS_DIR=./addons/
-ADDS_SRCS=ft_strjoin_m.c
+ADDS_DIR=./0.addons/
+ADDS_SRCS=ft_strjoin_m.c ft_join_char.c
 
 DEBUG=-Ldebug -ldebug
 
