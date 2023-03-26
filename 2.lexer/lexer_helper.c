@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:27:14 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/25 17:29:23 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:06:20 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,9 @@ void	ft_exit_lexer(t_tokens **t, char *line, char *msg)
 	ft_cleartoken(*t);
 	free(line);
 	exit(1);
+}
+
+int			next_quote_str(lexer)
+{
+	
 }

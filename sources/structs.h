@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:22:48 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/25 14:43:31 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:03:28 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct s_env
 {
-	char			*var;
+	char			*key;
 	char			*value;
 	int				rank;
 	int				equal;
