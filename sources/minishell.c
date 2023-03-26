@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:17:00 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/26 13:55:52 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/26 15:00:39 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
-	//t_shell	*shell;
+	t_shell	*shell;
 
 	if (ac < 0 || !av || !env)
 		return (0);
-	//ft_intialize_shell(&shell, env);
+	ft_intialize_shell(&shell, env);
 	while (1337)
 	{
 		line = readline(MINISHELL_PROMPT);
