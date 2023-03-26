@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 09:44:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/21 18:15:35 by yodahani         ###   ########.fr       */
+/*   Created: 2023/03/25 14:42:06 by yodahani          #+#    #+#             */
+/*   Updated: 2023/03/25 15:08:55 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
 
-# include "../sources/minishell.h"
-# define SP_CHAR	"\"|'<> "
+#ifndef TOKEN_H
+# define TOKEN_H
 
 typedef enum e_type
 {
@@ -30,6 +28,7 @@ typedef enum e_type
 	string,
 	equal = '=',
 	equal_plus = '+',
+	terminator
 }	t_type;
 
 typedef struct s_tokens
@@ -43,17 +42,7 @@ typedef struct s_tokens
 void		ft_lexer(char *line, t_tokens **t);
 void		ft_tokenadd_back(t_tokens **tokens, t_tokens *new);
 t_tokens	*ft_newtoken(char *value, int type, int join);
+void		free_token(t_tokens *t);
+void		free_lsttokens(t_tokens *t);
 void		ft_cleartoken(t_tokens *t);
-void		join_str(t_tokens **t, char *line, int start, int i);
-void		ft_exit_lexer(t_tokens **t, char *line, char *msg);
-void		ft_red_find(t_tokens **t, char *line, int *i);
-void		ft_quote_find(t_tokens **t, char *line, int *i);
-void		ft_var_find(t_tokens **t, char *line, int *i);
-void		free_token(t_tokens *t);
-void		free_lsttokens(t_tokens *t);
-char		*ft_find_var_quote(char *str);
-t_tokens	*split_var(char *line, int *i);
-void		free_lsttokens(t_tokens *t);
-void		free_token(t_tokens *t);
-
 #endif

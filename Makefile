@@ -6,7 +6,7 @@
 #    By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 09:48:06 by yodahani          #+#    #+#              #
-#    Updated: 2023/03/22 07:25:48 by yodahani         ###   ########.fr        #
+#    Updated: 2023/03/25 15:01:01 by yodahani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,18 @@ allmsg="$(GREEN)DONE$(COLOR_END)"
 msgfclean="$(BLUE)Fclean$(COLOR_END)"
 msgclean="$(BLUE)Clean$(COLOR_END)"
 
+TOKEN_DIR=./1.tokenizer/
+TOKEN_SRCS= token.c
+LXR_DIR=./2.lexer/
+LXR_SRCS=ft_lexer.c lexer_helper.c lexer_santizer.c
+
 SRCS_DIR=./sources/
 SRCS=minishell.c ft_interperter.c
 
 EXEC_DIR=./execution/
 #EXEC_SRCS=
 
-PARS_DIR=./parser/
-PARS_SRCS=ft_lexer.c lexer_helper.c lexer_santizer.c
+
 
 ADDS_DIR=./addons/
 ADDS_SRCS=ft_strjoin_m.c
@@ -40,7 +44,7 @@ DEBUG=-Ldebug -ldebug
 LIBFT=-Llibft -lft
 RL=-lreadline
 
-OBJS= $(SRCS:%.c=$(SRCS_DIR)%.o) $(PARS_SRCS:%.c=$(PARS_DIR)%.o) $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o)
+OBJS= $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o) $(LXR_SRCS:%.c=$(LXR_DIR)%.o) $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o)
 
 all: debug msg libft $(NAME)
 	@echo $(allmsg)

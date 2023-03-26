@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:17:44 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/25 17:44:35 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:29:41 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_env	*ft_env(char **env)
 	env_info = NULL;
 	while (env[i])
 	{
-		ft_envadd_back(&env_info, ft_envnew(ft_infos(env[i]), i));
+		if (ft_envadd_back(&env_info, ft_envnew(env[i])) == 0)
+			return (NULL);
 		i++;
 	}
 	return (env_info);
@@ -40,10 +41,10 @@ void	ft_echo(char **str)
 	end = 1;
 	if (!str)
 		return ;
-	while (str[i] && str[i][j] && end == 1)
+	while (str[i] && end == 1)
 	{
 		j = 0;
-		if (str[i][j] == '-')
+		if (str[i][j] && str[i][j] == '-')
 		{
 			j++;
 			while (str[i][j] && str[i][j] == 'n')
@@ -53,6 +54,8 @@ void	ft_echo(char **str)
 			else if (str[i][j] || (!str[i][j] && j <= 1))
 				end = 0;
 		}
+		else
+			end = 0;
 	}
 	k = i;
 	while (str[k])
@@ -62,17 +65,4 @@ void	ft_echo(char **str)
 	}
 	if (i > 1)
 		ft_putchar_fd('\n', 1);
-}
-
-int	main(void)
-{
-	char	*str[6];
-
-	str[0] = "echo";
-	str[1] = "-nnnnn";
-	str[2] = "-nn";
-	str[3] = "-n";
-	str[4] = "-nnnnnnk";
-	str[5] = NULL;
-	ft_echo(str);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_helper.c                                     :+:      :+:    :+:   */
+/*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 12:27:50 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/21 18:02:44 by yodahani         ###   ########.fr       */
+/*   Created: 2023/03/25 14:35:57 by yodahani          #+#    #+#             */
+/*   Updated: 2023/03/25 14:43:17 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "token.h"
 
 
 t_tokens	*ft_newtoken(char *value, int type, int join)
