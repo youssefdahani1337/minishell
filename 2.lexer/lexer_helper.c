@@ -6,11 +6,11 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:27:14 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/26 12:26:30 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:48:34 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "../include/lexer.h"
 
 void	lexer_iter(t_lexer *lexer)
 {

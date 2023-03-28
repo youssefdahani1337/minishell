@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:44:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/26 12:12:22 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:48:09 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define LEXER_H
 
 # include <stdio.h>
-# include "../1.tokenizer/token.h"
-
+# include "token.h"
+# include "expand.h"
 typedef	struct	s_lexer
 {
 	char			*src;
@@ -41,4 +41,5 @@ t_tokens	*lexer_quote(t_lexer *lexer);
 
 int			previous_quote_str(t_lexer *lexer);
 int			next_quote_str(t_lexer *lexer);
+
 #endif

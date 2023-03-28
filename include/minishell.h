@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:17:26 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/26 15:02:58 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:10:42 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 # include "../debug/debug.h"
 # include "structs.h"
-
-#include "../2.lexer/lexer.h"
+#include "expand.h"
+#include "lexer.h"
 #include "../execution/execution.h"
 
 # include <stdio.h>
@@ -29,5 +29,8 @@
 # include <readline/history.h>
 
 void	ft_minishell(char *line);
-void	ft_intialize_shell(t_shell **shell, char **env);
+void	ft_intialize_shell(char **env);
+
+t_shell	g_shell;
+
 #endif

@@ -6,33 +6,78 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:29:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/26 16:02:46 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:53:45 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expand.h"
+# include "../include/expand.h"
 
-t_expand	*init_expand(char *value)
+char	*ft_expander(char *value)
 {
 	t_expand	*exp;
 
-	exp = malloc(sizeof(t_expand));
-	exp->value  = ft_strdup(value);
-	exp->size = ft_strlen(value);
-	exp->i = 0;
-	exp->c = exp->value[];
-	return (exp);
+	if (!value)
+		return (NULL);
+	exp = init_expand(value);
+	while (exp->c != '\0')
+	{
+		if (exp->c != '$')
+		{
+			exp->newstr = ft_join_char(exp->newstr, exp->c);
+			expand_iter(exp);
+		}
+		else
+			ft_getvar(exp);
+	}
+	value = exp->newstr;
+	free_exp(exp);
+	return (value);
 }
 
-char	*ft_expander(t_env *env, char	*value)
+void	ft_getvar(t_expand *exp)
 {
-	
+	expand_iter(exp);
+	if (exp->c == var_ex)
+	{
+		exp->newstr = ft_strjoin_m(exp->newstr, ft_itoa(g_shell.exitsts));
+		expand_iter(exp);
+	}
+	else if(ft_isdigit(exp->c))
+	{
+		exp->newstr = ft_strjoin_m(exp->newstr, ft_strdup(""));
+		expand_iter(exp);
+	}
+	else if (ft_isalpha(exp->c) || exp->c == '_')
+		get_from_env(exp);
+	else
+		exp->newstr = ft_join_char(exp->newstr, '$');	
 }
 
-char	*ft_getvar(t_env *env, char *value)
+void	get_from_env(t_expand *exp)
 {
-	char	*str;
+	char	*key;
 
-	str = ft_strdup("");
-	while 
+	key = ft_strdup("");
+	while (exp->c != '\0' && (ft_isalnum(exp->c) || exp->c == '_') )
+	{
+		key = ft_join_char(key, exp->c);
+		expand_iter(exp);
+	}
+	exp->newstr = ft_strjoin_m(exp->newstr, get_env_val(key));
+}
+
+char	*get_env_val(char *key)
+{
+	t_env	*env;
+
+	env = g_shell.env;
+	while (env)
+	{
+		if (ft_strcmp(key , env->key) == 0)
+		{
+			return (ft_strdup(env->value));
+		}
+		env = env->next;
+	}
+	return (NULL);
 }

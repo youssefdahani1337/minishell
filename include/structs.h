@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/17 12:22:48 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/26 15:48:16 by yodahani         ###   ########.fr       */
+/*   Created: 2023/03/27 11:07:38 by yodahani          #+#    #+#             */
+/*   Updated: 2023/03/27 11:08:31 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct	s_shell
 {
 	t_env		*env;
 	t_cmdtable	*table;
-	int			exitsts;	
+	int			exitsts;
 }	t_shell;
-
+// t_shell 	g_shell;
 
 #endif

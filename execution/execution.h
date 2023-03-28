@@ -3,17 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:44:47 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/25 14:53:54 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/03/27 14:09:16 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../sources/minishell.h"
+#ifndef EXECUTION_H
+# define EXECUTION_H
 
-char	**ft_infos(char *str);
-t_env	*ft_envnew(char **infos, int i);
+# include <stdio.h>
+# include <stdlib.h>
+# include "../include/structs.h"
+# include "../libft/libft.h"
+
+int		ft_fillnew(t_env *new, char *str);
+t_env	*ft_envnew(char *str);
 t_env	*ft_envlast(t_env *lst);
-void	ft_envadd_back(t_env **lst, t_env *new);
-char	**ft_fill_infos(char **infos, char *str, int len);
+void	ft_envclear(t_env **lst);
+int		ft_envadd_back(t_env **lst, t_env *new);
+t_env	*ft_env(char **env);
+
+#endif

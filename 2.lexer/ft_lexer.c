@@ -6,11 +6,11 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:50:28 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/26 15:29:28 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:29:12 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+# include "../include/lexer.h"
 
 t_lexer	*init_lexer(char *line)
 {
@@ -42,9 +42,9 @@ void	ft_lexer(char *line, t_tokens **token)
 			ft_exit_lexer(token, 0, t->value);
 			return ;
 		}
-		ft_expander(t->value);
 		t = ft_next_token(lexer);
 	}
+	loop_herdoc_noexp(token);
 	free(t);
 	free(lexer);
 }
@@ -65,3 +65,13 @@ t_tokens	*ft_next_token(t_lexer *lexer)
 	}
 	return (ft_newtoken(NULL, terminator, 0));
 }
+
+void	loop_expand(t_tokens *t)
+{
+	while (t)
+	{
+		t->value = ft_expander(t->value);
+		t = t->next;
+	}
+}
+
