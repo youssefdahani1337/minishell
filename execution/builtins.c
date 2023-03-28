@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:17:44 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/28 15:37:09 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/03/28 18:27:06 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,55 +50,84 @@ void	ft_echo(char **str)
 		ft_putchar_fd('\n', 1);
 }
 
-void	ft_cd(char **str, t_env **env_info)
+void	ft_cd(char **str, t_env *p)
 {
 	char	*opwd;
 	char	s[100];
-	int		cmp_p;
-	int		cmp_op;
-	t_env	*p;
 	char	*pwd;
 
-	p = *env_info;
 	opwd = getcwd(s, 100);
+	if (opwd == NULL)
+		perror("getcwd:");
+	if (ft_strncmp(str[1], "-", 1) == 0)
+		str[1] = opwd;
+	//if (str[1] == "~")
 	if (chdir(str[1]) != 0)
 		perror(str[1]);
 	pwd = getcwd(s, 100);
-	cmp_p = 1;
-	cmp_op = 1;
+	if (pwd == NULL)
+		perror("getcwd:");
+	ft_change_pwds(p, opwd, pwd);
+}
+
+void	ft_pwd(void)
+{
+	char	s[100];
+	char	*pwd;
+
+	pwd = getcwd(s, 100);
+	if (pwd == NULL)
+		perror("getcwd:");
+	ft_putstr_fd(pwd, 1);
+	ft_putstr_fd("\n", 1);
+}
+
+void	ft_export(t_env	*env_info)
+{
+	int		i;
+	t_env	*p;
+	int		len;
+	int		done;
+
+	i = 0;
+	done = 0;
+	p = env_info;
+	len = ft_rank_env(p);
 	while (p)
 	{
-		if (cmp_op != 0)
+		if (ft_strncmp(p->key, "-", 2) == 0 && done == 0)
 		{
-			cmp_op = ft_strncmp (p->key, "OLDPWD", ft_strlen(p->key));
-			if (cmp_op == 0)
-				p->value = opwd;
+			p->next->rank = p->rank;
+			p->rank = -1;
+			done = 1;
 		}
-		else if (cmp_p != 0)
+		else if (p->rank == i)
 		{
-			cmp_p = ft_strncmp(p->key, "PWD", ft_strlen(p->key));
-			if (cmp_p == 0)
-				p->value = pwd;
+			ft_putstr_fd("declare -x ", 1);
+			ft_putstr_fd(p->key, 1);
+			if (p->equal == 1)
+				ft_putstr_fd("=", 1);
+			if (p->value != NULL)
+			{
+				ft_putchar_fd('"', 1);
+				ft_putstr_fd(p->value, 1);
+				ft_putchar_fd('"', 1);
+			}
+			ft_putstr_fd("\n", 1);
+			p = env_info;
+			i++;
 		}
-		p = p->next;
+		else
+			p = p->next;
 	}
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	t_env	*env_info;
-	// t_env	*p;
-
 	(void)argc;
-	env_info = ft_env(env);
-	//ft_echo(argv + 1);
-	
-	ft_cd(argv + 1, &env_info);
-	// p = env_info;
-	// while (p)
-	// {
-	// 	ft_printf("%s=%s\n", p->key, p->value);
-	// 	p = p->next;
-	// }
-	return (0);
+	(void)argv;
+	t_env	*p;
+
+	p = ft_env(env);
+	ft_export(p);
 }
