@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:44:47 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/26 16:28:12 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/03/27 12:49:11 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ t_env	*ft_envnew(char *str);
 t_env	*ft_envlast(t_env *lst);
 void	ft_envclear(t_env **lst);
 int		ft_envadd_back(t_env **lst, t_env *new);
+int		ft_flag_ignore(char **str);
 
 #endif

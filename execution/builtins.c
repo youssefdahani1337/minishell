@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:17:44 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/26 16:29:41 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:37:09 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,37 +32,73 @@ t_env	*ft_env(char **env)
 
 void	ft_echo(char **str)
 {
-	int	i;
-	int	j;
+	int	index;
 	int	k;
-	int	end;
 
-	i = 1;
-	end = 1;
-	if (!str)
+	index = ft_flag_ignore(str);
+	if (index == 0)
 		return ;
-	while (str[i] && end == 1)
-	{
-		j = 0;
-		if (str[i][j] && str[i][j] == '-')
-		{
-			j++;
-			while (str[i][j] && str[i][j] == 'n')
-				j++;
-			if (!str[i][j] && j > 1)
-				i++;
-			else if (str[i][j] || (!str[i][j] && j <= 1))
-				end = 0;
-		}
-		else
-			end = 0;
-	}
-	k = i;
+	k = index; //it prints env if argv not given
 	while (str[k])
 	{
 		ft_putstr_fd(str[k], 1);
 		k++;
+		if (str[k])
+			ft_putstr_fd(" ", 1);
 	}
-	if (i > 1)
+	if (index <= 1)
 		ft_putchar_fd('\n', 1);
+}
+
+void	ft_cd(char **str, t_env **env_info)
+{
+	char	*opwd;
+	char	s[100];
+	int		cmp_p;
+	int		cmp_op;
+	t_env	*p;
+	char	*pwd;
+
+	p = *env_info;
+	opwd = getcwd(s, 100);
+	if (chdir(str[1]) != 0)
+		perror(str[1]);
+	pwd = getcwd(s, 100);
+	cmp_p = 1;
+	cmp_op = 1;
+	while (p)
+	{
+		if (cmp_op != 0)
+		{
+			cmp_op = ft_strncmp (p->key, "OLDPWD", ft_strlen(p->key));
+			if (cmp_op == 0)
+				p->value = opwd;
+		}
+		else if (cmp_p != 0)
+		{
+			cmp_p = ft_strncmp(p->key, "PWD", ft_strlen(p->key));
+			if (cmp_p == 0)
+				p->value = pwd;
+		}
+		p = p->next;
+	}
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	t_env	*env_info;
+	// t_env	*p;
+
+	(void)argc;
+	env_info = ft_env(env);
+	//ft_echo(argv + 1);
+	
+	ft_cd(argv + 1, &env_info);
+	// p = env_info;
+	// while (p)
+	// {
+	// 	ft_printf("%s=%s\n", p->key, p->value);
+	// 	p = p->next;
+	// }
+	return (0);
 }
