@@ -6,16 +6,13 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:29:34 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/25 13:15:37 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:49:02 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../include/minishell.h"
 
-void	ft_intialize_shell(t_shell **shell, char **env)
+void	ft_intialize_shell(char **env)
 {
-	*shell = malloc(sizeof(t_shell));
-	if (!*shell)
-		exit(0);
-	(*shell)->env = ft_get_env(env);
+	g_shell.env = ft_env(env);
 }

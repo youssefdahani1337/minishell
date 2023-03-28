@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:44:47 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/27 12:49:11 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:52:02 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-# include "../sources/structs.h"
+# include "../include/structs.h"
 # include "../libft/libft.h"
 
 int		ft_fillnew(t_env *new, char *str);

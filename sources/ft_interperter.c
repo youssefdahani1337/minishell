@@ -6,11 +6,11 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:43:20 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/25 15:23:16 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:54:18 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../include/minishell.h"
 
 void	ft_minishell(char *line)
 {
@@ -18,9 +18,11 @@ void	ft_minishell(char *line)
 
 	token = NULL;
 	ft_lexer(line, &token);
-	while (t)
+	t_tokens	*t = token;
+	while (token)
 	{
-		printf("%s || %c\n", t->value, t->type);
-		t = t->next;
+		printtoken(token);
+		token = token->next;
 	}
+	ft_cleartoken(t);
 }

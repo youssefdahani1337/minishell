@@ -6,7 +6,7 @@
 #    By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/20 16:02:51 by yodahani          #+#    #+#              #
-#    Updated: 2023/03/09 11:58:25 by yodahani         ###   ########.fr        #
+#    Updated: 2023/03/27 17:42:05 by yodahani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRC =	ft_atoi.c \
 		ft_lstmap_bonus.c \
 		ft_lstnew_bonus.c \
 		ft_lstsize_bonus.c \
+		ft_strcmp.c
 
 OBJ= $(SRC:.c=.o)
 NAME = libft.a
