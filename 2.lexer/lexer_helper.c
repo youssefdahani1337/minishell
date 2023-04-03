@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:27:14 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/27 11:48:34 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/02 14:16:15 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void		ft_skip_whitespace(t_lexer *lexer)
 		lexer_iter(lexer);
 }
 
-t_tokens	*lexer_forward(t_lexer *lexer, char *value, int type, int join)
+t_tokens	*lexer_forward(t_lexer *lexer, char *value, int type)
 {
 	lexer_iter(lexer);
-	return (ft_newtoken(value, type, join));
+	return (ft_newtoken(value, type));
 }
 
 t_tokens	*lexer_advance(t_lexer *lexer, t_tokens *token)
@@ -44,35 +44,6 @@ t_tokens	*ft_exit_lexer(t_tokens **t, char *line, char *msg)
 	ft_putstr_fd("\n", 2);
 	ft_cleartoken(*t);
 	*t = NULL;
-	system("leaks minishell");
 	free(line);
 	return (NULL);
-}
-
-int			next_quote_str(t_lexer *lexer)
-{
-	unsigned int	i;
-
-	i = lexer->i;
-	if (i + 1 < lexer->size)
-	{	
-		i ++;
-		if (!ft_strchr(" |<>", lexer->src[i]))
-			return (2);
-	}
-	return (0);	
-}
-
-int			previous_quote_str(t_lexer *lexer)
-{
-	unsigned int	i;
-
-	i = lexer->i;
-	if (i != 0)
-	{	
-		i --;
-		if (!ft_strchr(" |<>", lexer->src[i]))
-			return (1);
-	}
-	return (0);
 }

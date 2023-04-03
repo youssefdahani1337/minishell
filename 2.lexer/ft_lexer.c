@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:50:28 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/28 17:33:09 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/02 15:25:14 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,51 +26,50 @@ t_lexer	*init_lexer(char *line)
 	return (lexer);
 }
 
-void	ft_lexer(char *line, t_tokens **token)
+int	ft_lexer(char *line, t_tokens **token)
 {
 	t_lexer		*lexer;
 	t_tokens	*t;
 
 	lexer = init_lexer(line);
+	if (!lexer)
+		return (0);
+	if (!lexer_syntax(lexer))
+		return (0);
+	lexer = init_lexer(line);
 	t = ft_next_token(lexer);
 	while (t && t->type != terminator)
 	{
 		ft_tokenadd_back(token, t);
-		if (t->type == error)
-		{
-			free(lexer);
-			ft_exit_lexer(token, 0, t->value);
-			return ;
-		}
 		t = ft_next_token(lexer);
 	}
 	free(t);
 	free(lexer);
+	return (1);
 }
 
 t_tokens	*ft_next_token(t_lexer *lexer)
 {
 	while (lexer->c != 0)
 	{
-		ft_skip_whitespace(lexer);
-		if (!ft_strchr(" |<>\"'", lexer->c))
-			return (ft_lexer_str(lexer));
+		if (!ft_strchr(" |<>'\"", lexer->c))
+			return (lexer_str(lexer));
+		if (lexer->c == space)
+			return (lexer_space(lexer));
 		if (lexer->c == pip)
-			return (lexer_forward(lexer, NULL, pip, 0));
+			return (lexer_forward(lexer, ft_strdup("|"), pip));
 		if (lexer->c == red_in || lexer->c == red_out)
 			return (lexer_advance(lexer, lexer_red(lexer)));
-		if (lexer->c == d_quote || lexer->c  == s_quote)
+		if (lexer->c == s_qoute || lexer->c == d_qoute)
 			return (lexer_advance(lexer, lexer_quote(lexer)));
 	}
-	return (ft_newtoken(NULL, terminator, 0));
+	return (ft_newtoken(NULL, terminator));
 }
 
-void	loop_expand(t_tokens *t)
+t_tokens	*lexer_space(t_lexer *lexer)
 {
-	while (t)
-	{
-		t->value = ft_expander(t->value);
-		t = t->next;
-	}
+	ft_skip_whitespace(lexer);
+	return (ft_newtoken(NULL, space));
 }
+
 

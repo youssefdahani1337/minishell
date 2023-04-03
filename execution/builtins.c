@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:17:44 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/26 16:29:41 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/03/30 17:43:01 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,37 +32,92 @@ t_env	*ft_env(char **env)
 
 void	ft_echo(char **str)
 {
-	int	i;
-	int	j;
+	int	index;
 	int	k;
-	int	end;
 
-	i = 1;
-	end = 1;
-	if (!str)
+	index = ft_flag_ignore(str);
+	if (index == 0)
 		return ;
-	while (str[i] && end == 1)
-	{
-		j = 0;
-		if (str[i][j] && str[i][j] == '-')
-		{
-			j++;
-			while (str[i][j] && str[i][j] == 'n')
-				j++;
-			if (!str[i][j] && j > 1)
-				i++;
-			else if (str[i][j] || (!str[i][j] && j <= 1))
-				end = 0;
-		}
-		else
-			end = 0;
-	}
-	k = i;
+	k = index; //it prints env if argv not given
 	while (str[k])
 	{
 		ft_putstr_fd(str[k], 1);
 		k++;
+		if (str[k])
+			ft_putstr_fd(" ", 1);
 	}
-	if (i > 1)
+	if (index <= 1)
 		ft_putchar_fd('\n', 1);
+}
+
+void	ft_cd(char **str, t_env *p)
+{
+	char	*opwd;
+	char	s[100];
+	char	*pwd;
+
+	opwd = getcwd(s, 100);
+	if (opwd == NULL)
+		perror("getcwd:");
+	if (ft_strncmp(str[1], "-", 1) == 0)
+		str[1] = opwd;
+	//if (str[1] == "~")
+	if (chdir(str[1]) != 0)
+		perror(str[1]);
+	pwd = getcwd(s, 100);
+	if (pwd == NULL)
+		perror("getcwd:");
+	ft_change_pwds(p, opwd, pwd);
+}
+
+void	ft_pwd(void)
+{
+	char	s[100];
+	char	*pwd;
+
+	pwd = getcwd(s, 100);
+	if (pwd == NULL)
+		perror("getcwd:");
+	ft_putstr_fd(pwd, 1);
+	ft_putstr_fd("\n", 1);
+}
+
+void	ft_export(t_env	*env_info)
+{
+	int		i;
+	t_env	*p;
+	int		len;
+	int		done;
+
+	i = 0;
+	done = 0;
+	p = env_info;
+	len = ft_rank_env(p);
+	while (p)
+	{
+		if (ft_strncmp(p->key, "-", 2) == 0 && done == 0)
+		{
+			p->next->rank = p->rank;
+			p->rank = -1;
+			done = 1;
+		}
+		else if (p->rank == i)
+		{
+			ft_putstr_fd("declare -x ", 1);
+			ft_putstr_fd(p->key, 1);
+			if (p->equal == 1)
+				ft_putstr_fd("=", 1);
+			if (p->value != NULL)
+			{
+				ft_putchar_fd('"', 1);
+				ft_putstr_fd(p->value, 1);
+				ft_putchar_fd('"', 1);
+			}
+			ft_putstr_fd("\n", 1);
+			p = env_info;
+			i++;
+		}
+		else
+			p = p->next;
+	}
 }
