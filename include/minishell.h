@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:17:26 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/02 14:36:17 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:26:50 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 # define MINISHELL_PROMPT "\033[0;32m [minishell] %>\033[0m"
 # define MINISHELL_PROMPT_ERROR "\033[0;31m [minishell] %>\033[0m"
 
-# include "../debug/debug.h"
 # include "structs.h"
-# include "lexer.h"
 # include "parser.h"
+# include "../debug/debug.h"
 #include "../execution/execution.h"
 
 # include <stdio.h>

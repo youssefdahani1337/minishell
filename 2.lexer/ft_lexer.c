@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:50:28 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/02 15:25:14 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/04 06:29:39 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_lexer(char *line, t_tokens **token)
 		ft_tokenadd_back(token, t);
 		t = ft_next_token(lexer);
 	}
-	free(t);
+	ft_tokenadd_back(token, t);
 	free(lexer);
 	return (1);
 }

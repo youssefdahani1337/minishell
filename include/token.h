@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:42:06 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/02 15:26:45 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:29:11 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ typedef struct s_tokens
 void		ft_tokenadd_back(t_tokens **tokens, t_tokens *new);
 t_tokens	*ft_newtoken(char *value, int type);
 void		free_token(t_tokens *t);
-void		free_lsttokens(t_tokens *t);
-void		join_token(t_tokens *token);
 void		ft_cleartoken(t_tokens *t);
 
 #endif

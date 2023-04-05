@@ -6,18 +6,18 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:13:04 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/31 16:00:18 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/04 14:57:09 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/addons.h"
 
-int	print_error(char *msg, char *speciel)
+int	print_error(char *msg, char *special)
 {
 	ft_printf("\033[0;31m");
 	ft_printf("%s", msg);
-	if (speciel)
-		ft_printf(" '%s'", speciel);
+	if (special)
+		ft_printf(" '%s'", special);
 	ft_printf("\033[0m\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:07:38 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/28 15:44:49 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/04 14:07:39 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_file
 {
 	int				fd;
 	int				type;
+	char			*error;
 	struct s_file	*next;
 }	t_file;
 
