@@ -6,23 +6,35 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:43:20 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/27 17:54:18 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/05 01:20:53 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	ft_minishell(char *line)
+int	ft_minishell(char *line)
 {
 	t_tokens	*token;
+	t_tokens	*t;
+	t_parser	*parser;
 
+	parser = NULL;
 	token = NULL;
-	ft_lexer(line, &token);
-	t_tokens	*t = token;
-	while (token)
+	if (!ft_lexer(line, &token))
+		return (0);
+	t = token; 
+	while (t)
 	{
-		printtoken(token);
-		token = token->next;
+		printtoken(t);
+		t = t->next;
 	}
-	ft_cleartoken(t);
+	printf("\n++++++++++++++++\n");
+	if (!ft_parser(&parser, token))
+		return (0);
+	while (parser)
+	{
+		printparser(parser);
+		parser = parser->next;
+	}
+	return (1);
 }

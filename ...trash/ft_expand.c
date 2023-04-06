@@ -6,13 +6,13 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:29:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/27 17:53:45 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:43:51 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../include/expand.h"
 
-char	*ft_expander(char *value)
+char	*ft_expander(char *value, int *expand)
 {
 	t_expand	*exp;
 
@@ -27,7 +27,10 @@ char	*ft_expander(char *value)
 			expand_iter(exp);
 		}
 		else
+		{
+			*expand = 1;
 			ft_getvar(exp);
+		}
 	}
 	value = exp->newstr;
 	free_exp(exp);
@@ -74,9 +77,7 @@ char	*get_env_val(char *key)
 	while (env)
 	{
 		if (ft_strcmp(key , env->key) == 0)
-		{
 			return (ft_strdup(env->value));
-		}
 		env = env->next;
 	}
 	return (NULL);

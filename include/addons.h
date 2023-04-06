@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:11:50 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/26 11:20:57 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:25:15 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,5 @@
 
 char	*ft_strjoin_m(char *s1, char *s2);
 char	*ft_join_char(char *value, char c);
+int		print_error(char *msg, char *speciel);
 #endif

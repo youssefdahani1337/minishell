@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:36:03 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/26 12:04:46 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/02 14:38:59 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,17 @@
 
 void	printtoken(t_tokens *token)
 {
-		printf("[%d]", token->join);
 	printf("type ");
 	switch (token->type)
 	{
 		case pip :
 			printf("pip ");
 			break;
-		case d_quote :
-			printf("d_quote ");
-			break;
-		case s_quote :
-			printf("s_quote ");
-			break;
 		case red_in :
 			printf("red_in ");
 			break;
 		case red_out :
 			printf("red_out ");
-			break;
-		case var :
-			printf("var ");
-			break;
-		case var_ex :
-			printf("var_ex ");
 			break;
 		case red_app :
 			printf("red_app");
@@ -48,17 +35,16 @@ void	printtoken(t_tokens *token)
 		case string :
 			printf("string ==");
 			break;
-		case equal :
-			printf("equal ");
+		case d_qoute :
+			printf("Double quote ==");
 			break;
-		case equal_plus :
-			printf("equal_plus ");
+		case s_qoute :
+			printf("s_quote ==");
+		case space :
+			printf("space ==");
 			break;
 		case terminator :
 			printf("terminator");
-			break;
-		case error :
-			printf("error");
 			break;
 		
 	}

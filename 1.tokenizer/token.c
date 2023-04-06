@@ -6,14 +6,14 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:35:57 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/28 15:25:35 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/04/02 13:52:12 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/token.h"
 
 
-t_tokens	*ft_newtoken(char *value, int type, int join)
+t_tokens	*ft_newtoken(char *value, int type)
 {
 	t_tokens	*t;
 
@@ -23,7 +23,6 @@ t_tokens	*ft_newtoken(char *value, int type, int join)
 	t->value = value;
 	t->exp = 1;
 	t->type = type;
-	t->join = join;
 	t->next = NULL;
 	t->previous = NULL;
 	return (t);
@@ -51,18 +50,6 @@ void	ft_tokenadd_back(t_tokens **tokens, t_tokens *new)
 }
 
 void	ft_cleartoken(t_tokens *t)
-{
-	t_tokens	*del;
-
-	while (t)
-	{
-		del = t->next;
-		free_token(t);
-		t = del;
-	}
-}
-
-void	free_lsttokens(t_tokens *t)
 {
 	t_tokens	*del;
 

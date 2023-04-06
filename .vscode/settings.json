@@ -1,6 +1,12 @@
 {
 	"files.associations": {
+<<<<<<< HEAD
 		"stdlib.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
+=======
+		"stdlib.h": "c",
+		"structs.h": "c"
+	}
+>>>>>>> 0681aa5b2ff7ef3d68140a0de68f327762cc2923
 }

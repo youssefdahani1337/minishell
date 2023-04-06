@@ -6,12 +6,16 @@
 #    By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 09:48:06 by yodahani          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2023/03/28 15:53:52 by hbenabad         ###   ########.fr        #
+=======
+#    Updated: 2023/04/05 02:05:24 by yodahani         ###   ########.fr        #
+>>>>>>> 0681aa5b2ff7ef3d68140a0de68f327762cc2923
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
-CFLAGS= -Wall -Werror -Wextra 
+CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g
 
 RM=rm -rf
 NAME=minishell
@@ -25,12 +29,16 @@ msgfclean="$(BLUE)Fclean$(COLOR_END)"
 msgclean="$(BLUE)Clean$(COLOR_END)"
 
 TOKEN_DIR=./1.tokenizer/
-TOKEN_SRCS= token.c token_helper.c
+TOKEN_SRCS= token.c
 LXR_DIR=./2.lexer/
-LXR_SRCS=ft_lexer.c lexer_helper.c lexer_sanitizer.c
+LXR_SRCS=lexer_syntax.c ft_lexer.c lexer_helper.c lexer_sanitizer.c
+
+PAR_DIR=./3.parser/
+PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c
+
 
 SRCS_DIR=./sources/
-SRCS=minishell.c ft_interperter.c ft_intialiser.c expand_helper.c ft_expand.c 
+SRCS=minishell.c ft_interperter.c ft_intialiser.c
 
 EXEC_DIR=./execution/
 EXEC_SRCS=builtins.c env_utils.c builtins_utils2.c builtins_utils.c
@@ -38,14 +46,14 @@ EXEC_SRCS=builtins.c env_utils.c builtins_utils2.c builtins_utils.c
 
 
 ADDS_DIR=./0.addons/
-ADDS_SRCS=ft_strjoin_m.c ft_join_char.c
+ADDS_SRCS=ft_strjoin_m.c ft_join_char.c print_error.c
 
 DEBUG=-Ldebug -ldebug
 
 LIBFT=-Llibft -lft
 RL=-lreadline
 
-OBJS= $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o) $(LXR_SRCS:%.c=$(LXR_DIR)%.o) $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(EXEC_SRCS:%.c=$(EXEC_DIR)%.o)
+OBJS= $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o) $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(EXEC_SRCS:%.c=$(EXEC_DIR)%.o) $(PAR_SRCS:%.c=$(PAR_DIR)%.o) 
 
 all: debug msg libft $(NAME)
 	@echo $(allmsg)
