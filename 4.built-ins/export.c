@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:35:46 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/29 16:33:17 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:34:07 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_ranker(t_env *env_info, t_list **keys_lst)
 	}
 }
 
-int	ft_rank_env(t_env *env_info)
+void	ft_rank_env(t_env *env_info)
 {
 	t_list	*keys_lst;
 	t_env	*p;
@@ -82,25 +82,24 @@ int	ft_rank_env(t_env *env_info)
 	}
 	ft_rank_lst(&keys_lst);
 	ft_ranker(env_info, &keys_lst);
-	return (i);
 }
 
 void	ft_export(void)
 {
 	int		i;
-	int		len;
 	int		done;
+	t_env	*p;
 
 	i = 0;
 	done = 0;
 	p = g_shell.env;
-	len = ft_rank_env(p);
+	ft_rank_env(p);
 	while (p)
 	{
-		if (ft_strcmp(p->key, "-") == 0 && done == 0)
+		if (done == 0 && ft_strcmp(p->key, "_") == 0)
 		{
-			//p->next->rank = p->rank;
-			p->rank = -1;
+			p = g_shell.env;
+			i++;
 			done = 1;
 		}
 		else if (p->rank == i)
@@ -119,8 +118,6 @@ void	ft_export(void)
 			p = g_shell.env;
 			i++;
 		}
-		else if (i == len - 2)
-			i++;
 		else
 			p = p->next;
 	}

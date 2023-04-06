@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:11:13 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/29 16:33:21 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/04/01 16:53:19 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	ft_pwd(void)
 {
-	char	path[128];
-	char	*pwd;
+	char	pwd[128];
+	int		i;
+	int		out;
+	char	**str;
 
-	getcwd(path, 128);
-	if (pwd == NULL)
-		perror("getcwd:");
-	ft_putstr_fd(pwd, g_shell.table->outfile);
-	ft_putstr_fd("\n", g_shell.table->outfile);
+	i = 0;
+	str = g_shell.table->cmd;
+	out = g_shell.table->outfile;
+	getcwd(pwd, 128);
+	ft_putstr_fd(pwd, out);
+	ft_putstr_fd("\n", out);
 }

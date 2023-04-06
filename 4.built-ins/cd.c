@@ -6,60 +6,74 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:41:20 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/03/29 16:36:33 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:34:55 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-void	ft_change_pwds(t_env *p, char *opwd, char *pwd)
+void	ft_change_pwds(t_env *p, char *opwd, int to_print, t_shell *gn_shell)
 {
-	int	cmp_p;
-	int	cmp_op;
+	char	pwd[128];
 
-	cmp_p = 1;
-	cmp_op = 1;
+	getcwd(pwd, 128);
 	while (p)
 	{
-		if (cmp_op != 0)
+		if (!ft_strcmp(p->key, "OLDPWD"))
 		{
-			cmp_op = ft_strncmp (p->key, "OLDPWD", ft_strlen(p->key));
-			if (cmp_op == 0)
-				p->value = opwd;
+			free(p->value);
+			p->value = ft_strdup(opwd);
 		}
-		else if (cmp_p != 0)
+		else if (!ft_strcmp(p->key, "PWD"))
 		{
-			cmp_p = ft_strncmp(p->key, "PWD", ft_strlen(p->key));
-			if (cmp_p == 0)
-				p->value = pwd;
+			free(p->value);
+			p->value = ft_strdup(pwd);
+			if (to_print == 1)
+			{
+				ft_putstr_fd(p->value, (gn_shell->table)->outfile->fd);
+				ft_putchar_fd('\n', (gn_shell->table)->outfile->fd);
+			}
 		}
 		p = p->next;
 	}
 }
 
-void	ft_cd(void)
+char	*ft_find_opwd(t_env *p)
 {
-	char	*opwd;
-	char	s[100];
-	char	*pwd;
-	char	**str;
-	t_env	*p;
-
-	p = g_shell->env;
-	opwd = getcwd(s, 100);
-	if (!opwd)
-		return (NULL);
-	str = g_shell.table->cmd;
-	if (ft_strcmp(str[1], "-") == 0)
+	while (p)
 	{
-		if (opwd == NULL)
-			perror("getcwd:");
-		str[1] = opwd;
+		if (ft_strcmp(p->key, "OLDPWD"))
+			p = p->next;
+		else
+			return (p->value);
 	}
-	if (chdir(str[1]) != 0)
-		perror(str[1]);
-	pwd = getcwd(s, 100);
-	if (pwd == NULL)
-		perror("getcwd:");
-	ft_change_pwds(p, opwd, pwd);
+	return (NULL);
+}
+
+void	ft_cd(t_shell *gn_shell)
+{
+	char	opwd[128];
+	char	*dir;
+	int		to_print;
+
+	to_print = 0;
+	getcwd(opwd, 128);
+	dir = *((gn_shell->table)->cmd + 1);
+	if (ft_strcmp(dir, "-") == 0)
+	{
+		dir = ft_find_opwd(gn_shell->env);
+		if (dir == NULL)
+		{
+			ft_putstr_fd("minishell: cd : OLDPWD not set\n", 2);
+			g_shell.exitsts = 1;
+			return ;
+		}
+		to_print = 1;
+	}
+	if (chdir(dir) != 0)
+	{
+		ft_msgexitsts(dir, errno);
+		return ;
+	}
+	ft_change_pwds(gn_shell->env, opwd, to_print);
 }

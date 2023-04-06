@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+         #
+#    By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 09:48:06 by yodahani          #+#    #+#              #
-#    Updated: 2023/03/27 22:13:58 by yodahani         ###   ########.fr        #
+#    Updated: 2023/03/28 15:53:52 by hbenabad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS_DIR=./sources/
 SRCS=minishell.c ft_interperter.c ft_intialiser.c expand_helper.c ft_expand.c 
 
 EXEC_DIR=./execution/
-EXEC_SRCS=builtins.c env_utils.c builtins_utils2.c
+EXEC_SRCS=builtins.c env_utils.c builtins_utils2.c builtins_utils.c
 
 
 

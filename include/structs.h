@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:07:38 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/27 11:08:31 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/03/29 14:38:37 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ typedef struct	s_shell
 	t_cmdtable	*table;
 	int			exitsts;
 }	t_shell;
-// t_shell 	g_shell;
+t_shell 	g_shell;
 
 #endif
