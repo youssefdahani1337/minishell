@@ -6,19 +6,22 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:00:54 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/05 02:04:37 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:25:27 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
+
 # include "lexer.h"
+# include "expand.h"
 #include <unistd.h>
 #include <sys/wait.h>
 #include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
 typedef	enum	e_type_p
 {
 	limiter,
@@ -43,6 +46,7 @@ int			ft_parser(t_parser **parser, t_tokens *token);
 void		parser_parse(t_parser **parser, t_tokens *token);
 int			open_heredoc(t_parser *parser);
 void		execute_heredoc(t_parser *parser);
+void		write_in_her(char *line, int fd, int state);
 
 void		parser_add_herdoc(t_parser **parser, t_tokens **token, int *error);
 t_parser	*ft_newparse(char *value, int type, int state);

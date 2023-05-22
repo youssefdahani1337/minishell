@@ -1,21 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 11:07:38 by yodahani          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/29 14:38:37 by hbenabad         ###   ########.fr       */
-=======
-/*   Updated: 2023/04/04 14:07:39 by yodahani         ###   ########.fr       */
->>>>>>> 0681aa5b2ff7ef3d68140a0de68f327762cc2923
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+# include <stdlib.h>
+# include <stdio.h>
+
+# include "../libft/libft.h"
+# include "structs.h"
 
 typedef struct s_env
 {
@@ -48,9 +40,7 @@ typedef struct	s_shell
 	t_cmdtable	*table;
 	int			exitsts;
 }	t_shell;
-<<<<<<< HEAD
+
 t_shell 	g_shell;
-=======
->>>>>>> 0681aa5b2ff7ef3d68140a0de68f327762cc2923
 
 #endif

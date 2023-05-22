@@ -1,18 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/09 09:48:06 by yodahani          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2023/03/28 15:53:52 by hbenabad         ###   ########.fr        #
-=======
-#    Updated: 2023/04/05 02:05:24 by yodahani         ###   ########.fr        #
->>>>>>> 0681aa5b2ff7ef3d68140a0de68f327762cc2923
-#                                                                              #
-# **************************************************************************** #
 
 CC=cc
 CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g
@@ -34,7 +19,7 @@ LXR_DIR=./2.lexer/
 LXR_SRCS=lexer_syntax.c ft_lexer.c lexer_helper.c lexer_sanitizer.c
 
 PAR_DIR=./3.parser/
-PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c
+PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c expand_helper.c ft_expand.c
 
 
 SRCS_DIR=./sources/
@@ -53,7 +38,7 @@ DEBUG=-Ldebug -ldebug
 LIBFT=-Llibft -lft
 RL=-lreadline
 
-OBJS= $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o) $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(EXEC_SRCS:%.c=$(EXEC_DIR)%.o) $(PAR_SRCS:%.c=$(PAR_DIR)%.o) 
+OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o)  $(PAR_SRCS:%.c=$(PAR_DIR)%.o) 
 
 all: debug msg libft $(NAME)
 	@echo $(allmsg)

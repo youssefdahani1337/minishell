@@ -6,13 +6,13 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:29:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/30 11:43:51 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:00:48 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../include/expand.h"
 
-char	*ft_expander(char *value, int *expand)
+char	*ft_exp(char *value, int *expand)
 {
 	t_expand	*exp;
 
@@ -28,7 +28,8 @@ char	*ft_expander(char *value, int *expand)
 		}
 		else
 		{
-			*expand = 1;
+			if (expand)
+				*expand = 1;
 			ft_getvar(exp);
 		}
 	}
@@ -40,7 +41,7 @@ char	*ft_expander(char *value, int *expand)
 void	ft_getvar(t_expand *exp)
 {
 	expand_iter(exp);
-	if (exp->c == var_ex)
+	if (exp->c == '?')
 	{
 		exp->newstr = ft_strjoin_m(exp->newstr, ft_itoa(g_shell.exitsts));
 		expand_iter(exp);

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:51:12 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/05 01:18:04 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/22 05:22:45 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	in_join(int type, int *state)
 	return (0);
 }
 #include "../debug/debug.h"
+
 void	parser_add_herdoc(t_parser **parser, t_tokens **token, int *error)
 {
 	int		state;
@@ -42,11 +43,9 @@ void	parser_add_herdoc(t_parser **parser, t_tokens **token, int *error)
 	}	
 	while ((*token)->type != terminator && in_join((*token)->type, &state))
 	{
-		printtoken((*token));
 		value = ft_strjoin_m(value, (*token)->value);
 		*token = (*token)->next;
 	}
-		printf("Here\n");
 	ft_parseadd_back(parser, ft_newparse(value, limiter, state));
 }
 

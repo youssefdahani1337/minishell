@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 11:36:03 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/02 14:38:59 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/22 01:39:59 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	printtoken(t_tokens *token)
 			printf("space ==");
 			break;
 		case terminator :
-			printf("terminator");
+			printf("terminator ==");
 			break;
 		
 	}
-	printf("Value[%s]\n", token->value);
+	printf(" Value[%s]\n", token->value);
 	
 }
