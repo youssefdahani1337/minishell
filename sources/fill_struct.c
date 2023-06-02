@@ -6,18 +6,18 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:51:22 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/31 19:38:49 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/02 12:36:47 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	fill_struct(t_cmdtable **g_shell.table, t_parser *parser)
+void	fill_struct(t_cmdtable **table, t_parser *parser)
 {
-	*g_shell.table = NULL; 	
+	*table = NULL; 	
 	while (parser->type != p_terminator)
 	{
-		strcuct_addback(g_shell.table, addtable(parser));
+		strcuct_addback(table, addtable(parser));
 	}
 	//revise
 }
@@ -31,7 +31,7 @@ t_cmdtable	*add_table(t_parser **parser)
 		return (NULL);
 	t_cmd(&cmd->cmd, *parser);
 	get_infile(&cmd->infile, *parser);
-	get_outfile(&cmd->outfile, parser);
+	get_outfile(&cmd->outfile, *parser);
 	skip_parse(parser);
 	close_all_file(cmd);
 }

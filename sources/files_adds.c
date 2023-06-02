@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:28:20 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/31 13:44:05 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/02 12:45:23 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	file_addback(t_file **files, t_file *new)
 		tmp->next = new;
 	}
 }
+
 t_file	*new_file(int fd, char *msg)
 {
 	t_file	*file;
@@ -34,6 +35,7 @@ t_file	*new_file(int fd, char *msg)
 	file->fd = fd;
 	file->error = msg;
 	file->next = NULL;
+	return (file);
 }
 
 t_file	*open_file(t_parser *parser)
@@ -52,11 +54,14 @@ t_file	*open_file(t_parser *parser)
 		msg = strerror(errno);
 	return (new_file(fd, msg));
 }
+
 t_file	*addfile(t_parser *parser)
 {
 	t_file *file;
 
+	file = malloc(sizeof(t_file));
 	file->fd = ft_atoi(parser->value);
 	file->error = NULL;
 	file->next = NULL;
+	return (file);
 }

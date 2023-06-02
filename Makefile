@@ -23,7 +23,7 @@ PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c expand_helper.c f
 
 
 SRCS_DIR=./sources/
-SRCS=minishell.c ft_interperter.c ft_intialiser.c
+SRCS=minishell.c ft_interperter.c ft_intialiser.c files_adds.c fill_s_adds.c fill_struct.c
 
 EXEC_DIR=./execution/
 EXEC_SRCS=builtins.c env_utils.c builtins_utils2.c builtins_utils.c
