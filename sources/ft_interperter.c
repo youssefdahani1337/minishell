@@ -1,16 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_interperter.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 09:43:20 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/28 15:42:30 by hbenabad         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+#include "../debug/debug.h"
 
 int	ft_minishell(char *line)
 {
@@ -22,7 +13,7 @@ int	ft_minishell(char *line)
 	token = NULL;
 	if (!ft_lexer(line, &token))
 		return (0);
-	t = token; 
+	t = token;
 	while (t)
 	{
 		printtoken(t);
@@ -40,5 +31,6 @@ int	ft_minishell(char *line)
 	cmd = g_shell.table;
 	ft_execution(cmd);
 	freecmd(g_shell.table);
+	fill_struct(&g_shell.table, parser);
 	return (1);
 }

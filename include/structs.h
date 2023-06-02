@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -9,9 +10,17 @@
 /*   Updated: 2023/05/30 09:42:55 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+=======
+
+>>>>>>> 0e14259adfe2bbd8387195bae9504c67ebe7d28f
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+# include <stdlib.h>
+# include <stdio.h>
+
+# include "../libft/libft.h"
 
 typedef struct s_env
 {
@@ -25,7 +34,6 @@ typedef struct s_env
 typedef struct s_file
 {
 	int				fd;
-	int				type;
 	char			*error;
 	struct s_file	*next;
 }	t_file;

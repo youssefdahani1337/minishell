@@ -6,14 +6,13 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:44:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/02 15:17:16 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:41:03 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# include <stdio.h>
 # include "token.h"
 typedef	struct	s_lexer
 {

@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/09 09:48:06 by yodahani          #+#    #+#              #
-#    Updated: 2023/04/28 13:58:39 by hbenabad         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 CC=cc
 CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g
@@ -30,7 +19,7 @@ LXR_DIR=./2.lexer/
 LXR_SRCS=lexer_syntax.c ft_lexer.c lexer_helper.c lexer_sanitizer.c
 
 PAR_DIR=./3.parser/
-PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c
+PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c expand_helper.c ft_expand.c parse_str_sapce.c parse_redirction.c
 
 
 SRCS_DIR=./sources/
@@ -42,18 +31,17 @@ EXEC_SRCS=builtins.c env_utils.c builtins_utils2.c builtins_utils.c
 
 
 ADDS_DIR=./0.addons/
-ADDS_SRCS=ft_strjoin_m.c ft_join_char.c print_error.c
+ADDS_SRCS=ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c
 
 DEBUG=-Ldebug -ldebug
 
 LIBFT=-Llibft -lft
 RL=-lreadline
 
-OBJS= $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o) $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(EXEC_SRCS:%.c=$(EXEC_DIR)%.o) $(PAR_SRCS:%.c=$(PAR_DIR)%.o) 
+OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o)  $(PAR_SRCS:%.c=$(PAR_DIR)%.o) 
 
 all: debug msg libft $(NAME)
 	@echo $(allmsg)
-	clear
 	./minishell
 
 msg:

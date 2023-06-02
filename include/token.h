@@ -6,13 +6,14 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:42:06 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/04 15:29:11 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:22:25 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef TOKEN_H
 # define TOKEN_H
+
 # include "addons.h"
 
 typedef enum e_type
@@ -21,9 +22,9 @@ typedef enum e_type
 	space = ' ',
 	red_in = '<',
 	red_out = '>',
+	red_app,
 	d_qoute = '\"',
 	s_qoute = '\'',
-	red_app,
 	herdoc,
 	string,
 	terminator,

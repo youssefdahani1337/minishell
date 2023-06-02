@@ -6,23 +6,19 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:48:24 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/30 13:41:41 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:54:08 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPAND_H
 # define EXPAND_H
 
-# include <stdio.h>
-
-# include "minishell.h"
-# include "structs.h"
+# include "addons.h"
 
 typedef struct s_expnad
 {
 	char	*value;
 	char	*newstr;
-	int		
 	size_t	i;
 	char	c;
 	size_t	size;
@@ -30,7 +26,7 @@ typedef struct s_expnad
 }	t_expand;
 
 t_expand	*init_expand(char *value);
-char		*ft_expander(char *value, int *expand);
+char		*ft_exp(char *value, int *expand);
 void		get_from_env(t_expand *exp);
 void		expand_iter(t_expand *exp);
 char		*get_env_val(char *key);
