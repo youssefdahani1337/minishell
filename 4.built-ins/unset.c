@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 17:06:04 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/04/02 09:58:23 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:25:44 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ void	ft_unset(void)
 	int		k;
 
 	str = g_shell.table->cmd + 1;
-	k = 0;
-	while (str[k])
+	k = -1;
+	while (str[++k])
 	{
+		if (!ft_isalpha(str[k][0]) && str[k][0] != '_')
+			ft_msgexitsts("not a valid identifier", 1,
+				g_shell.table->outfile->fd);
 		p = g_shell.env;
-		if (!ft_strcmp(p->key, str[k]))
+		else if (!ft_strcmp(p->key, str[k]))
 			ft_delnode(p, 0);
 		else
 		{
@@ -58,6 +61,5 @@ void	ft_unset(void)
 				p = p->next;
 			}
 		}
-		k++;
 	}
 }

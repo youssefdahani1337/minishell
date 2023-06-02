@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 15:36:30 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/02 14:52:31 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/05/28 18:34:30 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	ft_atoi(const char *str)
 {
 	int		i;
+	int		j;
 	int		sign;
 	long	result;
 

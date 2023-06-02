@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:57:05 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/04/01 15:01:59 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/05/28 19:03:15 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_flag_ignore(char **str)
 				j++;
 			if (!str[i][j] && j > 1)
 				i++;
-			else if (str[i][j] || (!str[i][j] && j <= 1))
+			else if (str[i][j] || (!str[i][j] && j == 1))
 				end = 0;
 		}
 		else
@@ -41,22 +41,22 @@ int	ft_flag_ignore(char **str)
 
 void	ft_echo(void)
 {
-	int		index;
-	int		k;
-	char	**str;
+	int		i;
 	int		out;
+	int		index;
+	char	**str;
 
-	out = g_shell.table->outfile->fd;
-	str = g_shell.table->cmd + 1;
+	out = g.shell.table->outfile->fd;
+	str = gn_shell.table->cmd + 1;
 	index = ft_flag_ignore(str);
-	k = index;
-	while (str[k])
+	i = index;
+	while (str[i])
 	{
-		ft_putstr_fd(str[k], out);
-		k++;
-		if (str[k])
+		ft_putstr_fd(str[i], out);
+		i++;
+		if (str[i])
 			ft_putstr_fd(" ", out);
 	}
-	if (index < 1)
+	if (index == 0)
 		ft_putchar_fd('\n', out);
 }

@@ -21,4 +21,5 @@ void	ft_intialize_shell(char **env)
 {
 	g_shell.env = ft_env(env);
 	g_shell.exitsts = 0;
+	g_shell.unsetpwd = 0;
 }

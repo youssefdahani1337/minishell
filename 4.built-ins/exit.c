@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 10:20:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/04/02 15:54:53 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:46:46 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,19 @@ int	ft_check_valid(char	*str)
 	return (ft_atoi(save));
 }
 
-void	ft_exit(void)
+void	ft_end(int valid)
 {
-	char	**str;
-	int		k;
-	int		valid;
-
-	k = 0;
-	str = g_shell.table->cmd + 1;
-	if (str[0] == NULL)
-	{	ft_putstr_fd("exit\n", 1);
-		// free struct
-		exit(g_shell.exitsts);
-	}
-	while (str[k])
-		k++;
-	valid = ft_check_valid(str[0]);
 	if (valid == -1)
 	{
 		ft_putstr_fd("exit\nnumeric argument required\n", 2);
-		// free struct
+		g_shell.exitsts = 255;
 		exit (255);
 	}
 	else if (valid > -1)
 	{
-		if (k == 1)
+		if (i == 1)
 		{
-			// free struct
+			g_shell.exitsts = valid;
 			exit(valid);
 		}
 		else
@@ -65,4 +51,20 @@ void	ft_exit(void)
 			g_shell.exitsts = 1;
 		}
 	}
+}
+
+void	ft_exit(void)
+{
+	int		i;
+	int		valid;
+
+	i = 0;
+	if (g_shell.table->cmd + 1 == NULL)
+	{	
+		ft_putstr_fd("exit\n", 1);
+		exit(g_shell.exitsts);
+	}
+	while (str[i] && i < 2)
+		i++;
+	ft_end(ft_check_valid((g_shell.table->cmd + 1)[0]));
 }

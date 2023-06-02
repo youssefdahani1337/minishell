@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:43:19 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/04/04 16:46:28 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:15:33 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_env	*ft_env_fill(char **env)
 				return (NULL);
 			if (ft_strncmp(new->key, "OLDPWD", 7) == 0)
 				opwd = 1;
-			//i++;
 		}
 		if (opwd == 0)
 		{
@@ -42,11 +41,11 @@ t_env	*ft_env_fill(char **env)
 	return (env_info);
 }
 
-void	ft_env(void)
+void	ft_env(t_env *p)
 {
-	t_env	*p;
+	// t_env	*p;
 
-	p = g_shell.env;
+	// p = g_shell.env;
 	while (p)
 	{
 		if (p->equal == 1)
