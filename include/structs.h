@@ -7,7 +7,6 @@
 # include <stdio.h>
 
 # include "../libft/libft.h"
-# include "structs.h"
 
 typedef struct s_env
 {
@@ -21,7 +20,6 @@ typedef struct s_env
 typedef struct s_file
 {
 	int				fd;
-	int				type;
 	char			*error;
 	struct s_file	*next;
 }	t_file;

@@ -6,13 +6,13 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:34:27 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/22 16:54:05 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:44:19 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../include/parser.h"
 
-int			open_heredoc(t_parser *parser)
+int		open_heredoc(t_parser *parser)
 {
 	while (parser->type != p_terminator)
 	{
@@ -25,15 +25,12 @@ int			open_heredoc(t_parser *parser)
 
  void	execute_heredoc(t_parser *parser)
  {
-	int		pid;
 	char	*line;
 	int		fd[2];
 	
-	
-	pid = fork();
-	if (pid == 0)
+	pipe(fd);
+	if (fork() == 0)
 	{
-		pipe(fd);
 		close(fd[0]);
 		while (1)
 		{
@@ -51,7 +48,6 @@ int			open_heredoc(t_parser *parser)
 
 void	write_in_her(char *line, int fd, int state)
 {
-	printf("%d\n", state);
 	if (!state)
 		line = ft_exp(line, NULL);
 	ft_putstr_fd(line, fd);

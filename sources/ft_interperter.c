@@ -6,11 +6,13 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:43:20 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/22 15:54:51 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:52:07 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+#include "../debug/debug.h"
 
 int	ft_minishell(char *line)
 {
@@ -22,7 +24,7 @@ int	ft_minishell(char *line)
 	token = NULL;
 	if (!ft_lexer(line, &token))
 		return (0);
-	t = token; 
+	t = token;
 	while (t)
 	{
 		printtoken(t);
@@ -36,5 +38,6 @@ int	ft_minishell(char *line)
 		printparser(parser);
 		parser = parser->next;
 	}
+	fill_struct(&g_shell.table, parser);
 	return (1);
 }

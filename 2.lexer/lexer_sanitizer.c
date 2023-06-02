@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:10:47 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/02 15:13:38 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/29 11:22:37 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ t_tokens	*lexer_str(t_lexer *lexer)
 {
 	char	*value;
 
-	value = malloc(sizeof(char));
-	if (!value)
-		return (NULL);
-	value[0] = '\0';
+	value = ft_strdup("");
 	while (lexer->c != '\0' && !ft_strchr(" <>|'\"", lexer->c))
 	{
 		value = ft_join_char(value, lexer->c);
@@ -63,7 +60,7 @@ t_tokens	*lexer_quote(t_lexer *lexer)
 	lexer_iter(lexer);
 	while (lexer->c != c)
 	{
-		value = ft_join_char(value, lexer->c);	
+		value = ft_join_char(value, lexer->c);
 		lexer_iter(lexer);
 	}
 	return (ft_newtoken(value, c));

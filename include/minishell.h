@@ -12,9 +12,10 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 int		ft_minishell(char *line);
 void	ft_intialize_shell(char **env);
-
 
 #endif

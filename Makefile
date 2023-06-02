@@ -19,7 +19,7 @@ LXR_DIR=./2.lexer/
 LXR_SRCS=lexer_syntax.c ft_lexer.c lexer_helper.c lexer_sanitizer.c
 
 PAR_DIR=./3.parser/
-PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c expand_helper.c ft_expand.c
+PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c expand_helper.c ft_expand.c parse_str_sapce.c parse_redirction.c
 
 
 SRCS_DIR=./sources/
@@ -31,7 +31,7 @@ EXEC_SRCS=builtins.c env_utils.c builtins_utils2.c builtins_utils.c
 
 
 ADDS_DIR=./0.addons/
-ADDS_SRCS=ft_strjoin_m.c ft_join_char.c print_error.c
+ADDS_SRCS=ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c
 
 DEBUG=-Ldebug -ldebug
 
@@ -42,7 +42,6 @@ OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.
 
 all: debug msg libft $(NAME)
 	@echo $(allmsg)
-	clear
 	./minishell
 
 msg:

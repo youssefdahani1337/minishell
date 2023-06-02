@@ -43,7 +43,6 @@ int	ft_fillnew(t_env *new, char *str)
 	return (1);
 }
 
-
 t_env	*ft_envlast(t_env *lst)
 {
 	if (lst)

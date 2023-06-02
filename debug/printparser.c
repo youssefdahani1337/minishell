@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:09:37 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/22 01:12:19 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/28 16:18:21 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,13 @@ void	printparser(t_parser *parser)
 		case p_error:
 			printf("error\n");
 			break;
-		case p_terminator:
-			printf("error\n");
+		case p_space:
+			printf("space\n");
 			break;
+		case p_terminator:
+			printf("Terminatorr\n");
+			break;
+
 	}
 	
 }

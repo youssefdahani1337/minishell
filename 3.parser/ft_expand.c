@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:29:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/22 16:00:48 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/26 09:37:59 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	get_from_env(t_expand *exp)
 	char	*key;
 
 	key = ft_strdup("");
-	while (exp->c != '\0' && (ft_isalnum(exp->c) || exp->c == '_') )
+	while (exp->c != '\0' && (ft_isalnum(exp->c) || exp->c == '_'))
 	{
 		key = ft_join_char(key, exp->c);
 		expand_iter(exp);

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:31:10 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/22 12:06:19 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:46:50 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,36 @@
 
 int	ft_parser(t_parser **parser, t_tokens *token)
 {
-	parser_parse(parser, token);
-	if (!open_heredoc(*parser))
+	if (!parser_parse(parser, token))
 		return (0);
-	return (1);	
+	return (1);
 }
-void	parser_parse(t_parser **parser, t_tokens *token)
-{
-	int	error;
+#include "../debug/debug.h"
 
-	error = 1;
-	while (token->type != terminator && error)
+int	parser_parse(t_parser **parser, t_tokens *token)
+{
+	int	status;
+
+	status = 1;
+	while (token->type != terminator && status)
 	{
-		if (token->type == herdoc)
-			parser_add_herdoc(parser, &token, &error);
-		//if (token->type == red_app)
-		// 	parser_add(parser, &token, limiter, &error);
-		// if (token->type == red_out)
-		// 	parser_add(parser, &token, limiter, &error);
-		// if (token->type == red_in)
-		// 	parser_add(parser, &token, limiter, &error);
-		// if (token->type == pip)
-		// 	parser_add(parser, &token, limiter, &error);
-		//else
-		//	parser_add(parser, &token, limiter, &error);
+		parser_parsing(parser, &token, &status);
 	}
 	ft_parseadd_back(parser, ft_newparse(NULL, p_terminator, 0));
+	open_heredoc(*parser);
+	return (status);
 }
 
+void	parser_parsing(t_parser **parser, t_tokens **token, int *error)
+{
+	if ((*token)->type == terminator || (*token)->type == pip || (*token)->type == space)
+		add_parse(parser, token);
+	else if ((*token)->type == string)
+		parser_add_string(parser, token);
+	else if ((*token)->type == d_qoute || (*token)->type == s_qoute)
+		parser_add_quote(parser, token);
+	else if ((*token)->type == herdoc)
+		parser_add_herdoc(parser, token, error);
+	else if ((*token)->type == red_app || (*token)->type == red_in || (*token)->type == red_out)		
+		parser_add_redirect(parser, token, error);
+}
