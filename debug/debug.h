@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:19:10 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/24 12:06:41 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:16:03 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 void	printdebug(void);
 void	printtoken(t_tokens *token);
 void	printparser(t_parser *parser);
+void	print_cmd(t_cmdtable *cmd);
 
 #endif 

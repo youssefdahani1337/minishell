@@ -6,20 +6,19 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 08:52:13 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/29 15:49:27 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:55:44 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parser.h"
 
-void		parser_add_redirect(t_parser **parser, t_tokens **token, int *error)
+void	parser_add_redirect(t_parser **parser, t_tokens **token, int *error)
 {
 	char	*value;
 	int		type;
 	int		var;
 	int		state;
 
-	// rev
 	state = 0;
 	value = ft_strdup("");
 	var = 0;
@@ -41,6 +40,7 @@ void		parser_add_redirect(t_parser **parser, t_tokens **token, int *error)
 	}
 	ft_parseadd_back(parser, ft_newparse(value, type, state));
 }
+
 char	*join_red(char *value, t_tokens *token, int *state)
 {
 	if (token->type == d_qoute)
@@ -49,7 +49,7 @@ char	*join_red(char *value, t_tokens *token, int *state)
 		value = ft_strjoin_m(value, token->value);
 	else if (token->type == string)
 		value = ft_join_exp(value, token->value, state);
-	return(value);
+	return (value);
 }
 
 char	*ft_join_exp(char *value, char *tok_str, int *state)
@@ -58,15 +58,8 @@ char	*ft_join_exp(char *value, char *tok_str, int *state)
 
 	tok_str = ft_exp(tok_str, NULL);
 	sp = ft_split(tok_str, ' ');
-	if (!sp || !sp[0])
-		*state = -1;
-	else if (count_sp(sp) > 1)
+	if (!sp || !sp[0] || count_sp(sp) > 1)
 		*state = -1;
 	free_sp(sp);
 	return (ft_strjoin_m(value, tok_str));
-	
 }
-
-
-
-

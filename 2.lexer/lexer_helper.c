@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:27:14 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/02 14:16:15 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:04:58 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	lexer_iter(t_lexer *lexer)
 		lexer->c = lexer->src[lexer->i];
 	}
 }
-void		ft_skip_whitespace(t_lexer *lexer)
+
+void	ft_skip_whitespace(t_lexer *lexer)
 {
 	while (lexer->c != '\0' && ft_strchr(" \t\n", lexer->c))
 		lexer_iter(lexer);

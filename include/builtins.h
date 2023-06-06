@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:25:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/05/30 10:26:27 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:00:48 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ t_env	*ft_getenv(char *key);
 char	*ft_getopwd(int *oldp);
 char	*ft_getdir(char *direc, int *print);
 void	ft_cd(t_cmdtable *cmd);
+void	ft_pwd(t_cmdtable *cmd);
 
 #endif

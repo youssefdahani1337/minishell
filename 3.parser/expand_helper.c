@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_helper..c                                   :+:      :+:    :+:   */
+/*   expand_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:23:54 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/27 12:25:26 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:05:16 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_expand	*init_expand(char *value)
 	t_expand	*exp;
 
 	exp = malloc(sizeof(t_expand));
-	exp->value  = value;
+	exp->value = value;
 	exp->size = ft_strlen(value);
 	exp->newstr = ft_strdup("");
 	exp->i = 0;

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:17:00 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/28 13:16:52 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:58:46 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av, char **env)
 		if (!line || !line[0])
 			continue;
 		add_history(line);
-		printf("command :%s\n", line);
+		// printf("command :%s\n", line);
 		check = ft_minishell(line);
 		free(line);
 	}

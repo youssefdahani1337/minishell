@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 06:42:39 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/04 12:16:34 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:07:37 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_parser	*ft_newparse(char *value, int type, int state)
 	return (p);
 }
 
-void		ft_parseadd_back(t_parser **parser, t_parser *new)
+void	ft_parseadd_back(t_parser **parser, t_parser *new)
 {
 	t_parser	*p;
 

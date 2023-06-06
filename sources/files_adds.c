@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:28:20 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/02 12:45:23 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:38:04 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	file_addback(t_file **files, t_file *new)
 {
-	t_file *tmp;
+	t_file		*tmp;
 
 	tmp = *files;
 	if (!*files)
@@ -38,11 +38,13 @@ t_file	*new_file(int fd, char *msg)
 	return (file);
 }
 
-t_file	*open_file(t_parser *parser)
+t_file	*open_file(t_parser *parser, int *status)
 {
 	int		fd;
 	char	*msg;
-	
+
+	if (parser->state == -1)
+		return (new_file(-1, ft_strdup(": ambiguous redirect")));
 	msg = NULL;
 	if (parser->type == infile)
 		fd = open(parser->value, O_RDONLY);
@@ -51,15 +53,20 @@ t_file	*open_file(t_parser *parser)
 	else
 		fd = open(parser->value, O_CREAT | O_RDWR | O_APPEND, 0677);
 	if (fd == -1)
+	{
 		msg = strerror(errno);
+		*status = -1;
+	}
 	return (new_file(fd, msg));
 }
 
 t_file	*addfile(t_parser *parser)
 {
-	t_file *file;
+	t_file	*file;
 
 	file = malloc(sizeof(t_file));
+	if (!file)
+		return (NULL);
 	file->fd = ft_atoi(parser->value);
 	file->error = NULL;
 	file->next = NULL;

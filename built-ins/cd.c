@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/05/30 16:38:26 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:56:21 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "../include/builtins.h"
 
 void	ft_newpwdval(char *pwd, char *opwd)
 {
@@ -34,7 +34,7 @@ void	ft_newpwdval(char *pwd, char *opwd)
 		free(ptr);
 	}
 	if (g_shell.unsetpwd == 1)
-		g_shel.unsetpwd == 2;
+		g_shell.unsetpwd = 2;
 }
 
 t_env	*ft_getenv(char *key)
@@ -51,7 +51,7 @@ t_env	*ft_getenv(char *key)
 	return (NULL);
 }
 
-char	*ft_getopwd(int *oldp, int *unsetpwd)
+char	*ft_getopwd(int *oldp)
 {
 	char	opwd[MAXPATHLEN];
 	t_env	*oldpwd;

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:40:53 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/05/30 18:46:39 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:51:57 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "../include/builtins.h"
 
 void	ft_unset(t_cmdtable *cmd)
 {
-	
+	(void)cmd;
+	return ;
 }

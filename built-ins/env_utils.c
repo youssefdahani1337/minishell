@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:17:44 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/04/01 17:00:54 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:51:26 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "../include/builtins.h"
 
 void	ft_envclear(t_env **lst)
 {

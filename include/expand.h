@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:48:24 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/22 15:54:08 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:25:45 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_expnad
 	size_t	i;
 	char	c;
 	size_t	size;
-	
 }	t_expand;
 
 t_expand	*init_expand(char *value);
@@ -32,4 +31,6 @@ void		expand_iter(t_expand *exp);
 char		*get_env_val(char *key);
 void		free_exp(t_expand *exp);
 void		ft_getvar(t_expand *exp);
+void		exp_tilde(t_expand *exp);
+
 #endif
