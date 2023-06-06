@@ -7,7 +7,6 @@ int	ft_atoi(const char *str)
 	int		j;
 	int		sign;
 	long	result;
-	int		j;
 
 	j = 0;
 	result = 0;

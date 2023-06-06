@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 09:40:53 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/05/30 18:46:39 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:37:00 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 void	ft_unset(t_cmdtable *cmd)
 {
-	
+	char	**str;
+	int		i;
+
+	i = 0;
+	str = cmd->cmd + 1;
 }

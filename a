@@ -1,1 +1,35 @@
-/Users/hbenabad/Desktop/minishell
+TMPDIR=/var/folders/zz/zyxvpxvq6csfxvn_n0000l5w0004sg/T/
+__CF_USER_TEXT_ENCODING=0x132F:0x0:0x0
+HOME=/Users/hbenabad
+SHELL=/bin/zsh
+Apple_PubSub_Socket_Render=/private/tmp/com.apple.launchd.m3A0MZQZah/Render
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.AIEB902lOJ/Listeners
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+LOGNAME=hbenabad
+XPC_SERVICE_NAME=0
+MallocNanoZone=0
+USER=hbenabad
+XPC_FLAGS=0x0
+ORIGINAL_XDG_CURRENT_DESKTOP=undefined
+SHLVL=1
+PWD=/Users/hbenabad/Desktop/minishell
+OLDPWD=/Users/hbenabad/Desktop/minishell
+ZSH=/Users/hbenabad/.oh-my-zsh
+PAGER=less
+LESS=-R
+LSCOLORS=Gxfxcxdxbxegedabagacad
+LS_COLORS=di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43
+TERM_PROGRAM=vscode
+TERM_PROGRAM_VERSION=1.78.2
+LANG=en_US.UTF-8
+COLORTERM=truecolor
+GIT_ASKPASS=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass.sh
+VSCODE_GIT_ASKPASS_NODE=/Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Plugin).app/Contents/MacOS/Code Helper (Plugin)
+VSCODE_GIT_ASKPASS_EXTRA_ARGS=--ms-enable-electron-run-as-node
+VSCODE_GIT_ASKPASS_MAIN=/Applications/Visual Studio Code.app/Contents/Resources/app/extensions/git/dist/askpass-main.js
+VSCODE_GIT_IPC_HANDLE=/var/folders/zz/zyxvpxvq6csfxvn_n0000l5w0004sg/T/vscode-git-be8b2d1dcb.sock
+VSCODE_INJECTION=1
+ZDOTDIR=/Users/hbenabad
+USER_ZDOTDIR=/Users/hbenabad
+TERM=xterm-256color
+_=/usr/bin/env

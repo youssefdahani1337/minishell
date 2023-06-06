@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:14:53 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/05/30 09:56:20 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:24:29 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,19 @@ void	ft_env(t_cmdtable *cmd)
 {
 	t_env	*ptr;
 
-	(void)cmd;
+	(void)cmd; // redirection to a file
 	ptr = g_shell.env;
 	while (ptr)
 	{
 		if (ptr->equal == 1)
 		{
-			ft_putstr_fd(ptr->key, 1);
-			ft_putchar_fd('=', 1);
-			ft_putstr_fd(ptr->value, 1);
-			ft_putchar_fd('\n', 1);
+			if (ft_strcmp(ptr->key, "OLDPWD") || g_shell.fst_time != 1 || g_shell.unsetpwd != 1)
+			{
+				ft_putstr_fd(ptr->key, 1);
+				ft_putchar_fd('=', 1);
+				ft_putstr_fd(ptr->value, 1);
+				ft_putchar_fd('\n', 1);
+			}
 		}
 		ptr = ptr->next;
 	}

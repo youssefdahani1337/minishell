@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/05/30 16:38:26 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:23:50 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_newpwdval(char *pwd, char *opwd)
 	if (pwdnode)
 	{
 		ptr = pwdnode->value;
+		pwdnode->equal = 1; //test it
 		pwdnode->value = pwd;
 		if (ft_strcmp(ptr, opwd))
 			free(ptr);
@@ -30,11 +31,12 @@ void	ft_newpwdval(char *pwd, char *opwd)
 	if (opwdnode)
 	{
 		ptr = opwdnode->value;
+		opwdnode->equal = 1;
 		opwdnode->value = opwd;
 		free(ptr);
 	}
 	if (g_shell.unsetpwd == 1)
-		g_shel.unsetpwd == 2;
+		g_shell.unsetpwd = 2;
 }
 
 t_env	*ft_getenv(char *key)
@@ -51,7 +53,7 @@ t_env	*ft_getenv(char *key)
 	return (NULL);
 }
 
-char	*ft_getopwd(int *oldp, int *unsetpwd)
+char	*ft_getopwd(int *oldp)
 {
 	char	opwd[MAXPATHLEN];
 	t_env	*oldpwd;
@@ -72,7 +74,7 @@ char	*ft_getopwd(int *oldp, int *unsetpwd)
 			return (NULL);
 		}
 	}
-	else if (g_shell.unsetpwd == 1) //just did unset test:(unset PWD cd . cd .) add in export if (export PWD=) unsetpwd = 0;  
+	else if (1 == g_shell.unsetpwd++) //just did unset test:(unset PWD cd . cd .) add in export if (export PWD=) unsetpwd = 0;  
 		opwd_val = NULL;
 	*oldp = 1;
 	if (g_shell.unsetpwd >= 2 || (!oldpwd && !g_shell.unsetpwd))
