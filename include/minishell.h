@@ -8,14 +8,34 @@
 # include "parser.h"
 #include "../debug/debug.h"
 # include <stdio.h>
+# include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 #include <fcntl.h>
 #include <unistd.h>
+ #include "builtins.h"
 
 int		ft_minishell(char *line);
 void	ft_intialize_shell(char **env);
+void	ft_execution(t_cmdtable *table);
+void	builtins(t_cmdtable *table);
+
+// fill strcut 
+void	cmd_init(t_cmdtable *table);
+void		fill_struct(t_cmdtable **table, t_parser *parser);
+t_cmdtable	*add_table(t_parser **parser);
+void		struct_addback(t_cmdtable **table, t_cmdtable *new);
+int			count_t_parse(t_parser *parser, int type);
+void		get_cmd(t_cmdtable *cmd, t_parser *parser);
+void		get_outfile(t_file **file, t_parser *parser);
+void		skip_parse(t_parser **parser);
+void		file_addback(t_file **files, t_file *new);
+t_file		*new_file(int fd, char *msg);
+t_file		*open_file(t_parser *parser, int *status);
+t_file		*addfile(t_parser *parser);
+
+//End fill struct 
 
 #endif

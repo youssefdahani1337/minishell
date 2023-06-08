@@ -38,7 +38,7 @@ typedef struct	s_shell
 	t_cmdtable	*table;
 	int			exitsts;
 	int			unsetpwd;
-	int			fst_time;
+	int			opwd;
 }	t_shell;
 
 t_shell 	g_shell;

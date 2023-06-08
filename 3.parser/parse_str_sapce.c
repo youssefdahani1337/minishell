@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:32:45 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/29 14:29:55 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:10:01 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,25 @@ void	add_space_parse(t_parser **parser, t_lexer *lexer)
 		lexer_iter(lexer);
 	ft_parseadd_back(parser, ft_newparse(NULL, p_space, 0));
 }
+
 void	parser_add_quote(t_parser **parser, t_tokens **token)
 {
 	if ((*token)->type == d_qoute)
-		ft_parseadd_back(parser, ft_newparse(ft_exp((*token)->value, NULL), p_string, 0));
+		ft_parseadd_back(parser,
+			ft_newparse(ft_exp((*token)->value, NULL), p_string, 0));
 	else
 		ft_parseadd_back(parser, ft_newparse((*token)->value, p_string, 0));
-	(*token)->value = NULL;;
+	(*token)->value = NULL;
 	(*token) = (*token)->next;
+}
+
+void	add_parse(t_parser **parser, t_tokens **token)
+{
+	int		type;
+	char	*value;
+
+	value = ft_strdup((*token)->value);
+	type = get_typeparse(*token);
+	(*token) = (*token)->next;
+	ft_parseadd_back(parser, ft_newparse(value, type, 0));
 }

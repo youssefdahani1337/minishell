@@ -14,15 +14,13 @@ int	ft_atoi(const char *str)
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')
 		sign = -1 * (str[i ++] - 44);
-	while (ft_isdigit(str[i]))
+	while (str[i])
 	{
-		if (j == 19 || result > 922337203685477580)
+		if (!ft_isdigit(str[i]) || (j == 19 || result > 922337203685477580))
 			return (-1);
 		else if (result == 922337203685477580)
 		{
-			if (sign == 1 && str[i] > 7)
-				return (-1);
-			else if (sign == -1 && str[i] > 8)
+			if ((sign == 1 && str[i] > 7) || (sign == -1 && str[i] > 8))
 				return (-1);
 		}
 		result = (result * 10) + (str[i ++] - 48);

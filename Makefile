@@ -1,6 +1,6 @@
 
 CC=cc
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
 
 RM=rm -rf
 NAME=minishell
@@ -23,10 +23,10 @@ PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c expand_helper.c f
 
 
 SRCS_DIR=./sources/
-SRCS=minishell.c ft_interperter.c ft_intialiser.c
+SRCS=minishell.c ft_interperter.c ft_intialiser.c files_adds.c fill_s_adds.c fill_struct.c execution.c
 
-EXEC_DIR=./execution/
-EXEC_SRCS=builtins.c env_utils.c builtins_utils2.c builtins_utils.c
+BUILT_DIR=./built-ins/
+BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c exit.c env_utils.c
 
 
 
@@ -38,11 +38,9 @@ DEBUG=-Ldebug -ldebug
 LIBFT=-Llibft -lft
 RL=-lreadline
 
-OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o)  $(PAR_SRCS:%.c=$(PAR_DIR)%.o) 
-
+OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o)  $(PAR_SRCS:%.c=$(PAR_DIR)%.o) $(BUILT_SRCS:%.c=$(BUILT_DIR)%.o)
 all: debug msg libft $(NAME)
 	@echo $(allmsg)
-	./minishell
 
 msg:
 	@echo "$(GREEN)Compiling MINISHELL... $(COLOR_END)"

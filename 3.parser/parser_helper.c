@@ -6,18 +6,17 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:51:12 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/29 14:30:57 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:27:05 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parser.h"
-#include "../debug/debug.h"
 
 int	in_join(int type, int *state)
 {
 	if (type == d_qoute || type == s_qoute)
 	{
-		 ++(*state);
+		++(*state);
 		return (1);
 	}
 	if (type == string)
@@ -30,7 +29,6 @@ void	parser_add_herdoc(t_parser **parser, t_tokens **token, int *error)
 	int		state;
 	char	*value;
 
-//revise
 	state = 0;
 	(*token) = (*token)->next;
 	skipper_token(token);
@@ -43,15 +41,13 @@ void	parser_add_herdoc(t_parser **parser, t_tokens **token, int *error)
 	}
 	value = join_token(token, &state);
 	ft_parseadd_back(parser, ft_newparse(value, limiter, state));
-	//printtoken(*token);
-	printf("%s\n", value);
 }
 
 char	*join_token(t_tokens **token, int *state)
 {
 	char	*value;
 
-	value = ft_strdup("");	
+	value = ft_strdup("");
 	while ((*token)->type != terminator && in_join((*token)->type, state))
 	{
 		value = ft_strjoin_m(value, (*token)->value);
@@ -61,7 +57,7 @@ char	*join_token(t_tokens **token, int *state)
 	return (value);
 }
 
-void		skipper_token(t_tokens **tokens)
+void	skipper_token(t_tokens **tokens)
 {
 	while ((*tokens)->type == space)
 		(*tokens) = (*tokens)->next;
@@ -70,30 +66,20 @@ void		skipper_token(t_tokens **tokens)
 int	get_typeparse(t_tokens *token)
 {
 	if (token->type == pip)
-		return  (p_pip);
+		return (p_pip);
 	if (token->type == red_in)
-		return  (infile);
+		return (infile);
 	if (token->type == red_out)
-		return  (outfile);
+		return (outfile);
 	if (token->type == red_app)
-		return  (appfile);
+		return (appfile);
 	if (token->type == herdoc)
-		return  (limiter);
+		return (limiter);
 	if (token->type == string)
-		return  (p_string);
+		return (p_string);
 	if (token->type == terminator)
-		return  (p_terminator);
+		return (p_terminator);
 	if (token->type == space)
-		return  (p_space);
+		return (p_space);
 	return (p_terminator);
-}
-void	add_parse(t_parser **parser, t_tokens **token)
-{
-	int		type;
-	char	*value;
-
-	value = ft_strdup((*token)->value);
-	type = get_typeparse(*token);
-	(*token) = (*token)->next;
-	ft_parseadd_back(parser, ft_newparse(value, type, 0));
 }

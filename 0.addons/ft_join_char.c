@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:36:50 by yodahani          #+#    #+#             */
-/*   Updated: 2023/03/27 11:48:10 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:04:05 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 char	*ft_join_char(char *value, char c)
 {
-	char		*str ;
+	char			*str ;
 	unsigned int	i;
-	
+
 	i = 0;
 	str = malloc(sizeof(char) * (ft_strlen(value) + 2));
 	if (!str)
-		return(NULL);
+		return (NULL);
 	while (value[i])
 	{
 		str[i] = value[i];
