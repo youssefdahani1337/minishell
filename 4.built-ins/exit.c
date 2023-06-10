@@ -5,66 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/02 10:20:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/05/25 14:46:46 by hbenabad         ###   ########.fr       */
+/*   Created: 2023/06/07 18:11:27 by hbenabad          #+#    #+#             */
+/*   Updated: 2023/06/08 10:45:35 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "../include/builtins.h"
 
-int	ft_check_valid(char	*str)
+void	ft_exit_msg(char *fstparam, char *str, int exitsts)
 {
-	char	*save;
-	int		i;
-
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	save = str + i;
-	while (str[i])
+	g_shell.exitsts = exitsts;
+	printf("exit\n");
+	if (str)
 	{
-		if (ft_isdigit(str[i]) == 0)
-			return (-1);
-		i++;
-	}
-	return (ft_atoi(save));
-}
-
-void	ft_end(int valid)
-{
-	if (valid == -1)
-	{
-		ft_putstr_fd("exit\nnumeric argument required\n", 2);
-		g_shell.exitsts = 255;
-		exit (255);
-	}
-	else if (valid > -1)
-	{
-		if (i == 1)
-		{
-			g_shell.exitsts = valid;
-			exit(valid);
-		}
+		if (fstparam)
+			printf("minishell: exit: %s: %s\n", fstparam, str);
 		else
 		{
-			ft_putstr_fd("exit\ntoo many arguments\n", 2);
-			g_shell.exitsts = 1;
+			printf("minishell: exit: %s\n", str);
+			return ;
 		}
 	}
+	exit(exitsts);
 }
 
-void	ft_exit(void)
+void	ft_exit(t_cmdtable *table)
 {
 	int		i;
-	int		valid;
+	int		nb;
 
 	i = 0;
-	if (g_shell.table->cmd + 1 == NULL)
-	{	
-		ft_putstr_fd("exit\n", 1);
-		exit(g_shell.exitsts);
-	}
-	while (str[i] && i < 2)
+	while ((table->cmd + 1)[i])
 		i++;
-	ft_end(ft_check_valid((g_shell.table->cmd + 1)[0]));
+	if (i == 0)
+		ft_exit_msg(NULL, NULL, g_shell.exitsts);
+	nb = ft_atoi((table->cmd + 1)[0]);
+	if (nb == -1)
+		ft_exit_msg((table->cmd + 1)[0], "numeric argument required", 255);
+	if (i == 1)
+		ft_exit_msg(NULL, NULL, nb);
+	else if (i > 1)
+		ft_exit_msg(NULL, "too many arguments", 1);
+	return ;
 }

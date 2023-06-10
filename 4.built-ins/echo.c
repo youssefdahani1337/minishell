@@ -5,58 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 12:57:05 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/05/28 19:03:15 by hbenabad         ###   ########.fr       */
+/*   Created: 2023/05/28 15:25:10 by hbenabad          #+#    #+#             */
+/*   Updated: 2023/06/06 16:40:30 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "../include/builtins.h"
 
-int	ft_flag_ignore(char **str)
+void	ft_echo(t_cmdtable *table)
 {
 	int	i;
 	int	j;
-	int	end;
 
 	i = 0;
-	end = 1;
-	while (str[i] && end == 1)
+	while ((table->cmd + 1)[i])
 	{
 		j = 0;
-		if (str[i][j] && str[i][j] == '-')
-		{
-			j++;
-			while (str[i][j] && str[i][j] == 'n')
-				j++;
-			if (!str[i][j] && j > 1)
-				i++;
-			else if (str[i][j] || (!str[i][j] && j == 1))
-				end = 0;
-		}
+		if ((table->cmd + 1)[i][j] == '-' && ++j)
+			while ((table->cmd + 1)[i][j] && (table->cmd + 1)[i][j] == 'n'
+				&& ++j)
+				;
+		if (!(table->cmd + 1)[i][j] && j > 1)
+			i++;
 		else
-			end = 0;
+			break ;
 	}
-	return (i);
-}
-
-void	ft_echo(void)
-{
-	int		i;
-	int		out;
-	int		index;
-	char	**str;
-
-	out = g.shell.table->outfile->fd;
-	str = gn_shell.table->cmd + 1;
-	index = ft_flag_ignore(str);
-	i = index;
-	while (str[i])
+	j = i;
+	while ((table->cmd + 1)[j])
 	{
-		ft_putstr_fd(str[i], out);
-		i++;
-		if (str[i])
-			ft_putstr_fd(" ", out);
+		ft_putstr_fd((table->cmd + 1)[j++], 1);
+		if ((table->cmd + 1)[j])
+			ft_putchar_fd(' ', 1);
 	}
-	if (index == 0)
-		ft_putchar_fd('\n', out);
+	if (i == 0)
+		ft_putchar_fd('\n', 1);
 }

@@ -1,4 +1,5 @@
 
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
@@ -37,6 +38,7 @@ typedef struct s_shell
 	t_cmdtable	*table;
 	int			exitsts;
 	int			unsetpwd;
+	int			opwd;
 }	t_shell;
 
 t_shell g_shell;

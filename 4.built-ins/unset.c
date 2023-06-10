@@ -5,61 +5,83 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/01 17:06:04 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/05/26 10:25:44 by hbenabad         ###   ########.fr       */
+/*   Created: 2023/06/06 16:29:19 by hbenabad          #+#    #+#             */
+/*   Updated: 2023/06/08 10:41:27 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "builtins.h"
+#include "../include/builtins.h"
 
-void	ft_delnode(t_env *p, int i)
+void	ft_delenvnode(t_env *to_unset)
 {
-	t_env	*unset;
-
-	unset = NULL;
-	if (i == 0)
-	{
-		unset = g_shell.env;
-		g_shell.env = g_shell.env->next;
-	}
-	else if (i == 1)
-	{
-		unset = p->next;
-		p->next = unset->next;
-	}
-	unset->next = NULL;
-	free(unset->key);
-	free(unset->value);
-	free(unset);
+	to_unset->next = NULL;
+	free(to_unset->key);
+	free(to_unset->value);
+	free(to_unset);
+	return ;
 }
 
-void	ft_unset(void)
+int	ft_checkvar(char *str)
 {
-	char	**str;
-	t_env	*p;
-	int		k;
+	int	i;
 
-	str = g_shell.table->cmd + 1;
-	k = -1;
-	while (str[++k])
+	i = 0;
+	if (!ft_isalpha(str[i]) && str[i] != '_')
+		return (0);
+	i++;
+	while (str[i])
 	{
-		if (!ft_isalpha(str[k][0]) && str[k][0] != '_')
-			ft_msgexitsts("not a valid identifier", 1,
-				g_shell.table->outfile->fd);
-		p = g_shell.env;
-		else if (!ft_strcmp(p->key, str[k]))
-			ft_delnode(p, 0);
+		if (!ft_isalpha(str[i]) && str[i] != '_' && !ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	ft_unset_str(t_env **ptr, t_env *env_var, char *cmd_str)
+{
+	t_env	*to_unset;
+
+	while (env_var)
+	{
+		if (!ft_strcmp(env_var->key, cmd_str))
+		{
+			to_unset = env_var;
+			*ptr = to_unset->next;
+			// to_unset->next = NULL;
+			env_var = *ptr;
+			ft_delenvnode(to_unset);
+			break ;
+		}
 		else
 		{
-			while (p)
-			{
-				if (!ft_strcmp((p->next)->key, str[k]))
-				{
-					ft_delnode(p, 1);
-					break ;
-				}
-				p = p->next;
-			}
+			ptr = &(env_var->next);
+			env_var = env_var->next;
 		}
 	}
+}
+
+void	ft_unset(t_cmdtable *table)
+{
+	char	**cmd_str;
+	int		i;
+
+	i = 0;
+	cmd_str = table->cmd + 1;
+	while (cmd_str[i])
+	{
+		if (!ft_checkvar(cmd_str[i]))
+		{
+			printf("unset: %s: invalid parameter name\n", cmd_str[i]);
+			g_shell.exitsts = 1;
+		}
+		else
+		{
+			if (!ft_strcmp(cmd_str[i], "PWD"))
+				g_shell.unsetpwd = 1;
+			ft_unset_str(&g_shell.env, g_shell.env, cmd_str[i]);
+		}
+		i++;
+	}
+	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:25:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/06 16:00:48 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/07 18:46:15 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,17 @@ t_env	*ft_envnew(char *str);
 t_env	*ft_envlast(t_env *lst);
 int		ft_envadd_back(t_env **lst, t_env *new);
 t_env	*ft_env_fill(char **env);
-void	ft_env(t_cmdtable *cmd);
+void	ft_env(t_cmdtable *table);
 
-void	ft_echo(t_cmdtable *cmd);
+void	ft_echo(t_cmdtable *table);
 t_env	*ft_getenv(char *key);
 char	*ft_getopwd(int *oldp);
 char	*ft_getdir(char *direc, int *print);
-void	ft_cd(t_cmdtable *cmd);
-void	ft_pwd(t_cmdtable *cmd);
+void	ft_cd(t_cmdtable *table);
+void	ft_pwd(t_cmdtable *table);
+
+void	ft_delenvnode(t_env *to_unset);
+void	ft_unset(t_cmdtable *table);
+void	ft_exit(t_cmdtable *table);
 
 #endif

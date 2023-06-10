@@ -18,13 +18,19 @@
 # include <fcntl.h>
 # include "builtins.h"
 
-char	*join_parser(t_parser **parser);
-
-void		rl_replace_line (const char *, int);
 int			ft_minishell(char *line);
 void		ft_intialize_shell(char **env, int ac, char **av);
-void		ft_execution(t_cmdtable *table);
+void		rl_replace_line(const char *line, int n);
 
+//execution 
+void		ft_execution(t_cmdtable *table);
+void		builtins(t_cmdtable *table);
+//end execution 
+
+
+//fill struct 
+
+char		*join_parser(t_parser **parser);
 void		cmd_init(t_cmdtable *table);
 void		fill_struct(t_cmdtable **table, t_parser *parser);
 t_cmdtable	*add_table(t_parser **parser);
@@ -40,8 +46,9 @@ t_file		*addfile(t_parser *parser);
 void		fill_struct_iter(t_cmdtable **table, t_parser *parser);
 void		skip_y_close(t_cmdtable *table);
 void		free_file(t_file *f);
+void		skip_y_close(t_cmdtable *table);
+void		skip_file(t_file **f, void *node, int std);
+void		free_file(t_file *f);
 
-void	skip_y_close(t_cmdtable *table);
-void	skip_file(t_file **f, void *node, int std);
-void	free_file(t_file *f);
+//end fill struct 
 #endif

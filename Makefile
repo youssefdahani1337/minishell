@@ -25,8 +25,8 @@ PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c expand_helper.c f
 SRCS_DIR=./sources/
 SRCS=minishell.c ft_interperter.c ft_intialiser.c files_adds.c fill_s_adds.c fill_struct.c execution.c free_me.c
 
-BUILT_DIR=./built-ins/
-BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c env_utils.c
+BUILT_DIR=./4.built-ins/
+BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c exit.c env_utils.c
 
 
 

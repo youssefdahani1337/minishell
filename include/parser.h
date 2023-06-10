@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:00:54 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/07 17:01:34 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/10 11:29:00 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-typedef	enum	e_type_p
+typedef	enum e_type_p
 {
 	limiter,
 	infile,
