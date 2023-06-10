@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 15:44:32 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/02 13:26:40 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/08 14:58:38 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ int	check_red(t_parser **p, t_tokens *t)
 	{
 		tmp = t->next;
 		if (t->type == herdoc && tmp && tmp->type == string)
-		{
 			ft_parseadd_back(p, ft_newparse(open_herdoc(t->value),limiter))
-		}
 		else if (in_redir(t->type))
 		{
 

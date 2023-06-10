@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:45:52 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 16:05:12 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/07 08:21:14 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_execution(t_cmdtable *table)
 {
+	if (!table->cmd[0])
+		return ;
 	if (!ft_strcmp(table->cmd[0], "echo"))
 		ft_echo(table);
 	else if (!ft_strcmp(table->cmd[0], "pwd"))

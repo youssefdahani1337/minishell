@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:44:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/22 15:41:03 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/07 19:42:31 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define LEXER_H
 
 # include "token.h"
-typedef	struct	s_lexer
+
+typedef struct s_lexer
 {
 	char			*src;
 	unsigned int	i;
@@ -26,8 +27,8 @@ typedef	struct	s_lexer
 ///////////////////////////////////////////////////////////////////////////
 					// Syntax
 
-int	lexer_syntax(t_lexer *lexer);
-int	quote_close(t_lexer *lexer);
+int			lexer_syntax(t_lexer *lexer);
+int			quote_close(t_lexer *lexer);
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -40,7 +41,7 @@ t_tokens	*ft_next_token(t_lexer *lexer);
 void		lexer_iter(t_lexer *lexer);
 void		ft_skip_whitespace(t_lexer *lexer);
 t_tokens	*lexer_forward(t_lexer *lexer, char *value, int type);
-t_tokens	*ft_exit_lexer(t_tokens **t, char *line, char *msg);
+void		free_lexer(t_lexer *lexer);
 
 t_tokens	*lexer_space(t_lexer *lexer);
 t_tokens	*lexer_str(t_lexer *lexer);

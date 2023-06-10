@@ -12,12 +12,19 @@ int	ft_minishell(char *line)
 	token = NULL;
 	if (!ft_lexer(line, &token))
 		return (0);
-	if (!ft_parser(&parser, token))
+	if (ft_parser(&parser, token))
 		return (0);
-	g_shell.table = NULL;
+	//print_token_iter(token);
+	//print_parser_iter(parser);
+	//ft_clearparse(parser);
 	fill_struct(&g_shell.table, parser);
+	//print_cmd_iter(g_shell.table);
 	ft_execution(g_shell.table);
 	//freecmd(g_shell.table);
-	
+	//while (g_shell.table)
+	//{
+	//	print_cmd(g_shell.table);
+	//	g_shell.table = g_shell.table->next;
+	//}
 	return (1);
 }

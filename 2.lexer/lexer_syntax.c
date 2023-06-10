@@ -6,12 +6,11 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:10:43 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 11:03:43 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:03:12 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lexer.h"
-
 
 int	lexer_syntax(t_lexer *lexer)
 {
@@ -25,10 +24,15 @@ int	lexer_syntax(t_lexer *lexer)
 		if (lexer->c == '\'' || lexer->c == '\"')
 		{
 			if (quote_close(lexer) == 0)
+			{
+				free_lexer(lexer);
 				print_error("Unclosed quote!!", NULL);
+				return (0);
+			}
 		}
 		lexer_iter(lexer);
 	}
+	free(lexer);
 	return (1);
 }
 

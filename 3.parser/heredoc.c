@@ -6,44 +6,57 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:34:27 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/25 16:44:19 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:46:03 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../include/parser.h"
 
-int		open_heredoc(t_parser *parser)
+void hand(int sig)
 {
-	while (parser->type != p_terminator)
+	(void)sig;
+	write(1, "\n", 1);
+	exit(1);
+}
+void	open_heredoc(t_parser *parser, int *status)
+{
+	while (*status == 0 && parser->type != p_terminator)
 	{
 		if (parser->type == limiter)
-			execute_heredoc(parser);
+			execute_heredoc(parser, status);
 		parser = parser->next;
 	}
-	return (1);
 }
 
- void	execute_heredoc(t_parser *parser)
+void	execute_heredoc(t_parser *parser, int *status)
  {
 	char	*line;
 	int		fd[2];
 	
+	signal(SIGINT, SIG_IGN);
 	pipe(fd);
 	if (fork() == 0)
 	{
 		close(fd[0]);
+		signal(SIGINT, hand);
 		while (1)
 		{
-			line = readline("__Here doc__");
-			if (ft_strcmp(line, parser->value) == 0)
+			line = readline(HERE_DOC);
+			if (!line || ft_strcmp(line, parser->value) == 0)
 				break;
 			write_in_her(line, fd[1], parser->state);
 		}
+		free(line);
 		free(parser->value);
 		parser->value = ft_itoa(fd[1]);
+		exit(0);
 	}
-	else
-		wait(NULL);
+	else 
+	{
+		wait(status);
+		*status = WEXITSTATUS(*status);
+		g_shell.exitsts = *status;
+	}
 }
 
 void	write_in_her(char *line, int fd, int state)

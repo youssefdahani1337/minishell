@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:29:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 11:30:09 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:35:30 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	ft_getvar(t_expand *exp)
 	}
 	else if (ft_isalpha(exp->c) || exp->c == '_')
 		get_from_env(exp);
+	else if (exp->c == '$')
+		expand_iter(exp);
 	else
 		exp->newstr = ft_join_char(exp->newstr, '$');
 }

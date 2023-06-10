@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:35:57 by yodahani          #+#    #+#             */
-/*   Updated: 2023/04/02 13:52:12 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:25:51 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ t_tokens	*ft_newtoken(char *value, int type)
 	if (!t)
 		return (0);
 	t->value = value;
-	t->exp = 1;
 	t->type = type;
 	t->next = NULL;
-	t->previous = NULL;
 	return (t);
 }
 
@@ -35,17 +33,13 @@ void	ft_tokenadd_back(t_tokens **tokens, t_tokens *new)
 	if (!tokens)
 		return ;
 	if (!tokens[0])
-	{
 		tokens[0] = new;
-		tokens[0]->previous = NULL;
-	}
 	else
 	{
 		t = tokens[0];
 		while (t->next)
 			t = t->next;
 		t->next = new;
-		new->previous = t;
 	}
 }
 

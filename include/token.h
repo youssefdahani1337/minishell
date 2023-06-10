@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:42:06 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/25 15:22:25 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/07 19:44:36 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ typedef struct s_tokens
 {
 	char			*value;
 	t_type			type;
-	int				exp;
-	struct s_tokens	*previous;
 	struct s_tokens	*next;
 }		t_tokens;
 

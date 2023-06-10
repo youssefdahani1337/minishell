@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:09:15 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 10:53:45 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:32:41 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,13 @@ void	print_cmd(t_cmdtable *cmd)
 		cmd->in = cmd->in->next;
 	}
 	printf("\n");
+}
+
+void	print_cmd_iter(t_cmdtable *cmd)
+{
+	while (cmd)
+	{
+		print_cmd(cmd);
+		cmd = cmd->next;
+	}
 }

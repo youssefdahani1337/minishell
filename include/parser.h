@@ -6,14 +6,14 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:00:54 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/05 11:55:04 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:01:34 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-
+# define HERE_DOC "\033[0;34m──(\033[0m\033[0;32mheredoc\033[0m\033[0;34m)──\033[0m"
 # include "lexer.h"
 # include "expand.h"
 #include <unistd.h>
@@ -44,9 +44,9 @@ typedef struct s_parser
 }	t_parser;
 
 int			ft_parser(t_parser **parser, t_tokens *token);
-int			parser_parse(t_parser **parser, t_tokens *token);
-int			open_heredoc(t_parser *parser);
-void		execute_heredoc(t_parser *parser);
+void		parser_parse(t_parser **parser, t_tokens *token, int *status);
+void		open_heredoc(t_parser *parser, int *status);
+void		execute_heredoc(t_parser *parser, int *status);
 void		write_in_her(char *line, int fd, int state);
 int			get_typeparse(t_tokens *token);
 
@@ -64,10 +64,11 @@ void		parser_add_quote(t_parser **parser, t_tokens **token);
 void		parser_add_herdoc(t_parser **parser, t_tokens **token, int *error);
 void		add_parse(t_parser **parser, t_tokens **token);
 int			in_join(int type, int *state);
-void		parser_add_redirect(t_parser **parser, t_tokens **token, int *error);
+void		parser_add_redirect(t_parser **parser, t_tokens **token,
+				int *error);
 
-char	*join_red(char *value, t_tokens *token, int *state);
-char	*ft_join_exp(char *value, char *tok_str, int *state);
+char		*join_red(char *value, t_tokens *token, int *state);
+char		*ft_join_exp(char *value, char *tok_str, int *state);
 
 
 #endif

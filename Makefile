@@ -1,6 +1,6 @@
 
 CC=cc
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra -I/goinfre/yodahani/homebrew/opt/readline/include -fsanitize=address -g3
 
 RM=rm -rf
 NAME=minishell
@@ -23,7 +23,7 @@ PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c expand_helper.c f
 
 
 SRCS_DIR=./sources/
-SRCS=minishell.c ft_interperter.c ft_intialiser.c files_adds.c fill_s_adds.c fill_struct.c execution.c
+SRCS=minishell.c ft_interperter.c ft_intialiser.c files_adds.c fill_s_adds.c fill_struct.c execution.c free_me.c
 
 BUILT_DIR=./built-ins/
 BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c env_utils.c
@@ -36,18 +36,17 @@ ADDS_SRCS=ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c
 DEBUG=-Ldebug -ldebug
 
 LIBFT=-Llibft -lft
-RL=-lreadline
+RL=-L /goinfre/yodahani/homebrew/opt/readline/lib  -lreadline
 
 OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o)  $(PAR_SRCS:%.c=$(PAR_DIR)%.o) $(BUILT_SRCS:%.c=$(BUILT_DIR)%.o)
 all: debug msg libft $(NAME)
 	@echo $(allmsg)
-	./minishell
 
 msg:
 	@echo "$(GREEN)Compiling MINISHELL... $(COLOR_END)"
 
 $(NAME):$(OBJS)
-	@$(CC) $(CFLAGS) $(LIBFT) $(RL) -L ~/homebrew/opt/readline/lib $(DEBUG) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIBFT) $(RL) $(DEBUG) $(OBJS) -o $(NAME)
 	@printf "\n"
 %.o: %.c
 	@$(CC) -c $(CFLAGS) -o $@ $<
