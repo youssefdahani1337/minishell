@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/08 10:41:03 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:47:58 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*ft_getdir(char *direc, int *print)
 	char	*dir;
 
 	str = NULL;
-	if (!(direc))
+	if (!(direc) || (direc[0] == '~' && (!direc[1] || direc[1] == '/')))
 		str = "HOME";
 	else if (!ft_strcmp(direc, "-"))
 	{
@@ -98,15 +98,17 @@ char	*ft_getdir(char *direc, int *print)
 	}
 	if (str)
 	{
-		dir = ft_getenv(str)->value;
+		dir = get_env_val(str);
 		if (!dir)
 		{
 			printf("minishell: cd: %s not set\n", str);
 			g_shell.exitsts = 1;
 		}
+		else if (direc[0] == '~' && (direc[1] && direc[1] == '/'))
+			dir = ft_strjoin_m(dir, direc + 1);
 	}
 	else
-		dir = direc;
+		dir = ft_strdup(direc);
 	return (dir);
 }	
 
@@ -133,8 +135,9 @@ void	ft_cd(t_cmdtable *table)
 	if (print == 1)
 	{
 		if (dir[0])
-			ft_putstr_fd(pwd, 1);
-		ft_putchar_fd('\n', 1);
+			ft_putstr_fd(pwd, table->out->fd);
+		ft_putchar_fd('\n', table->out->fd);
 	}
+	free(dir);
 	ft_newpwdval(ft_strdup(pwd), opwd);
 }

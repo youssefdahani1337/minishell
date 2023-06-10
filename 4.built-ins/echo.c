@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:25:10 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/06 16:40:30 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:45:21 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	ft_echo(t_cmdtable *table)
 	j = i;
 	while ((table->cmd + 1)[j])
 	{
-		ft_putstr_fd((table->cmd + 1)[j++], 1);
+		ft_putstr_fd((table->cmd + 1)[j++], table->out->fd);
 		if ((table->cmd + 1)[j])
-			ft_putchar_fd(' ', 1);
+			ft_putchar_fd(' ', table->out->fd);
 	}
 	if (i == 0)
-		ft_putchar_fd('\n', 1);
+		ft_putchar_fd('\n', table->out->fd);
 }

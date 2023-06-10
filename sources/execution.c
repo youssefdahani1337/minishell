@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:45:52 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/08 11:30:38 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:18:37 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,19 @@ int	ft_isbuiltins(t_cmdtable *table)
 		ft_exit(table);
 	else
 		return (0);
+	// free cmd
 	return (1);
 }
 
 void	ft_execution(t_cmdtable *table)
 {
-	if (table->cmd->next == NULL)
+	if (!g_shell.env)
+		return ; // check it in another place
+	if (table)
 	{
-		if (!ftisbuiltins(table))
-			ft_multipipes(table);
+		if (!table->next && ft_isbuiltins(table))
+			return ;
+		// else
+		// 	ft_multipipes(table);
 	}
 }

@@ -15,7 +15,8 @@
 # include <readline/history.h>
 #include <fcntl.h>
 #include <unistd.h>
- #include "builtins.h"
+#include "builtins.h"
+#include "expand.h"
 
 int		ft_minishell(char *line);
 void	ft_intialize_shell(char **env);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:29:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 11:30:09 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:18:08 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ char	*ft_exp(char *value, int *expand)
 	if (!value)
 		return (NULL);
 	exp = init_expand(value);
-	if (exp->c == '~')
-		exp_tilde(exp);
 	while (exp->c != '\0')
 	{
 		if (exp->c != '$')
@@ -85,11 +83,4 @@ char	*get_env_val(char *key)
 		env = env->next;
 	}
 	return (NULL);
-}
-
-void	exp_tilde(t_expand *exp)
-{
-	expand_iter(exp);
-	if (exp->c == '\0' || exp->c == '/')
-		exp->newstr = ft_strjoin_m(exp->newstr, get_env_val("HOME"));
 }
