@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 08:52:13 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/07 16:07:18 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:02:52 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	parser_add_redirect(t_parser **parser, t_tokens **token, int *error)
 	int		state;
 
 	state = 0;
-	value = ft_strdup("");
 	var = 0;
 	type = get_typeparse(*token);
 	(*token) = (*token)->next;
@@ -32,6 +31,7 @@ void	parser_add_redirect(t_parser **parser, t_tokens **token, int *error)
 		print_error("syntax error near unexpected token ", (*token)->value);
 		return ;
 	}
+	value = ft_strdup("");
 	while ((*token)->type != terminator && in_join((*token)->type, &var))
 	{
 		value = join_red(value, *token, &state);
@@ -44,7 +44,7 @@ void	parser_add_redirect(t_parser **parser, t_tokens **token, int *error)
 char	*join_red(char *value, t_tokens *token, int *state)
 {
 	if (token->type == d_qoute)
-		value = ft_strjoin_m(value, ft_exp(token->value, NULL));
+		value = ft_strjoin_m(value, ft_exp(token->value));
 	else if (token->type == s_qoute)
 		value = ft_strjoin_m(value, token->value);
 	else if (token->type == string)
@@ -56,7 +56,7 @@ char	*ft_join_exp(char *value, char *tok_str, int *state)
 {
 	char	**sp;
 
-	tok_str = ft_exp(tok_str, NULL);
+	tok_str = ft_exp(tok_str);
 	sp = ft_split(tok_str, ' ');
 	if (!sp || !sp[0] || count_sp(sp) > 1)
 		*state = -1;

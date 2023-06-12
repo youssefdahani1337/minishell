@@ -6,65 +6,96 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:34:27 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/10 11:49:59 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:00:19 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../include/parser.h"
+#include "../include/parser.h"
+#include "../debug/debug.h"
 
-void hand(int sig)
-{
-	(void)sig;
-	write(1, "\n", 1);
-	exit(1);
-}
 void	open_heredoc(t_parser *parser, int *status)
 {
-	while (*status == 0 && parser->type != p_terminator)
+	int	status_her;
+
+	status_her = 0;
+	count_herdoc(parser, &status_her);
+	while (status_her == 0 && parser->type != p_terminator)
 	{
 		if (parser->type == limiter)
-			execute_heredoc(parser, status);
+			execute_heredoc(parser, &status_her);
 		parser = parser->next;
 	}
+	*status = status_her;
+	g_shell.exitsts = *status;
 }
 
 void	execute_heredoc(t_parser *parser, int *status)
- {
-	char	*line;
+{	
 	int		fd[2];
-	
-	signal(SIGINT, SIG_IGN);
+	pid_t	id;
+
 	pipe(fd);
-	if (fork() == 0)
+	id = fork();
+	if (id == 0)
+		herdoc_iter(parser, fd);
+	else if (id == -1)
 	{
-		close(fd[0]);
-		signal(SIGINT, hand);
-		while (1)
-		{
-			line = readline(HERE_DOC);
-			if (!line || ft_strcmp(line, parser->value) == 0)
-				break;
-			write_in_her(line, fd[1], parser->state);
-		}
-		free(line);
-		free(parser->value);
-		parser->value = ft_itoa(fd[1]);
-		exit(0);
+		perror("MINISHELL:");
+		*status = 1;
 	}
-	else 
+	else
 	{
-		wait(status);
+		waitpid(id, status, 0);
+		close(fd[1]);
 		*status = WEXITSTATUS(*status);
-		g_shell.exitsts = *status;
+		free(parser->value);
+		parser->value = ft_itoa(fd[0]);
 	}
+}
+
+void	herdoc_iter(t_parser *parser, int fd[2])
+{
+	char	*line;
+
+	close(fd[0]);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, hand);
+	while (1)
+	{
+		line = readline(HERE_DOC);
+		if (!line || ft_strcmp(line, parser->value) == 0)
+			break ;
+		write_in_her(line, fd[1], parser->state);
+		ft_putstr_fd("\n", fd[1]);
+	}
+	close(fd[1]);
+	free(line);
+	exit(0);
 }
 
 void	write_in_her(char *line, int fd, int state)
 {
 	if (!state)
-		line = ft_exp(line, NULL);
+		line = ft_exp(line);
 	ft_putstr_fd(line, fd);
-	ft_putstr_fd("\n", fd);
 	free(line);
 }
- 
+
+void	count_herdoc(t_parser *parser, int *status)
+{
+	int	i;
+
+	i = 0;
+	while (parser->type != p_terminator)
+	{
+		if (parser->type == limiter)
+			i ++;
+		parser = parser->next;
+	}
+	if (i > 16)
+	{
+		*status = 1;
+		printf("maximum here-document count exceeded\n");
+		exit(2);
+	}
+}

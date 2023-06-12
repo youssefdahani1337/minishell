@@ -6,11 +6,18 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:10:47 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/10 11:21:27 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:59:58 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/lexer.h"
+
+static char	get_t(char c)
+{
+	if (c == red_in)
+		return (herdoc);
+	return (red_app);
+}
 
 t_tokens	*lexer_str(t_lexer *lexer)
 {
@@ -27,27 +34,16 @@ t_tokens	*lexer_str(t_lexer *lexer)
 
 t_tokens	*lexer_red(t_lexer *lexer)
 {
-	unsigned	int	i;
+	char		type;
 
-	i = lexer->i + 1 ; 
-	if (lexer->c == red_in)
+	type = lexer->c;
+	lexer_iter(lexer);
+	if (type == lexer->c)
 	{
-		if (i < lexer->size)
-		{
-			if (lexer->src[i] == red_in)
-				return (lexer_iter(lexer), ft_newtoken(ft_strdup("<<"), herdoc));	
-		}
-		return (ft_newtoken(ft_strdup("<"), red_in));
+		lexer_iter(lexer);
+		return (ft_newtoken(NULL, get_t(type)));
 	}
-	else
-	{
-		if (i < lexer->size)
-		{
-			if (lexer->src[i] == red_out)
-				return (lexer_iter(lexer), ft_newtoken(ft_strdup(">>"), red_app));	
-		}
-		return (ft_newtoken(ft_strdup(">"), red_out));
-	}
+	return (ft_newtoken(NULL, type));
 }
 
 t_tokens	*lexer_quote(t_lexer *lexer)

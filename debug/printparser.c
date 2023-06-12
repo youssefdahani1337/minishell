@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:09:37 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/08 10:06:59 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/11 15:03:13 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void	printparser(t_parser *parser)
 {
 	printf("value[%s]\t", parser->value);
-	printf("value[%d]\t", parser->state);
+	printf("state[%d]\t", parser->state);
 	switch (parser->type)
 	{
 		case limiter:

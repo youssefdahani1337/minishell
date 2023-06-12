@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 15:10:42 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/08 15:12:36 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/11 14:55:43 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_white(char c)
 	return (0);
 }
 
-int	atoi_m(const char	*str)
+int	atoi_m(const char *str)
 {
 	int		i;
 	int		sign;
@@ -48,5 +48,5 @@ int	atoi_m(const char	*str)
 			return (-1 * (sign > 0));
 		t = result;
 	}
-	retur
+	return (result * sign);
 }

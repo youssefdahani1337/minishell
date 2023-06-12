@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:50:28 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/08 08:58:45 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 13:10:45 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_tokens	*ft_next_token(t_lexer *lexer)
 		if (lexer->c == pip)
 			return (lexer_forward(lexer, ft_strdup("|"), pip));
 		if (lexer->c == red_in || lexer->c == red_out)
-			return (lexer_advance(lexer, lexer_red(lexer)));
+			return (lexer_red(lexer));
 		if (lexer->c == s_qoute || lexer->c == d_qoute)
 			return (lexer_advance(lexer, lexer_quote(lexer)));
 	}
@@ -71,5 +71,3 @@ t_tokens	*lexer_space(t_lexer *lexer)
 	ft_skip_whitespace(lexer);
 	return (ft_newtoken(ft_strdup(" "), space));
 }
-
-

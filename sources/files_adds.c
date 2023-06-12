@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:28:20 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/08 14:56:34 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 14:08:30 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,15 @@ t_file	*open_file(t_parser *parser, int *status)
 	if (parser->type == infile)
 		fd = open(parser->value, O_RDONLY);
 	else if (parser->type == outfile)
-		fd = open(parser->value, O_CREAT | O_RDWR | O_TRUNC, 0677);
+		fd = open(parser->value, O_CREAT | O_WRONLY | O_TRUNC, 0677);
 	else
-		fd = open(parser->value, O_CREAT | O_RDWR | O_APPEND, 0677);
+		fd = open(parser->value, O_CREAT | O_WRONLY | O_APPEND, 0677);
 	if (fd == -1)
 	{
-		msg = strerror(errno);
+		msg = ft_strjoin(parser->value, " : ");
+		msg = ft_strjoin_m(msg, ft_strdup(strerror(errno)));
+		parser->value = NULL;
+		// check_dir(pa)
 		*status = -1;
 	}
 	return (new_file(fd, msg));
@@ -67,7 +70,7 @@ t_file	*addfile(t_parser *parser)
 	file = malloc(sizeof(t_file));
 	if (!file)
 		return (NULL);
-	file->fd = ft_atoi(parser->value);
+	file->fd = atoi_m(parser->value);
 	file->error = NULL;
 	file->next = NULL;
 	return (file);

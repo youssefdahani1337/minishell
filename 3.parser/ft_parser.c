@@ -6,11 +6,12 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:31:10 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/09 15:40:19 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 10:52:51 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parser.h"
+#include "../debug/debug.h"
 
 int	ft_parser(t_parser **parser, t_tokens *token)
 {
@@ -19,7 +20,7 @@ int	ft_parser(t_parser **parser, t_tokens *token)
 	status = 0;
 	parser_parse(parser, token, &status);
 	ft_cleartoken(token);
-	if (status == 1)
+	if (status)
 		ft_clearparse(*parser);
 	return (status);
 }

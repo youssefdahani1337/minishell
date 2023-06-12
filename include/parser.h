@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:00:54 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/10 11:29:00 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:44:10 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 # define PARSER_H
 
 # define HERE_DOC "\033[0;34m──(\033[0m\033[0;32mheredoc\033[0m\033[0;34m)──\033[0m"
+
 # include "lexer.h"
 # include "expand.h"
-#include <unistd.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-# include <readline/readline.h>
-# include <readline/history.h>
 
-typedef	enum e_type_p
+
+typedef enum e_type_p
 {
 	limiter,
 	infile,
@@ -49,6 +46,7 @@ void		open_heredoc(t_parser *parser, int *status);
 void		execute_heredoc(t_parser *parser, int *status);
 void		write_in_her(char *line, int fd, int state);
 int			get_typeparse(t_tokens *token);
+void		herdoc_iter(t_parser *parser, int fd[2]);
 
 t_parser	*ft_newparse(char *value, int type, int state);
 void		ft_parseadd_back(t_parser **parser, t_parser *new);
@@ -69,6 +67,6 @@ void		parser_add_redirect(t_parser **parser, t_tokens **token,
 
 char		*join_red(char *value, t_tokens *token, int *state);
 char		*ft_join_exp(char *value, char *tok_str, int *state);
-
+void		count_herdoc(t_parser *parser, int *status);
 
 #endif
