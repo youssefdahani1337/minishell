@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:25:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/07 18:46:15 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:26:01 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <sys/errno.h>
 # include <sys/param.h>
-# include "../libft/libft.h"
-# include "../include/structs.h"
+# include "addons.h"
+# include "expand.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 

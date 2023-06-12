@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:23:14 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 13:10:29 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:27:20 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	skip_file(t_file **f, void *node, int std)
 	}
 	while (tmp->next)
 	{
-		free_file(del);
 		del = tmp;
 		tmp = tmp->next;
+		free_file(del);
 	}
 	*f = tmp;
 }

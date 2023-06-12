@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:09:15 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 20:11:19 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:28:34 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_cmd(t_cmdtable *cmd)
 	i = -1;
 	write (1, "Command : \\", 10);
 	while (cmd->cmd[++i])
-		printf("%s\t", cmd->cmd[i]);
+		printf("[%s]\t", cmd->cmd[i]);
 	printf("\n");
 	f = cmd->out;
 	while (f)

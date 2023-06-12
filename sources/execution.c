@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:45:52 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/10 10:51:25 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 09:27:57 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ft_isbuiltins(t_cmdtable *table)
 {
-	if (!table->cmd[0])
-		return (0);
 	if (!ft_strcmp(table->cmd[0], "echo"))
 		ft_echo(table);
 	else if (!ft_strcmp(table->cmd[0], "pwd"))
@@ -30,14 +28,19 @@ int	ft_isbuiltins(t_cmdtable *table)
 		ft_exit(table);
 	else
 		return (0);
+	// free cmd
 	return (1);
 }
 
 void	ft_execution(t_cmdtable *table)
 {
-	if (table->next== NULL)
+	if (!g_shell.env)
+		return ; // check it in another place
+	if (table)
 	{
-		ft_isbuiltins(table);
-		//	ft_multipipes(table);
+		if (table->cmd && ft_isbuiltins(table) && !table->next)
+			return ;
+		else
+			ft_multipipes(table);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:07:21 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/06 16:41:04 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/10 18:31:20 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ void	ft_pwd(t_cmdtable *table)
 	if (!getcwd(pwd, MAXPATHLEN))
 	{
 		perror("minishell");
+		g_shell.exitsts = 1;
 		return ;
 	}
-	ft_putstr_fd(pwd, 1);
-	ft_putchar_fd('\n', 1);
+	ft_putstr_fd(pwd, table->out->fd);
+	ft_putchar_fd('\n', table->out->fd);
 }

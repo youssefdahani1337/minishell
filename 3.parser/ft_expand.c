@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:29:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 10:59:35 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:30:51 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ char	*ft_exp(char *value)
 	if (!value)
 		return (NULL);
 	exp = init_expand(value);
-	if (exp->c == '~')
-		exp_tilde(exp);
 	while (exp->c != '\0')
 	{
 		if (exp->c != '$')
@@ -83,11 +81,4 @@ char	*get_env_val(char *key)
 		env = env->next;
 	}
 	return (NULL);
-}
-
-void	exp_tilde(t_expand *exp)
-{
-	expand_iter(exp);
-	if (exp->c == '\0' || exp->c == '/')
-		exp->newstr = ft_strjoin_m(exp->newstr, get_env_val("HOME"));
 }

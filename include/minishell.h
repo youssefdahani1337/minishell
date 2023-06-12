@@ -8,13 +8,18 @@
 # include "../debug/debug.h"
 # include <sys/types.h>
 # include "builtins.h"
+# include "multipipes.h"
 
 int			ft_minishell(char *line);
 void		ft_intialize_shell(char **env, int ac, char **av);
 void		rl_replace_line(const char *line, int n);
 
 void		ft_execution(t_cmdtable *table);
-void		builtins(t_cmdtable *table);
+int			ft_isbuiltins(t_cmdtable *table);
+//end execution 
+
+
+//fill struct 
 
 char		*join_parser(t_parser **parser);
 void		cmd_init(t_cmdtable *table);

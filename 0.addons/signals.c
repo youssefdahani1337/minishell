@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:11:08 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 11:32:54 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:29:02 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	handler(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
+	//rl_on_new_line();
+	//rl_replace_line("", 0);
+	//rl_redisplay();
 	g_shell.exitsts = 1;
 }

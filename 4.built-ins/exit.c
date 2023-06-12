@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:11:27 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/08 10:45:35 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:52:32 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,23 @@
 void	ft_exit_msg(char *fstparam, char *str, int exitsts)
 {
 	g_shell.exitsts = exitsts;
-	printf("exit\n");
-	if (str)
+	if (!str)
+		ft_putstr_fd("exit\n", 1);
+	else
 	{
+		ft_putstr_fd("exit\n", 2);
+		ft_putstr_fd("minishell: exit: ", 2);
 		if (fstparam)
-			printf("minishell: exit: %s: %s\n", fstparam, str);
-		else
 		{
-			printf("minishell: exit: %s\n", str);
-			return ;
+			ft_putstr_fd(fstparam, 2);
+			ft_putstr_fd(": ", 2);
 		}
+		ft_putstr_fd(str, 2);
+		ft_putchar_fd('\n', 2);
+		if (!fstparam)
+			return ;
 	}
+	// free what is allocated (struct, globalvar, path)
 	exit(exitsts);
 }
 

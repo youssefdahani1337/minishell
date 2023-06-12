@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:14:53 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/08 10:35:29 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/10 15:51:54 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	ft_env(t_cmdtable *table)
 		{
 			if (ft_strcmp(ptr->key, "OLDPWD") || g_shell.opwd)
 			{
-				ft_putstr_fd(ptr->key, 1);
-				ft_putchar_fd('=', 1);
-				ft_putstr_fd(ptr->value, 1);
-				ft_putchar_fd('\n', 1);
+				ft_putstr_fd(ptr->key, table->out->fd);
+				ft_putchar_fd('=', table->out->fd);
+				ft_putstr_fd(ptr->value, table->out->fd);
+				ft_putchar_fd('\n', table->out->fd);
 			}
 		}
 		ptr = ptr->next;

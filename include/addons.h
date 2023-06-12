@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:11:50 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 11:44:20 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:30:34 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/wait.h>
 # include <termios.h>
 # include <signal.h>
+# include <string.h>
 
 char	*ft_strjoin_m(char *s1, char *s2);
 char	*ft_join_char(char *value, char c);
