@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:56:37 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 15:36:38 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/10 10:26:21 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ void	get_cmd(t_cmdtable *cmd, t_parser *parser)
 	i = 0;
 	count = count_t_parse(parser, p_string);
 	cmd->cmd = (char **)malloc(sizeof(char *) * (count + 1));
-	while (parser->type != p_pip && parser->type != p_terminator)
+	while (parser && parser->type != p_pip && parser->type != p_terminator)
 	{
 		if (parser->type == p_string)
-			cmd->cmd[i ++] = ft_strdup(parser->value);
+		{
+			cmd->cmd[i ++] = join_parser(&parser);
+		}
 		if (parser->type == limiter)
 			file_addback(&cmd->in, addfile(parser));
 		else if (parser->type == infile)
@@ -74,4 +76,18 @@ void	skip_parse(t_parser **parser)
 		(*parser) = (*parser)->next;
 	if ((*parser)->type == p_pip)
 		(*parser) = (*parser)->next;
+}
+
+char	*join_parser(t_parser **parser)
+{
+	char	*value;
+
+	value = ft_strdup("");
+	while ((*parser)->type == p_string)
+	{
+		value = ft_strjoin_m(value, (*parser)->value);
+		(*parser)->value = NULL;
+		(*parser) = (*parser)->next;
+	}
+	return (value);
 }

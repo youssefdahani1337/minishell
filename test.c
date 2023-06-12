@@ -1,6 +1,14 @@
 #include <stdio.h>
-
-int	main(void)
+#include <errno.h>
+#include <sys/param.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdlib.h>
+ #include <string.h>
+int	main(int argc, char **argv, char **env)
 {
-	printf("%d", 2147483648);
+	(void)argc;
+	(void)argv;
+	char *str[] = {"ls", "-l", NULL};
+	execve("/bin/ls", str, env);
 }

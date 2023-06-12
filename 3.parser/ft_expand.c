@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:29:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/10 15:18:08 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/10 16:50:49 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	ft_getvar(t_expand *exp)
 	}
 	else if (ft_isalpha(exp->c) || exp->c == '_')
 		get_from_env(exp);
+	else if (exp->c == '$')
+		expand_iter(exp);
 	else
 		exp->newstr = ft_join_char(exp->newstr, '$');
 }

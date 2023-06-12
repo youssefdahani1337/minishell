@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 06:42:39 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 11:07:37 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/08 09:55:59 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_parseadd_back(t_parser **parser, t_parser *new)
 		p->next = new;
 	}
 }
-
 
 void	ft_clearparse(t_parser *p)
 {

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:09:37 by yodahani          #+#    #+#             */
-/*   Updated: 2023/05/28 16:18:21 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/08 10:06:59 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,12 @@ void	printparser(t_parser *parser)
 
 	}
 	
+}
+void	print_parser_iter(t_parser *parser)
+{
+	while (parser)
+	{
+		printparser(parser);
+		parser = parser->next;
+	}
 }

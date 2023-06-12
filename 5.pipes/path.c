@@ -6,13 +6,13 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:59:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/10 15:16:52 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/10 17:07:57 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/multipipes.h"
 
-char	**ft_modify_path(char *path_val)
+char	*ft_modify_path(char *path_val)
 {
 	int		i;
 	char	*path_val1;
@@ -35,7 +35,22 @@ char	**ft_modify_path(char *path_val)
 			break;
 		}
 	}
-	return (ft_split(path_val, ':'));
+	return (path_val);
 }
 
-char
+char	**ft_checkpath(char **path)
+{
+	char	*path_val;
+
+	path_val = get_env_val("PATH");
+	if (path_val)
+	{
+		if (path_val[0] == ':')
+			path_val = ft_strjoin_m(ft_strdup("."), path_val);
+		else
+			path_val = ft_modify_path(path_val);
+		path = ft_split(path_val, ':');
+		return (free(path_val), path);
+	}
+	return (NULL);
+}

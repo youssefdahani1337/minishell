@@ -24,15 +24,17 @@ typedef struct s_file
 	struct s_file	*next;
 }	t_file;
 
-typedef struct	s_cmdtable
+typedef struct s_cmdtable
 {
 	char				**cmd;
 	t_file				*in;
 	t_file				*out;
+	pid_t				pid;
+	int					*pipe;
 	struct s_cmdtable	*next;
 }	t_cmdtable;
 
-typedef struct	s_shell
+typedef struct s_shell
 {
 	t_env		*env;
 	t_cmdtable	*table;
@@ -41,6 +43,6 @@ typedef struct	s_shell
 	int			opwd;
 }	t_shell;
 
-t_shell 	g_shell;
+t_shell g_shell;
 
 #endif

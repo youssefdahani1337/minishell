@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:29:19 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/10 15:50:24 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:31:52 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ void	ft_unset(t_cmdtable *table)
 	{
 		if (!ft_checkvar(cmd_str[i]))
 		{
-			printf("unset: %s: invalid parameter name\n", cmd_str[i]);
+			ft_putstr_fd("minishell: unset: ", 2);
+			ft_putstr_fd(cmd_str[i], 2);
+			ft_putstr_fd(": invalid parameter name\n", 2);
 			g_shell.exitsts = 1;
 		}
 		else

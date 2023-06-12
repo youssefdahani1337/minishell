@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:32:45 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 11:10:01 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/08 10:14:13 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	parser_add_string(t_parser **parser, t_tokens **token)
 			add_space_parse(parser, lexer);
 	}
 	(*token) = (*token)->next;
+	free(lexer);
 }
 
 void	add_str_parse(t_parser **parser, t_lexer *lexer)

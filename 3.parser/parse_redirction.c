@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 08:52:13 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 15:55:44 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:07:18 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parser_add_redirect(t_parser **parser, t_tokens **token, int *error)
 	skipper_token(token);
 	if (!in_join((*token)->type, &state))
 	{
-		*error = 0;
+		*error = 1;
 		ft_parseadd_back(parser, ft_newparse(NULL, p_error, 0));
 		print_error("syntax error near unexpected token ", (*token)->value);
 		return ;

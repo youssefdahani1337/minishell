@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:27:14 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 11:04:58 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/07 19:42:56 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,8 @@ t_tokens	*lexer_advance(t_lexer *lexer, t_tokens *token)
 	return (token);
 }
 
-t_tokens	*ft_exit_lexer(t_tokens **t, char *line, char *msg)
+void	free_lexer(t_lexer *lexer)
 {
-	ft_putstr_fd(msg, 2);
-	ft_putstr_fd("\n", 2);
-	ft_cleartoken(*t);
-	*t = NULL;
-	free(line);
-	return (NULL);
+	free(lexer->src);
+	free(lexer);
 }
