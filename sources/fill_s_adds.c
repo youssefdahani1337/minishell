@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:56:37 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/10 10:26:21 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/11 10:53:44 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ void	get_cmd(t_cmdtable *cmd, t_parser *parser)
 	while (parser && parser->type != p_pip && parser->type != p_terminator)
 	{
 		if (parser->type == p_string)
-		{
 			cmd->cmd[i ++] = join_parser(&parser);
-		}
-		if (parser->type == limiter)
+		else if (parser->type == limiter)
 			file_addback(&cmd->in, addfile(parser));
 		else if (parser->type == infile)
 			file_addback(&cmd->in, open_file(parser, &status));

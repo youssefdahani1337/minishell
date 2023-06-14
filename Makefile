@@ -1,6 +1,6 @@
 
 CC=cc
-CFLAGS= -Wall -Werror -Wextra -I/goinfre/yodahani/homebrew/opt/readline/include -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra -I/goinfre/yodahani/homebrew/opt/readline/include  -fsanitize=address -g3
 
 RM=rm -rf
 NAME=minishell
@@ -32,7 +32,7 @@ MPIPE_DIR=./5.pipes/
 MPIPE_SRCS=multipipes.c path.c multi_childs.c one_child.c childs_utils.c
 
 ADDS_DIR=./0.addons/
-ADDS_SRCS=ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c
+ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c
 
 DEBUG=-Ldebug -ldebug
 

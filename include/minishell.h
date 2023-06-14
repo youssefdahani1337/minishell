@@ -3,19 +3,10 @@
 # define MINISHELL_H
 
 # define MINISHELL_PROMPT "\033[0;32m[MiniShell] %> \033[0m"
-# define MINISHELL_PROMPT_ERROR "\033[0;31m[MiniShell] %>\033[0m"
 
 # include "parser.h"
 # include "../debug/debug.h"
 # include <sys/types.h>
-# include <signal.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <fcntl.h>
 # include "builtins.h"
 # include "multipipes.h"
 
@@ -23,7 +14,6 @@ int			ft_minishell(char *line);
 void		ft_intialize_shell(char **env, int ac, char **av);
 void		rl_replace_line(const char *line, int n);
 
-//execution 
 void		ft_execution(t_cmdtable *table);
 int			ft_isbuiltins(t_cmdtable *table);
 //end execution 
@@ -46,10 +36,8 @@ t_file		*open_file(t_parser *parser, int *status);
 t_file		*addfile(t_parser *parser);
 void		fill_struct_iter(t_cmdtable **table, t_parser *parser);
 void		skip_y_close(t_cmdtable *table);
-void		free_file(t_file *f);
-void		skip_y_close(t_cmdtable *table);
 void		skip_file(t_file **f, void *node, int std);
 void		free_file(t_file *f);
+void		free_cmd(t_cmdtable *table);
 
-//end fill struct 
 #endif

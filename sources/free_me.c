@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_me.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:23:14 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/10 16:02:53 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:27:20 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,26 @@ void	skip_file(t_file **f, void *node, int std)
 
 void	free_file(t_file *f)
 {
-	close(f->fd);
-	free(f->error);
+	if (!f)
+		return ;
+	if (f->fd > 2)
+		close(f->fd);
+	if (f->error)
+		free(f->error);
 	free(f);
+}
+
+void	free_cmd(t_cmdtable *table)
+{
+	t_cmdtable	*tmp;
+
+	while (table)
+	{
+		tmp = table->next;
+		free_sp(table->cmd);
+		free_file(table->in);
+		free_file(table->out);
+		free(table);
+		table = tmp;
+	}
 }

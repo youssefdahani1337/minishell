@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:10:43 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/08 15:03:12 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:14:28 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	lexer_syntax(t_lexer *lexer)
 
 	i = lexer->size - 1;
 	if (lexer->c == pip || (lexer->size > 0 && lexer->src[i] == pip))
+	{
+		free_lexer(lexer);
 		return (print_error("syntax error near unexpected token", "|"));
+	}
 	while (lexer->c != '\0')
 	{
 		if (lexer->c == '\'' || lexer->c == '\"')

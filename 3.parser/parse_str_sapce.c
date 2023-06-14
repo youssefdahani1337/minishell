@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:32:45 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/08 10:14:13 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/12 10:59:59 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	parser_add_string(t_parser **parser, t_tokens **token)
 {
 	t_lexer	*lexer;
 
-	(*token)->value = ft_exp((*token)->value, NULL);
+	(*token)->value = ft_exp((*token)->value);
 	lexer = init_lexer((*token)->value);
 	while (lexer->c)
 	{
@@ -53,7 +53,7 @@ void	parser_add_quote(t_parser **parser, t_tokens **token)
 {
 	if ((*token)->type == d_qoute)
 		ft_parseadd_back(parser,
-			ft_newparse(ft_exp((*token)->value, NULL), p_string, 0));
+			ft_newparse(ft_exp((*token)->value), p_string, 0));
 	else
 		ft_parseadd_back(parser, ft_newparse((*token)->value, p_string, 0));
 	(*token)->value = NULL;
