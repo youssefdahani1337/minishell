@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 11:07:09 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/12 20:15:27 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:25:23 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,7 @@ void	ft_execute_cmd(char *cmdpath, t_cmdtable *table, int read)
 	if (table->in->fd == -3)
 		ft_pipes_msg("infile", "Is a directory", 1);
 	if (table->in->fd == -2)
-	{
-		printf("%d\n", read);
 		table->in->fd = read;
-	}
 	if (table->out->fd == -2)
 		table->out->fd = table->pipe[1];
 	if (dup2(table->in->fd, 0) == -1 || dup2(table->out->fd, 1) == -1)

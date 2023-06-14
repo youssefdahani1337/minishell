@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 20:10:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/12 20:18:46 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/14 12:06:15 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_one_child(t_cmdtable *table, char **path)
 {
 	if (table->in->fd == -1) //in infile directory check will be done after checking cmd
 		ft_pipes_msg("infile", table->in->error, 1);
-	if (table->out->fd == -1 || table->out->fd == -3)
+	if (table->out->fd == -1)
 		ft_pipes_msg("outfile", table->out->error, 1);
 	if (!table->cmd || ft_isbuiltins(table))
 	{
@@ -43,7 +43,10 @@ int	ft_fork_one(t_cmdtable *table, char **path)
 {
 	table->pid = fork();
 	if (table->pid == 0)
+	{
 		ft_one_child(table, path);
+		
+	}
 	else if (table->pid == -1)
 	{
 		perror("minishell");

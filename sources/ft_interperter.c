@@ -20,7 +20,7 @@ int	ft_minishell(char *line)
 	fill_struct(&g_shell.table, parser);
 	print_cmd_iter(g_shell.table);
 	ft_execution(g_shell.table);
-	freecmd(g_shell.table);
+	// freecmd(g_shell.table);
 	//while (g_shell.table)
 	//{
 	//	print_cmd(g_shell.table);
