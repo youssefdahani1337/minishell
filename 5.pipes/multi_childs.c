@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 11:07:09 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/12 20:25:23 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/15 12:39:46 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_getcmdpath(char *cmd, char **path)
 		cmdhalf = ft_strjoin(path[i], "/");
 		cmdpath = ft_strjoin(cmdhalf, cmd);
 		free(cmdhalf);
-		// if (!cmdpath)
+		// if (!cmdpath) (!cmdhalf)
 		if (!access(cmdpath, F_OK))
 		{
 			if (!access(cmdpath, X_OK))
@@ -43,8 +43,8 @@ char	*ft_check_cmd(char **cmd, char **path)
 	int		slash_dot;
 	char	*cmdpath;
 
-	// if (opendir(cmd[0]))
-	// 	ft_pipes_msg(cmd[0], "is a directory", 126);
+	if (!cmd || !cmd[0])
+		return (NULL);
 	slash_dot = ft_slash_dot(cmd[0]);
 	if (slash_dot == 1)
 		ft_pipes_msg(cmd[0], "No such file or directory", 126);
@@ -60,30 +60,29 @@ char	*ft_check_cmd(char **cmd, char **path)
 
 void	ft_execute_cmd(char *cmdpath, t_cmdtable *table, int read)
 {
-	if (table->in->fd == -3)
-		ft_pipes_msg("infile", "Is a directory", 1);
 	if (table->in->fd == -2)
 		table->in->fd = read;
 	if (table->out->fd == -2)
+	{
 		table->out->fd = table->pipe[1];
+		close(table->pipe[0]);
+	}
 	if (dup2(table->in->fd, 0) == -1 || dup2(table->out->fd, 1) == -1)
 	{
-		perror("minishell");// free what is allocated (struct, globalvar, path)
+		perror("heminishell");// free what is allocated (struct, globalvar, path)
 		exit(1);
 	}
 	execve(cmdpath, table->cmd, NULL);
 }
 
-void	ft_child(t_cmdtable *table, char **path, int id, int read)
+void	ft_child(t_cmdtable *table, char **path, int to_close, int read)
 {
-	if (!id)
-		close(table->pipe[0]);
-	else
-		close(table->pipe[1]);
-	if (table->in->fd == -1) //in infile directory check will be done after checking cmd
-		ft_pipes_msg("infile", table->in->error, 1);
-	if (table->out->fd == -1 || table->out->fd == -3)
-		ft_pipes_msg("outfile", table->out->error, 1);
+	if (to_close != -1)
+		close(to_close);
+	if (table->in && table->in->fd == -1) //in infile directory check will be done after checking cmd
+		ft_pipes_msg(NULL, table->in->error, 1);
+	if (table->out && table->out->fd == -1)
+		ft_pipes_msg(NULL, table->out->error, 1);
 	if (!table->cmd || ft_isbuiltins(table))
 	{
 		// free what is allocated (struct, globalvar, path)

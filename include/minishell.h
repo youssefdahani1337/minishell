@@ -26,7 +26,7 @@ void		cmd_init(t_cmdtable *table);
 void		fill_struct(t_cmdtable **table, t_parser *parser);
 t_cmdtable	*add_table(t_parser **parser);
 void		struct_addback(t_cmdtable **table, t_cmdtable *new);
-int			count_t_parse(t_parser *parser, int type);
+int			count_t_parse(t_parser *parser);
 void		get_cmd(t_cmdtable *cmd, t_parser *parser);
 void		get_outfile(t_file **file, t_parser *parser);
 void		skip_parse(t_parser **parser);

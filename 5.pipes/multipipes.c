@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/14 12:02:09 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/15 12:35:45 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int	ft_wait_childs(t_cmdtable *table)
 			return (0);
 		}
 		g_shell.exitsts = WEXITSTATUS(status);
+		if (table->next)
+		{
+			close(table->pipe[0]);
+			close(table->pipe[1]);
+		}
 		table = table->next;
 	}
 	return (1);
@@ -46,23 +51,32 @@ int	ft_forking(t_cmdtable *table, char **path, int *fds)
 {
 	int	id;
 	int	read;
+	int	to_close;
 
 	id = 0;
 	read = 0;
+	to_close = -1;
 	while (table)
 	{
-		if (!ft_pipe(table, fds))
-			return (0);
+		if (table->next)
+		{
+			if (!ft_pipe(table, fds))
+				return (0);
+		}
 		table->pid = fork();
 		if (table->pid == 0)
-			ft_child(table, path, id, read);
+			ft_child(table, path, to_close, read);
 		else if (table->pid == -1)
 		{
 			perror("minishell");
 			g_shell.exitsts = 1;
 			return (id); // return (id) so I can wait for childs that were created before encountering that problem
 		}
-		read = fds[0];
+		if (table->next)
+		{
+			read = fds[0];
+			to_close = fds[1];
+		}
 		table = table->next;
 		id++;
 	}
@@ -85,7 +99,8 @@ int	ft_multipipes(t_cmdtable *table)
 	}
 	if (!table->next)
 		ft_fork_one(table, path);
-	ft_forking(table, path, fds); // if failed wait the child that were called befor then exit
+	else
+		ft_forking(table, path, fds); // if failed wait the child that were called befor then exit
 	ft_wait_childs(table); // return value check
 	return (1);
 }
