@@ -30,7 +30,7 @@ typedef struct s_cmdtable
 	t_file				*in;
 	t_file				*out;
 	pid_t				pid;
-	int					*pipe;
+	int					**pipe;
 	struct s_cmdtable	*next;
 }	t_cmdtable;
 

@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/10 20:24:40 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:53:43 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_getopwd(int *oldp)
 	if (!g_shell.unsetpwd)
 	{
 		oldpwd = ft_getenv("PWD");
-		if (oldpwd)
+		if (oldpwd) // it was just added for nothing I guess
 			opwd_val = oldpwd->value;
 	}
 	if (g_shell.unsetpwd >= 2 || (!oldpwd && !g_shell.unsetpwd))// the first cd after unset done now it should get it from getcwd
@@ -124,7 +124,7 @@ void	ft_cd(t_cmdtable *table)
 	if (!dir)
 		return ;
 	opwd = ft_getopwd(&oldp);
-	if (!oldp || (dir[0] && chdir(dir) == -1) || !getcwd(pwd, MAXPATHLEN))
+	if (!oldp || (dir[0] && chdir(dir) == -1) || !getcwd(pwd, MAXPATHLEN)) // dir[0] || dir
 	{
 		perror("minishell");
 		g_shell.exitsts = 1;
@@ -132,7 +132,7 @@ void	ft_cd(t_cmdtable *table)
 	}
 	if (print == 1)
 	{
-		if (dir[0])
+		if (dir[0]) // why dir[0] ?? and not dir
 			ft_putstr_fd(pwd, table->out->fd);
 		ft_putchar_fd('\n', table->out->fd);
 	}
