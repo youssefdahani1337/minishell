@@ -1,6 +1,7 @@
 
 CC=cc
-CFLAGS= -Wall -Werror -Wextra -I/goinfre/$USER/homebrew/opt/readline/include  -fsanitize=address -g3
+include= -I/goinfre/hbenabad/homebrew/opt/readline/include
+CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
 
 RM=rm -rf
 NAME=minishell
@@ -36,7 +37,7 @@ ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_e
 DEBUG=-Ldebug -ldebug
 
 LIBFT=-Llibft -lft
-RL=-L /goinfre/yodahani/homebrew/opt/readline/lib  -lreadline
+RL=-L /goinfre/$(USER)/homebrew/opt/readline/lib  -lreadline
 
 OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o)  $(PAR_SRCS:%.c=$(PAR_DIR)%.o) $(BUILT_SRCS:%.c=$(BUILT_DIR)%.o) $(MPIPE_SRCS:%.c=$(MPIPE_DIR)%.o)
 all: debug msg libft $(NAME)
@@ -46,7 +47,7 @@ msg:
 	@echo "$(GREEN)Compiling MINISHELL... $(COLOR_END)"
 
 $(NAME):$(OBJS)
-	@$(CC) $(CFLAGS) $(LIBFT) $(RL) $(DEBUG) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(include) $(LIBFT) $(RL) $(DEBUG) $(OBJS) -o $(NAME)
 	@printf "\n"
 %.o: %.c
 	@$(CC) -c $(CFLAGS) -o $@ $<

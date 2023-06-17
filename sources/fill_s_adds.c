@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:56:37 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/14 17:38:45 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/17 12:54:00 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ char	*join_parser(t_parser **parser)
 		value = ft_strjoin_m(value, (*parser)->value);
 		(*parser)->value = NULL;
 		(*parser) = (*parser)->next;
-			printparser((*parser));
-
 	}
 	return (value);
 }

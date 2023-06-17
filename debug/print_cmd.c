@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 14:09:15 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 20:28:34 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:18:00 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	print_cmd(t_cmdtable *cmd)
 
 	i = -1;
 	write (1, "Command : \\", 10);
+	if (!cmd->cmd[0])
+		printf("Nocommand [%p]\n", cmd->cmd);
 	while (cmd->cmd[++i])
 		printf("[%s]\t", cmd->cmd[i]);
 	printf("\n");

@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:59:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/10 17:07:57 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/17 12:05:57 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@ char	*ft_modify_path(char *path_val)
 		if (path_val[i] == ':' && (path_val[i + 1] && path_val[i + 1] == ':'))
 		{
 			path_valc = path_val;
-			path_val1 = ft_strjoin_m(ft_substr(path_valc, 0, i + 1), ft_strdup("."));
+			path_val1 = ft_strjoin_m(ft_substr(path_valc, 0, i + 1),
+					ft_strdup("."));
 			path_val = ft_strjoin_m(path_val1, ft_strdup(path_valc + i + 1));
 			free(path_valc);
-			break;
+			break ;
 		}
 		else if (path_val[i] == ':' && !path_val[i + 1])
 		{
 			path_val = ft_strjoin_m(path_val, ft_strdup("."));
-			break;
+			break ;
 		}
 	}
 	return (path_val);

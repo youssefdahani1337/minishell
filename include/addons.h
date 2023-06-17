@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:11:50 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/17 11:10:11 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/17 13:32:38 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <signal.h>
 # include <string.h>
 
+void		rl_replace_line(const char *line, int n);
 char	*ft_strjoin_m(char *s1, char *s2);
 char	*ft_join_char(char *value, char c);
 int		print_error(char *msg, char *speciel);
