@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/16 11:53:43 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/17 10:16:29 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,7 @@ char	*ft_getdir(char *direc, int *print)
 	{
 		dir = get_env_val(str);
 		if (!dir)
-		{
-			printf("minishell: cd: %s not set\n", str); // stderror
-			g_shell.exitsts = 1;
-		}
+			ft_errmsg_sts("minishell: cd: ", str, "not set\n");
 		else if (direc[0] == '~' && (direc[1] && direc[1] == '/'))
 			dir = ft_strjoin_m(dir, direc + 1);
 	}
@@ -126,8 +123,7 @@ void	ft_cd(t_cmdtable *table)
 	opwd = ft_getopwd(&oldp);
 	if (!oldp || (dir[0] && chdir(dir) == -1) || !getcwd(pwd, MAXPATHLEN)) // dir[0] || dir
 	{
-		perror("minishell");
-		g_shell.exitsts = 1;
+		ft_perr_sts();
 		return ;
 	}
 	if (print == 1)

@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:25:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/10 15:26:01 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:40:44 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ void	ft_pwd(t_cmdtable *table);
 void	ft_delenvnode(t_env *to_unset);
 void	ft_unset(t_cmdtable *table);
 void	ft_exit(t_cmdtable *table);
+
+int		ft_isbuiltins(t_cmdtable *table);
 
 #endif

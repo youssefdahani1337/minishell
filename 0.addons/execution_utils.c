@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   childs_utils.c                                     :+:      :+:    :+:   */
+/*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 20:14:04 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/12 20:18:40 by hbenabad         ###   ########.fr       */
+/*   Created: 2023/06/17 09:35:41 by hbenabad          #+#    #+#             */
+/*   Updated: 2023/06/17 11:17:35 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/multipipes.h"
+#include "../include/addons.h"
+
+void	ft_errmsg_sts(char *cmd, char *str, char *err)
+{
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(err, 2);
+	g_shell.exitsts = 1;
+}
+
+void	ft_perr_sts(void)
+{
+	perror("minishell");
+	g_shell.exitsts = 1;
+	return ;
+}
 
 void	ft_pipes_msg(char *name, char *str, int exitsts)
 {
@@ -23,16 +38,23 @@ void	ft_pipes_msg(char *name, char *str, int exitsts)
 	exit(exitsts);
 }
 
-int	ft_slash_dot(char *cmd)
+int	ft_tablesize(t_cmdtable *table)
 {
 	int	i;
 
 	i = 0;
-	if (cmd[i] == '/')
-		return (1);
-	while (cmd[i] == '.')
+	while (table)
+	{
 		i++;
-	if (cmd[i] == '/')
-		return (2);
-	return (0);
+		table = table->next;
+	}
+	return (i);
+}
+
+void	ft_freedptr(int **pipes, int size)
+{
+	while (size >= 0)
+		free(pipes[size--]);
+	free(pipes);
+	return ;
 }

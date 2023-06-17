@@ -1,6 +1,6 @@
 
 CC=cc
-CFLAGS= -Wall -Werror -Wextra -I/goinfre/yodahani/homebrew/opt/readline/include  -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra -I/goinfre/$USER/homebrew/opt/readline/include  -fsanitize=address -g3
 
 RM=rm -rf
 NAME=minishell
@@ -17,7 +17,6 @@ TOKEN_DIR=./1.tokenizer/
 TOKEN_SRCS= token.c
 LXR_DIR=./2.lexer/
 LXR_SRCS=lexer_syntax.c ft_lexer.c lexer_helper.c lexer_sanitizer.c
-
 PAR_DIR=./3.parser/
 PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c expand_helper.c ft_expand.c parse_str_sapce.c parse_redirction.c
 
@@ -26,13 +25,13 @@ SRCS_DIR=./sources/
 SRCS=minishell.c ft_interperter.c ft_intialiser.c files_adds.c fill_s_adds.c fill_struct.c execution.c free_me.c
 
 BUILT_DIR=./4.built-ins/
-BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c exit.c env_utils.c
+BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c exit.c env_utils.c is_builtin.c
 
 MPIPE_DIR=./5.pipes/
-MPIPE_SRCS=multipipes.c path.c multi_childs.c one_child.c childs_utils.c
+MPIPE_SRCS=multipipes.c path.c multi_childs.c
 
 ADDS_DIR=./0.addons/
-ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c
+ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c execution_utils.c
 
 DEBUG=-Ldebug -ldebug
 

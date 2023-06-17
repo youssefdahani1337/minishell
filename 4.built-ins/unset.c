@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:29:19 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/10 20:31:52 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/17 10:02:34 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,8 @@ void	ft_unset(t_cmdtable *table)
 	while (cmd_str[i])
 	{
 		if (!ft_checkvar(cmd_str[i]))
-		{
-			ft_putstr_fd("minishell: unset: ", 2);
-			ft_putstr_fd(cmd_str[i], 2);
-			ft_putstr_fd(": invalid parameter name\n", 2);
-			g_shell.exitsts = 1;
-		}
+			ft_errmsg_sts("minishell: unset: ", cmd_str[i],
+				": invalid parameter name\n");
 		else
 		{
 			if (!ft_strcmp(cmd_str[i], "PWD"))

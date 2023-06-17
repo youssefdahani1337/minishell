@@ -6,33 +6,18 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/16 18:57:32 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:41:14 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/multipipes.h"
 
-int	ft_tablesize(t_cmdtable *table)
-{
-	int	i;
-
-	i = 0;
-	while (table)
-	{
-		i++;
-		table = table->next;
-	}
-	return (i);
-}
-
 int	**ft_pipe(int size)
 {
 	int	i;
-	int	j;
 	int	**pipes;
 
 	i = 0;
-	j = 0;
 	pipes = malloc(size * sizeof(int *));
 	if (!pipes)
 		return (NULL);
@@ -40,13 +25,39 @@ int	**ft_pipe(int size)
 	{
 		pipes[i] = malloc(2 * sizeof(int));
 		if (!pipes[i])
-			break;
-		if (pipe(pipes[i++]) == -1)
+		{
+			ft_close(pipes, i - 1);
+			ft_freedptr(pipes, i - 1);
 			return (NULL);
+		}
+		if (pipe(pipes[i]) == -1)
+		{
+			ft_close(pipes, i - 1);
+			ft_freedptr(pipes, i);
+			return (NULL);
+		}
+		i++;
 	}
-	if (i < size)
-		ft_close(pipes, i);
 	return (pipes);
+}
+
+void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
+{
+	if (table->in && table->in->fd == -1) //in infile directory check will be done after checking cmd
+		ft_pipes_msg(NULL, table->in->error, 1);
+	if (table->out && table->out->fd == -1)
+		ft_pipes_msg(NULL, table->out->error, 1);
+	if (table->in && table->in->fd == -2)
+		table->in->fd = (table->pipe)[pipe_index - 1][0];
+	if (table->out && table->out->fd == -2)
+		table->out->fd = (table->pipe)[pipe_index][1];
+	if (!table->cmd || ft_isbuiltins(table))
+	{
+		// free what is allocated (struct, globalvar, path)
+		exit(0);
+	}
+	else
+		ft_execute_cmd(ft_check_cmd(table->cmd, path), table, size);
 }
 
 int	ft_forking(t_cmdtable *table, char **path, int **pipe, int size)
@@ -64,8 +75,7 @@ int	ft_forking(t_cmdtable *table, char **path, int **pipe, int size)
 		}
 		else if (table->pid == -1)
 		{
-			perror("minishell");
-			g_shell.exitsts = 1;
+			ft_perr_sts();
 			return (id);
 		}
 		table = table->next;
@@ -84,8 +94,7 @@ int	ft_wait_childs(t_cmdtable *table, int childs)
 	{
 		if (waitpid(table->pid, &status, 0) == -1 || !WIFEXITED(status))
 		{
-			perror("minishell");
-			g_shell.exitsts = 1;
+			ft_perr_sts();
 			return (0);
 		}
 		g_shell.exitsts = WEXITSTATUS(status);
@@ -107,19 +116,18 @@ int	ft_multipipes(t_cmdtable *table)
 	size = 0;
 	childs = 0;
 	path = ft_checkpath(path);
-	size = ft_tablesize(table);
-	pipe = ft_pipe(size - 1);
+	size = ft_tablesize(table) - 1;
+	if (size != -1)
+		pipe = ft_pipe(size);
 	if (!pipe)
 	{
-		perror("minishell");
-		g_shell.exitsts = 1;
+		ft_perr_sts();
 		return (0);
 	}
-	childs = ft_forking(table, path, pipe, size - 1);
-	if (!ft_close(pipe, size - 1))
+	childs = ft_forking(table, path, pipe, size);
+	if (!ft_close(pipe, size))
 	{
-		perror("minishell");
-		g_shell.exitsts = 1;
+		ft_perr_sts();
 		return (0);
 	}
 	if (!ft_wait_childs(table, childs))

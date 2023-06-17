@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 11:07:09 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/16 18:58:19 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:39:05 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_close(int **pipe, int size)
 	{
 		if (close(pipe[i][0]) == -1)
 			return (0);
-		if (close(pipe[i][1]) == -1) //free pipe
+		if (close(pipe[i][1]) == -1)
 			return (0);
 		i++;
 	}
@@ -54,6 +54,20 @@ char	*ft_getcmdpath(char *cmd, char **path)
 	return (NULL);
 }
 
+int	ft_slash_dot(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	if (cmd[i] == '/')
+		return (1);
+	while (cmd[i] == '.')
+		i++;
+	if (cmd[i] == '/')
+		return (2);
+	return (0);
+}
+
 char	*ft_check_cmd(char **cmd, char **path)
 {
 	int		slash_dot;
@@ -74,31 +88,12 @@ char	*ft_check_cmd(char **cmd, char **path)
 	return (cmdpath);
 }
 
-void	ft_execute_cmd(char *cmdpath, t_cmdtable *table, int size, int pipe_index)
+void	ft_execute_cmd(char *cmdpath, t_cmdtable *table, int size)
 {
-	if (table->in->fd == -2)
-		table->in->fd = (table->pipe)[pipe_index - 1][0];
-	if (table->out->fd == -2)
-		table->out->fd = (table->pipe)[pipe_index][1];
 	if (dup2(table->in->fd, STDIN_FILENO) == -1 || dup2(table->out->fd, STDOUT_FILENO) == -1 || !ft_close(table->pipe, size))
 	{
-		perror("minishell");// free what is allocated (struct, globalvar, path)
+		perror("minishell");// free what is allocated (struct, globalvar, path, pipe)
 		exit(1);
 	}
 	execve(cmdpath, table->cmd, NULL);
-}
-
-void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
-{
-	if (table->in && table->in->fd == -1) //in infile directory check will be done after checking cmd
-		ft_pipes_msg(NULL, table->in->error, 1);
-	if (table->out && table->out->fd == -1)
-		ft_pipes_msg(NULL, table->out->error, 1);
-	if (!table->cmd || ft_isbuiltins(table))
-	{
-		// free what is allocated (struct, globalvar, path)
-		exit(0);
-	}
-	else
-		ft_execute_cmd(ft_check_cmd(table->cmd, path), table, size, pipe_index);
 }
