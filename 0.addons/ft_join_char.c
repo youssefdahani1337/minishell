@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_join_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:36:50 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 11:04:05 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/18 22:02:12 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_join_char(char *value, char c)
 	str = malloc(sizeof(char) * (ft_strlen(value) + 2));
 	if (!str)
 		return (NULL);
-	while (value[i])
+	while (value && value[i])
 	{
 		str[i] = value[i];
 		i++;

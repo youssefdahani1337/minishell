@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/17 14:21:36 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/18 16:53:05 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 		table->in->fd = (table->pipe)[pipe_index - 1][0];
 	if (table->out && table->out->fd == -2)
 		table->out->fd = (table->pipe)[pipe_index][1];
-	if (!table->cmd  || !table->cmd[0] || (table->cmd && table->cmd[0] && ft_isbuiltins(table)))
+	if (!table->cmd  || !table->cmd[0] || ft_isbuiltins(table))
 	{
 		// free what is allocated (struct, globalvar, path)
 		exit(0);

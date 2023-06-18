@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:14:53 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/10 15:51:54 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/18 19:41:31 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,18 @@ void	ft_env(t_cmdtable *table)
 		ptr = ptr->next;
 	}
 	return ;
+}
+
+t_env	*newenv(t_export *ex)
+{
+	t_env *env;
+
+	env = malloc(sizeof(t_env));
+	if (!env)
+		return (env);
+	env->key = ex->key;
+	env->value = ex->value;
+	env->equal = ex->type;
+	env->next = NULL;
+	return (env);
 }
