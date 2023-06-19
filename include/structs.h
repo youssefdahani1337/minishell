@@ -12,8 +12,8 @@ typedef struct s_env
 {
 	char			*key;
 	char			*value;
-	int				rank;
 	int				equal;
+	struct s_env	*follow;
 	struct s_env	*next;
 }	t_env;
 
@@ -38,6 +38,7 @@ typedef struct s_shell
 {
 	t_env		*env;
 	t_cmdtable	*table;
+	t_env		*leader;
 	int			exitsts;
 	int			unsetpwd;
 	int			opwd;

@@ -6,7 +6,7 @@
 /*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:25:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/18 22:15:23 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/19 18:20:30 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 typedef enum s_export_t
 {
 	no_equal,
+	true_equal,
 	equal= '=',
 	p_equal = '+',
 	exp_error
@@ -61,8 +62,11 @@ int		ft_isbuiltins(t_cmdtable *table);
 
 void	ft_export(t_cmdtable *table);
 t_env	*newenv(t_export *ex);
-
-void	ft_display_export(t_cmdtable *cmd, t_env *p);
+t_list	*ft_keyslst(t_env *getkeys);
+void	ft_rank_lst(t_list **keys);
+void	ft_rank(t_list **keys);
+void	ft_rank_env(void);
+void	ft_export_display(t_env *leader, int out);
 void	ft_changeadd_export(char **arg);
 int		ft_changeadd(char *arg);
 char	*find_key(t_lexer *lexer);

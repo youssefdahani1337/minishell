@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 15:29:56 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 20:30:51 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:30:01 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ void	ft_getvar(t_expand *exp)
 		expand_iter(exp);
 	}
 	else if (ft_isdigit(exp->c))
-	{
-		exp->newstr = ft_strjoin_m(exp->newstr, ft_strdup(""));
 		expand_iter(exp);
-	}
 	else if (ft_isalpha(exp->c) || exp->c == '_')
 		get_from_env(exp);
 	else if (exp->c == '$')

@@ -26,10 +26,10 @@ SRCS_DIR=./sources/
 SRCS=minishell.c ft_interperter.c ft_intialiser.c files_adds.c fill_s_adds.c fill_struct.c execution.c free_me.c
 
 BUILT_DIR=./4.built-ins/
-BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c exit.c env_utils.c is_builtin.c export_helper.c export.c
+BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c exit.c env_utils.c is_builtin.c export_helper.c export.c export_rank.c
 
 MPIPE_DIR=./5.pipes/
-MPIPE_SRCS=multipipes.c path.c multi_childs.c
+MPIPE_SRCS=multipipes.c path.c multi_childs.c utils.c
 
 ADDS_DIR=./0.addons/
 ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c execution_utils.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipipes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:00:46 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/17 11:41:38 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/19 23:08:40 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index);
 int		ft_forking(t_cmdtable *table, char **path, int **pipe, int size);
 int		ft_wait_childs(t_cmdtable *table, int childs);
 int		ft_multipipes(t_cmdtable *table);
+int		ft_access_check(char *cmd);
 
 #endif
