@@ -9,5 +9,6 @@ void		ft_intialize_shell(char **env, int ac, char **av)
 	g_shell.exitsts = 0;
 	g_shell.unsetpwd = 0;
 	g_shell.opwd = 0;
+	g_shell.env_save = env;
 	g_shell.table = NULL;
 }

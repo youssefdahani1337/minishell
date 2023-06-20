@@ -6,7 +6,7 @@
 /*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/19 23:53:05 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/20 19:01:13 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	**ft_pipe(int size)
 
 void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 {
-	if (table->in && table->in->fd == -1) //in infile directory check will be done after checking cmd
+	if (table->in && table->in->fd == -1)
 		ft_pipes_msg(NULL, table->in->error, 1);
 	if (table->out && table->out->fd == -1)
 		ft_pipes_msg(NULL, table->out->error, 1);
@@ -51,9 +51,9 @@ void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 		table->in->fd = (table->pipe)[pipe_index - 1][0];
 	if (table->out && table->out->fd == -2)
 		table->out->fd = (table->pipe)[pipe_index][1];
-	if (!table->cmd  || !table->cmd[0] || ft_isbuiltins(table))
+	if (!table->cmd || !table->cmd[0] || ft_isbuiltins(table))
 	{
-		// free what is allocated (struct, globalvar, path)
+		// free what is allocated (table, globalvar, path)
 		exit(0);
 	}
 	else
@@ -115,22 +115,18 @@ int	ft_multipipes(t_cmdtable *table)
 	pipe = NULL;
 	size = 0;
 	childs = 0;
-	path = ft_checkpath(path);
 	size = ft_tablesize(table) - 1;
 	if (size != -1)
 		pipe = ft_pipe(size);
 	if (!pipe)
-	{
-		ft_perr_sts();
-		return (0);
-	}
+		return (ft_perr_sts(), 0);
+	path = ft_checkpath(path);
 	childs = ft_forking(table, path, pipe, size);
 	if (!ft_close(pipe, size))
-	{
-		ft_perr_sts();
-		return (0);
-	}
+		return (ft_perr_sts(), 0);
 	if (!ft_wait_childs(table, childs))
 		return (0);
+	// ft_freedptr(pipes, i);
+	// free_sp(path);
 	return (1);
 }

@@ -48,17 +48,20 @@ void	ft_rank(t_list **keys)
 	ptr = *keys;
 	while (ptr)
 	{
-		env_save = g_shell.env;
-		while (env_save && ft_strcmp(env_save->key, ptr->content))
-			env_save = env_save->next;
-		if (fst)
-			lead->follow = env_save;
-		if (!fst)
+		if (ft_strcmp(ptr->content, "_"))
 		{
-			g_shell.leader = env_save;
-			fst = 1;
+			env_save = g_shell.env;
+			while (env_save && ft_strcmp(env_save->key, ptr->content))
+				env_save = env_save->next;
+			if (fst)
+				lead->follow = env_save;
+			if (!fst)
+			{
+				g_shell.leader = env_save;
+				fst = 1;
+			}
+			lead = env_save;
 		}
-		lead = env_save;
 		ptr = ptr->next;
 	}
 	lead->follow = NULL;
@@ -71,6 +74,7 @@ void	ft_rank_env(void)
 	keys = ft_keyslst(g_shell.env);
 	ft_rank_lst(&keys);
 	ft_rank(&keys);
+	ft_lstclear(&keys);
 }
 
 void	ft_export_display(t_env *leader, int out)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/17 12:37:03 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/20 19:36:53 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,11 @@ t_env	*ft_getenv(char *key)
 char	*ft_getopwd(int *oldp)
 {
 	char	opwd[MAXPATHLEN];
-	t_env	*oldpwd;
 	char	*opwd_val;
 
 	if (!g_shell.unsetpwd)
-	{
-		oldpwd = ft_getenv("PWD");
-		if (oldpwd) // it was just added for nothing I guess
-			opwd_val = oldpwd->value;
-	}
-	if (g_shell.unsetpwd >= 2 || (!oldpwd && !g_shell.unsetpwd))// the first cd after unset done now it should get it from getcwd
+		opwd_val = get_env_val("PWD");
+	if (g_shell.unsetpwd >= 2 || (!g_shell.unsetpwd && !opwd_val))
 	{
 		if (!getcwd(opwd, MAXPATHLEN))
 		{
@@ -99,7 +94,7 @@ char	*ft_getdir(char *direc, int *print)
 	{
 		dir = get_env_val(str);
 		if (!dir)
-			ft_errmsg_sts("minishell: cd: ", str, "not set\n");
+			ft_errmsg_sts("minishell: cd: ", str, " not set\n");
 		else if (direc && direc[0] == '~' && (direc[1] && direc[1] == '/'))
 			dir = ft_strjoin_m(dir, direc + 1);
 	}
@@ -123,6 +118,7 @@ void	ft_cd(t_cmdtable *table)
 	opwd = ft_getopwd(&oldp);
 	if (!oldp || (dir[0] && chdir(dir) == -1) || !getcwd(pwd, MAXPATHLEN)) // dir[0] || dir
 	{
+		free(dir);
 		ft_perr_sts();
 		return ;
 	}

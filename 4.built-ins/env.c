@@ -6,7 +6,7 @@
 /*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:14:53 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/18 19:41:31 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/20 19:49:58 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_env(t_cmdtable *table)
 {
 	t_env	*ptr;
 
-	(void)table; // redirection to a file
 	ptr = g_shell.env;
 	while (ptr)
 	{

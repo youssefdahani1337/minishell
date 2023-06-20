@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:07:21 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/17 09:56:03 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/20 19:17:34 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_pwd(t_cmdtable *table)
 {
 	char	pwd[MAXPATHLEN];
 
-	(void)table;
 	if (!getcwd(pwd, MAXPATHLEN))
 	{
 		ft_perr_sts();

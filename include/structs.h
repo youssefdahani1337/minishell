@@ -42,6 +42,7 @@ typedef struct s_shell
 	int			exitsts;
 	int			unsetpwd;
 	int			opwd;
+	char		**env_save;
 }	t_shell;
 
 t_shell g_shell;

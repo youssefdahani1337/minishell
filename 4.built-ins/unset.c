@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 16:29:19 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/17 10:02:34 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/20 19:47:37 by mac              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_delenvnode(t_env *to_unset)
 {
 	to_unset->next = NULL;
+	to_unset->follow = NULL;
 	free(to_unset->key);
 	free(to_unset->value);
 	free(to_unset);

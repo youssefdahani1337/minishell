@@ -1,7 +1,8 @@
 
 CC=cc
 include= -I/goinfre/hbenabad/homebrew/opt/readline/include
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra 
+#-fsanitize=address -g3
 
 RM=rm -rf
 NAME=minishell
