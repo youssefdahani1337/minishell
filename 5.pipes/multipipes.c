@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 16:24:47 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:55:03 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ int	ft_multipipes(t_cmdtable *table)
 	size = 0;
 	childs = 0;
 	size = ft_tablesize(table) - 1;
-	if (size != -1)
+	if (size)
 		pipe = ft_pipe(size);
-	if (!pipe)
+	if (size && !pipe)
 		return (ft_perr_sts(), 0);
 	path = ft_checkpath(path);
 	childs = ft_forking(table, path, pipe, size);
@@ -123,7 +123,8 @@ int	ft_multipipes(t_cmdtable *table)
 		return (ft_perr_sts(), 0);
 	if (!ft_wait_childs(table, childs))
 		return (0);
-	ft_freedptr(pipe, size - 1);
+	if (pipe)
+		ft_freedptr(pipe, size - 1);
 	free_sp(path);
 	return (1);
 }
