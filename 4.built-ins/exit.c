@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 18:11:27 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/12 11:52:32 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/22 11:13:52 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_exit_msg(char *fstparam, char *str, int exitsts)
 		if (!fstparam)
 			return ;
 	}
-	// free what is allocated (struct, globalvar, path)
 	exit(exitsts);
 }
 

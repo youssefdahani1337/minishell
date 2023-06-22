@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:35:53 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/06 11:04:22 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:47:56 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	free_sp(char **sp)
 	int	i;
 
 	i = 0;
+	if (sp)
+		return ;
 	while (sp[i])
 		free(sp[i++]);
 	free(sp);

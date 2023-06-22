@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   export_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 19:35:28 by mac               #+#    #+#             */
-/*   Updated: 2023/06/18 22:21:10 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/21 22:04:43 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/builtins.h"
 
-char	*find_key(t_lexer *lexer)	
+char	*find_key(t_lexer *lexer)
 {
 	char	*value;
 
@@ -51,7 +51,8 @@ char	*find_value(t_lexer *lexer, t_export *infos)
 		return (NULL);
 	if (infos->node && infos->node->value && infos->type == p_equal)
 	{
-		value = ft_strjoin_m(infos->node->value, ft_strdup(lexer->src + lexer->i));
+		value = ft_strjoin_m(infos->node->value,
+				ft_strdup(lexer->src + lexer->i));
 		return (value);
 	}
 	value = ft_strdup(lexer->src + lexer->i);

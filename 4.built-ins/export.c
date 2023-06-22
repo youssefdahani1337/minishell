@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:46:17 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/19 17:46:43 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/22 13:55:16 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_changeadd_export(char **arg)
 	{
 		if (!ft_changeadd(arg[i]))
 			ft_errmsg_sts("minishell: export: `", arg[i],
-				"': not a valid identifier");
+				"': not a valid identifier\n");
 	}
 }
 
@@ -52,7 +52,7 @@ void	ft_filladd(t_export *infos)
 	}
 }
 
-int		ft_changeadd(char *arg)
+int	ft_changeadd(char *arg)
 {
 	t_lexer		*lexer;
 	t_export	*infos;
@@ -71,6 +71,8 @@ int		ft_changeadd(char *arg)
 		return (0);
 	infos->node = ft_getenv(infos->key);
 	infos->value = find_value(lexer, infos);
+	if (!ft_strcmp(infos->key, "PWD"))
+		g_shell.unsetpwd = 0;
 	ft_filladd(infos);
 	free(lexer);
 	free(infos);

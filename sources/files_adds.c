@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   files_adds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:28:20 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 14:08:30 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:22:34 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ t_file	*open_file(t_parser *parser, int *status)
 		msg = ft_strjoin(parser->value, " : ");
 		msg = ft_strjoin_m(msg, ft_strdup(strerror(errno)));
 		parser->value = NULL;
-		// check_dir(pa)
 		*status = -1;
 	}
 	return (new_file(fd, msg));

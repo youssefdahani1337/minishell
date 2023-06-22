@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/20 19:36:53 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/22 10:27:45 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,27 @@ void	ft_newpwdval(char *pwd, char *opwd)
 {
 	t_env	*pwdnode;
 	t_env	*opwdnode;
-	char	*ptr;
 
 	pwdnode = ft_getenv("PWD");
 	if (pwdnode)
 	{
-		ptr = pwdnode->value;
-		pwdnode->equal = 1; //test it
+		if (pwdnode->value && ft_strcmp(pwdnode->value, opwd))
+			free(pwdnode->value);
+		pwdnode->equal = 1;
 		pwdnode->value = pwd;
-		if (ft_strcmp(ptr, opwd))
-			free(ptr);
 	}
 	opwdnode = ft_getenv("OLDPWD");
 	if (opwdnode)
 	{
-		ptr = opwdnode->value;
+		if (opwdnode->value)
+			free(opwdnode->value);
 		opwdnode->equal = 1;
 		opwdnode->value = opwd;
-		free(ptr);
 	}
 	if (g_shell.unsetpwd == 1)
 		g_shell.unsetpwd = 2;
 	else if (g_shell.unsetpwd != 1 && !g_shell.opwd)
-		g_shell.opwd = 2;
+		g_shell.opwd = 1;
 }
 
 t_env	*ft_getenv(char *key)
@@ -71,7 +69,7 @@ char	*ft_getopwd(int *oldp)
 		}
 		return (ft_strdup(opwd));
 	}
-	else if (1 == g_shell.unsetpwd) //just did unset test:(unset PWD cd . cd .) add in export if (export PWD=) unsetpwd = 0; 
+	else if (1 == g_shell.unsetpwd)
 		opwd_val = NULL;
 	*oldp = 1;
 	return (opwd_val);
@@ -116,7 +114,7 @@ void	ft_cd(t_cmdtable *table)
 	if (!dir)
 		return ;
 	opwd = ft_getopwd(&oldp);
-	if (!oldp || (dir[0] && chdir(dir) == -1) || !getcwd(pwd, MAXPATHLEN)) // dir[0] || dir
+	if (!oldp || (dir[0] && chdir(dir) == -1) || !getcwd(pwd, MAXPATHLEN))
 	{
 		free(dir);
 		ft_perr_sts();
@@ -124,7 +122,7 @@ void	ft_cd(t_cmdtable *table)
 	}
 	if (print == 1)
 	{
-		if (dir[0]) // why dir[0] ?? and not dir
+		if (dir[0])
 			ft_putstr_fd(pwd, table->out->fd);
 		ft_putchar_fd('\n', table->out->fd);
 	}

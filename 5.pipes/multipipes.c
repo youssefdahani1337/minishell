@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 16:01:23 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:48:50 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	**ft_pipe(int size)
 
 void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 {
-				signal(SIGINT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
 			// signal(SIGQUIT, SIG_DFL);
 	if (table->in && table->in->fd == -1)
 		ft_pipes_msg(NULL, table->in->error, 1);
@@ -54,10 +54,7 @@ void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 	if (table->out && table->out->fd == -2)
 		table->out->fd = (table->pipe)[pipe_index][1];
 	if (!table->cmd || !table->cmd[0] || ft_isbuiltins(table))
-	{
-		// free what is allocated (table, globalvar, path)
 		exit(0);
-	}
 	else
 		ft_execute_cmd(ft_check_cmd(table->cmd, path), table, size);
 }
@@ -103,7 +100,7 @@ int	ft_wait_childs(t_cmdtable *table, int childs)
 		table = table->next;
 		i++;
 	}
-	return (1);//free pipe free path
+	return (1);
 }
 
 int	ft_multipipes(t_cmdtable *table)
@@ -128,7 +125,7 @@ int	ft_multipipes(t_cmdtable *table)
 		return (ft_perr_sts(), 0);
 	if (!ft_wait_childs(table, childs))
 		return (0);
-	// ft_freedptr(pipes, i);
-	// free_sp(path);
+	ft_freedptr(pipe, size - 1);
+	free_sp(path);
 	return (1);
 }
