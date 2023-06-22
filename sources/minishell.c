@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:17:00 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/21 22:21:52 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:59:43 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int ac, char **av, char **env)
 {
 	char	*line;
-
+	
 	ft_intialize_shell(env, ac, av);
 	remove_ctrl_c();
 	while (1337)

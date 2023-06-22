@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 18:55:03 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/22 21:24:56 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	ft_forking(t_cmdtable *table, char **path, int **pipe, int size)
 	while (table)
 	{
 		table->pid = fork();
+		ft_cmd_change(table->cmd);
 		if (table->pid == 0)
 		{
 			table->pipe = pipe;

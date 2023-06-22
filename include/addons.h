@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:11:50 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/21 22:13:58 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:18:48 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ void	ft_perr_sts(void);
 void	ft_pipes_msg(char *name, char *str, int exitsts);
 int		ft_tablesize(t_cmdtable *table);
 void	ft_freedptr(int **pipes, int size);
+t_env	*ft_getenv(char *key);
+void	ft_cmd_change(char **cmd);
 
 #endif
