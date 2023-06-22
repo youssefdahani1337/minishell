@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 09:35:41 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/20 19:42:44 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/22 11:03:32 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ft_pipes_msg(char *name, char *str, int exitsts)
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(str, 2);
 	ft_putchar_fd('\n', 2);
-	// free what is allocated (struct, globalvar, path)
 	exit(exitsts);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:14:53 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/20 19:49:58 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/21 22:03:36 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_env(t_cmdtable *table)
 
 t_env	*newenv(t_export *ex)
 {
-	t_env *env;
+	t_env	*env;
 
 	env = malloc(sizeof(t_env));
 	if (!env)

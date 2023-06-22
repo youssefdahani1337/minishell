@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 22:12:28 by hbenabad          #+#    #+#             */
+/*   Updated: 2023/06/21 22:12:54 by hbenabad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -16,7 +27,6 @@ void		ft_intialize_shell(char **env, int ac, char **av);
 void		ft_execution(t_cmdtable *table);
 int			ft_isbuiltins(t_cmdtable *table);
 //end execution 
-
 
 //fill struct 
 

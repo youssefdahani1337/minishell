@@ -1,4 +1,16 @@
- #include "../include/builtins.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export_rank.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 22:04:53 by hbenabad          #+#    #+#             */
+/*   Updated: 2023/06/22 13:53:48 by hbenabad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/builtins.h"
 
 t_list	*ft_keyslst(t_env *getkeys)
 {
@@ -55,11 +67,8 @@ void	ft_rank(t_list **keys)
 				env_save = env_save->next;
 			if (fst)
 				lead->follow = env_save;
-			if (!fst)
-			{
+			if (!fst++)
 				g_shell.leader = env_save;
-				fst = 1;
-			}
 			lead = env_save;
 		}
 		ptr = ptr->next;

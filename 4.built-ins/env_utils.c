@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:17:44 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/19 17:47:24 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/21 21:00:48 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ int	ft_fillnew(t_env *new, char *str)
 	i = 0;
 	while (str[i] != '=' && str[i])
 		i++;
-	if (!str[i] || !ft_strncmp(str, "OLDPWD", i))
+	if (!ft_strncmp(str, "OLDPWD", i))
+		g_shell.opwd = 1;
+	if (!str[i])
 	{
 		new->equal = 0;
 		new->value = 0;
-		g_shell.opwd = 1;
 	}
 	else if (str[i])
 	{

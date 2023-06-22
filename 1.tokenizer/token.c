@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:35:57 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/07 16:25:51 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/21 22:15:55 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/token.h"
-
 
 t_tokens	*ft_newtoken(char *value, int type)
 {

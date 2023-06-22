@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_intialiser.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 22:20:52 by hbenabad          #+#    #+#             */
+/*   Updated: 2023/06/21 22:20:55 by hbenabad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void		ft_intialize_shell(char **env, int ac, char **av)
+void	ft_intialize_shell(char **env, int ac, char **av)
 {
 	(void)ac;
 	(void)av;

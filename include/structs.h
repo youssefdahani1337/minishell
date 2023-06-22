@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 22:11:20 by hbenabad          #+#    #+#             */
+/*   Updated: 2023/06/21 22:12:00 by hbenabad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
@@ -45,6 +55,6 @@ typedef struct s_shell
 	char		**env_save;
 }	t_shell;
 
-t_shell g_shell;
+t_shell	g_shell;
 
 #endif

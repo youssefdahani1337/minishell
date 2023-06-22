@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:25:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/19 18:20:30 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/21 22:13:43 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ typedef enum s_export_t
 	equal= '=',
 	p_equal = '+',
 	exp_error
-	
-} t_export_t;
+}	t_export_t;
 
 typedef struct s_export
 {
@@ -38,7 +37,7 @@ typedef struct s_export
 	char		*value;
 	t_export_t	type;
 	t_env		*node;
-} t_export;
+}	t_export;
 void	ft_envclear(t_env **lst);
 int		ft_fillnew(t_env *new, char *str);
 t_env	*ft_envnew(char *str);
