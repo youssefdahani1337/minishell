@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/20 19:01:13 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/22 16:01:23 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	**ft_pipe(int size)
 
 void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 {
+				signal(SIGINT, SIG_DFL);
+			// signal(SIGQUIT, SIG_DFL);
 	if (table->in && table->in->fd == -1)
 		ft_pipes_msg(NULL, table->in->error, 1);
 	if (table->out && table->out->fd == -1)

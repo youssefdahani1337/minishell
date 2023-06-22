@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:10:43 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 11:14:28 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:23:51 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	lexer_syntax(t_lexer *lexer)
 {
 	int	i;
 
+	trim_space(lexer);
 	i = lexer->size - 1;
 	if (lexer->c == pip || (lexer->size > 0 && lexer->src[i] == pip))
 	{
@@ -28,8 +29,8 @@ int	lexer_syntax(t_lexer *lexer)
 		{
 			if (quote_close(lexer) == 0)
 			{
+				print_error("Unclosed quote!! ", NULL);
 				free_lexer(lexer);
-				print_error("Unclosed quote!!", NULL);
 				return (0);
 			}
 		}
@@ -52,4 +53,16 @@ int	quote_close(t_lexer *lexer)
 		lexer_iter(lexer);
 	}
 	return (0);
+}
+
+void	trim_space(t_lexer *lexer)
+{
+	int	size;
+
+	ft_skip_whitespace(lexer);
+	size = lexer->size - 1;
+	while (size >= 0 && lexer->src[size] == space)
+		size --;
+	lexer->size = size + 1;
+	lexer->src[size +1] = '\0';
 }

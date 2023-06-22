@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_s_adds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:56:37 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/17 12:54:00 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/21 12:55:29 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	get_cmd(t_cmdtable *cmd, t_parser *parser)
 	status = 0;
 	i = 0;
 	cmd->cmd = (char **)malloc(sizeof(char *) * (count_t_parse(parser) + 1));
+	if (!cmd->cmd)
+		return ;
 	while (parser && parser->type != p_pip && parser->type != p_terminator)
 	{
 		if (parser->type == p_string)
@@ -47,25 +49,9 @@ void	get_cmd(t_cmdtable *cmd, t_parser *parser)
 			file_addback(&cmd->out, open_file(parser, &status));
 		if (status == -1)
 			break ;
-		if (parser->type != p_string)
-			parser = parser->next;
-	}
-	cmd->cmd[i] = NULL;
-}
-
-void	get_outfile(t_file **file, t_parser *parser)
-{
-	int	status;
-
-	status = 0;
-	*file = NULL;
-	while (parser->type != p_pip && parser->type != p_terminator)
-	{
-		file_addback(file, open_file(parser, &status));
-		if (status == -1)
-			break ;
 		parser = parser->next;
 	}
+	cmd->cmd[i] = NULL;
 }
 
 void	skip_parse(t_parser **parser)
@@ -85,6 +71,8 @@ char	*join_parser(t_parser **parser)
 	{
 		value = ft_strjoin_m(value, (*parser)->value);
 		(*parser)->value = NULL;
+		if ((*parser)->next->type != p_string)
+			break ;
 		(*parser) = (*parser)->next;
 	}
 	return (value);

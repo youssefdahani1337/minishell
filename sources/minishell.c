@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mac <mac@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:17:00 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/20 17:25:00 by mac              ###   ########.fr       */
+/*   Updated: 2023/06/22 16:21:40 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ int	main(int ac, char **av, char **env)
 {
 	char	*line;
 
-	remove_ctrl_c();
 	ft_intialize_shell(env, ac, av);
 	while (1337)
 	{
-		signal(SIGINT, handler);
 		line = readline(MINISHELL_PROMPT);
+		signal(SIGINT, SIG_IGN);
 		if (!line)
 			break ;
 		if (!*line)
