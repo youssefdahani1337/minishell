@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:46:17 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 10:15:10 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:06:00 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_export(t_cmdtable *table)
 {
 	if (!table->cmd[1])
 	{
+		if (!g_shell.env)
+			return ;
 		ft_rank_env();
 		ft_export_display(g_shell.leader, table->out->fd);
 	}

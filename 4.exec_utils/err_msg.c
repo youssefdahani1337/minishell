@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 14:03:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 14:03:34 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:53:25 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,15 @@ void	ft_pipes_msg(char *name, char *str, int exitsts)
 	ft_putstr_fd(str, 2);
 	ft_putchar_fd('\n', 2);
 	exit(exitsts);
+}
+
+void	ft_print_msg(char *name, char *str, int exitsts)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(name, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putchar_fd('\n', 2);
+	g_shell.exitsts = exitsts;
+	return ;
 }

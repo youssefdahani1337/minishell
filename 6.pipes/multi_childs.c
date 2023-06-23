@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multi_childs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 11:07:09 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 02:19:53 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:41:16 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,14 @@ char	*ft_check_cmd(char **cmd, char **path)
 {
 	int			slash_dot;
 	char		*cmdpath;
-	struct stat	buf;
 
 	if (!cmd[0][0])
 		ft_pipes_msg(cmd[0], "command not found", 127);
 	slash_dot = ft_slash_dot(cmd[0]);
 	if (slash_dot || !path)
 	{
-		if (stat(cmd[0], &buf) == -1)
-			ft_perr_sts();
-		if (S_ISDIR(buf.st_mode))
-			ft_pipes_msg(cmd[0], "is a directory", 126);
+		if (slash_dot)
+			ft_check_dir(cmd[0]);
 		if (!access(cmd[0], F_OK))
 		{
 			if (!access(cmd[0], X_OK))
@@ -101,6 +98,12 @@ void	ft_execute_cmd(char *cmdpath, t_cmdtable *table, int size)
 	if (dup2(table->in->fd, STDIN_FILENO) == -1
 		|| dup2(table->out->fd, STDOUT_FILENO) == -1
 		|| !ft_close(table->pipe, size))
+	{
+		perror("minishell");
+		exit(1);
+	}
+	g_shell.env_save = ft_env_save(g_shell.env);
+	if (!g_shell.env_save)
 	{
 		perror("minishell");
 		exit(1);

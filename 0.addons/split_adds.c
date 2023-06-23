@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_adds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:35:53 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/22 21:43:59 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:26:42 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ void	free_sp(char **sp)
 	if (!sp)
 		return ;
 	while (sp[i])
+		free(sp[i++]);
+	free(sp);
+}
+
+void	ft_free_dstr(char **sp, int size)
+{
+	int	i;
+
+	i = 0;
+	if (!sp)
+		return ;
+	while (i < size)
 		free(sp[i++]);
 	free(sp);
 }

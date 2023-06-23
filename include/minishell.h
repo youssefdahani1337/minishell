@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:12:28 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 14:16:08 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:55:51 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int			ft_minishell(char *line);
 int			ft_intialize_shell(char **env, int ac, char **av);
 
-void		ft_execution(t_cmdtable *table);
+int			ft_execution(t_cmdtable *table);
 int			ft_isbuiltins(t_cmdtable *table);
 //end execution 
 

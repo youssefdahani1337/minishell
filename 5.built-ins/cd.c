@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 14:17:52 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:09:58 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	ft_newpwdval(char *pwd, char *opwd)
 	}
 	if (g_shell.unsetpwd == 1)
 		g_shell.unsetpwd = 2;
-	else if (g_shell.unsetpwd != 1 && !g_shell.opwd)
-		g_shell.opwd = 1;
 }
 
 char	*ft_getopwd(int *oldp)
@@ -77,12 +75,10 @@ char	*ft_getdir(char *direc, int *print)
 	if (str)
 	{
 		dir = get_env_val(str);
-		printf("dir = %s\n", dir );
 		if (!dir)
 			ft_errmsg_sts("minishell: cd: ", str, " not set\n");
 		else if (direc && direc[0] == '~' && (direc[1] && direc[1] == '/'))
 			dir = ft_strjoin_m(dir, ft_strdup(direc + 1));
-			//segfault when direc ~/goinfre
 	}
 	else
 		dir = ft_strdup(direc);

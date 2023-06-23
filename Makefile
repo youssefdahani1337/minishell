@@ -30,7 +30,7 @@ BUILT_DIR=./5.built-ins/
 BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c exit.c is_builtin.c export_helper.c export.c export_rank.c
 
 MPIPE_DIR=./6.pipes/
-MPIPE_SRCS=multipipes.c path.c multi_childs.c
+MPIPE_SRCS=multipipes.c path.c multi_childs.c childs_utils.c
 
 ADDS_DIR=./0.addons/
 ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c

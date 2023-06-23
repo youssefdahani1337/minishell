@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_interperter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:22:49 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 02:39:53 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:57:17 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	ft_minishell(char *line)
 	if (ft_parser(&parser, token))
 		return (0);
 	fill_struct(&g_shell.table, parser);
-	ft_execution(g_shell.table);
+	if (!ft_execution(g_shell.table))
+		return (0);
 	free_cmd(g_shell.table);
 	return (1);
 }

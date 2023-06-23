@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:00:46 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 14:15:19 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:35:01 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	**ft_checkpath(char **path);
 int		ft_close(int **pipe, int size);
 char	*ft_getcmdpath(char *cmd, char **path);
 int		ft_slash_dot(char *cmd);
+void	ft_check_dir(char *cmd);
 char	*ft_check_cmd(char **cmd, char **path);
 void	ft_execute_cmd(char *cmdpath, t_cmdtable *table, int size);
 int		**ft_pipe(int size);
