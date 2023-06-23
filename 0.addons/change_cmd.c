@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   changer.c                                          :+:      :+:    :+:   */
+/*   change_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:02:47 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 19:40:35 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:34:45 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	ft_cmd_change(char **cmd)
 	i = 0;
 	cmd_saver = ft_getenv("_");
 	if (!cmd_saver)
+	{
+		//ft_env_addback(&g_shell.env, ft_envnew("_", cmd[0]));
 		return ;
+	}
 	if (cmd_saver->value)
 		free(cmd_saver->value);
 	if (!cmd || !cmd[0])

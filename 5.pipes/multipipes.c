@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 03:59:54 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:53:17 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ int	**ft_pipe(int size)
 
 void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 {
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+	handler_df();
 	if (table->in && table->in->fd == -1)
 		ft_pipes_msg(NULL, table->in->error, 1);
 	if (table->out && table->out->fd == -1)
@@ -67,7 +66,6 @@ int	ft_forking(t_cmdtable *table, char **path, int **pipe, int size)
 	while (table)
 	{
 		table->pid = fork();
-		ft_cmd_change(table->cmd);
 		if (table->pid == 0)
 		{
 			table->pipe = pipe;
@@ -92,12 +90,15 @@ int	ft_wait_childs(t_cmdtable *table, int childs)
 	i = 0;
 	while (i < childs)
 	{
-		if (waitpid(table->pid, &status, 0) == -1/* || WIFEXITED(status) != 0*/)
+		if (waitpid(table->pid, &status, 0) == -1)
 		{
 			ft_perr_sts();
 			return (0);
 		}
-		g_shell.exitsts = WEXITSTATUS(status);
+		if (WIFSIGNALED(status))
+		 	exit_with_sig(status);
+		else
+			g_shell.exitsts = WEXITSTATUS(status);
 		table = table->next;
 		i++;
 	}
