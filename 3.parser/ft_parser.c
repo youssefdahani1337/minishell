@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:31:10 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 10:52:51 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/22 23:35:31 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	parser_parse(t_parser **parser, t_tokens *token, int *status)
 	while (token->type != terminator && *status == 0)
 		parser_parsing(parser, &token, status);
 	ft_parseadd_back(parser, ft_newparse(NULL, p_terminator, 0));
-	open_heredoc(*parser, status);
+	if (!*status)
+		open_heredoc(*parser, status);
 }
 
 void	parser_parsing(t_parser **parser, t_tokens **token, int *error)

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:34:27 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 11:00:19 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/22 23:34:18 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 
 void	open_heredoc(t_parser *parser, int *status)
 {
-	int	status_her;
-
-	status_her = 0;
-	count_herdoc(parser, &status_her);
-	while (status_her == 0 && parser->type != p_terminator)
+	count_herdoc(parser, status);
+	while (*status == 0 && parser->type != p_terminator)
 	{
 		if (parser->type == limiter)
-			execute_heredoc(parser, &status_her);
+			execute_heredoc(parser, status);
 		parser = parser->next;
 	}
-	*status = status_her;
 	g_shell.exitsts = *status;
 }
 

@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 16:48:50 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 03:59:54 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	**ft_pipe(int size)
 void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 {
 	signal(SIGINT, SIG_DFL);
-			// signal(SIGQUIT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	if (table->in && table->in->fd == -1)
 		ft_pipes_msg(NULL, table->in->error, 1);
 	if (table->out && table->out->fd == -1)
@@ -54,7 +54,7 @@ void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 	if (table->out && table->out->fd == -2)
 		table->out->fd = (table->pipe)[pipe_index][1];
 	if (!table->cmd || !table->cmd[0] || ft_isbuiltins(table))
-		exit(0);
+		exit(g_shell.exitsts);
 	else
 		ft_execute_cmd(ft_check_cmd(table->cmd, path), table, size);
 }
@@ -67,6 +67,7 @@ int	ft_forking(t_cmdtable *table, char **path, int **pipe, int size)
 	while (table)
 	{
 		table->pid = fork();
+		ft_cmd_change(table->cmd);
 		if (table->pid == 0)
 		{
 			table->pipe = pipe;
@@ -91,7 +92,7 @@ int	ft_wait_childs(t_cmdtable *table, int childs)
 	i = 0;
 	while (i < childs)
 	{
-		if (waitpid(table->pid, &status, 0) == -1 || !WIFEXITED(status))
+		if (waitpid(table->pid, &status, 0) == -1/* || WIFEXITED(status) != 0*/)
 		{
 			ft_perr_sts();
 			return (0);
@@ -115,17 +116,19 @@ int	ft_multipipes(t_cmdtable *table)
 	size = 0;
 	childs = 0;
 	size = ft_tablesize(table) - 1;
-	if (size != -1)
+	if (size)
 		pipe = ft_pipe(size);
-	if (!pipe)
+	if (size && !pipe)
 		return (ft_perr_sts(), 0);
 	path = ft_checkpath(path);
 	childs = ft_forking(table, path, pipe, size);
-	if (!ft_close(pipe, size))
-		return (ft_perr_sts(), 0);
-	if (!ft_wait_childs(table, childs))
-		return (0);
-	ft_freedptr(pipe, size - 1);
 	free_sp(path);
-	return (1);
+	if (!ft_close(pipe, size))
+	{
+		ft_freedptr(pipe, size - 1);
+		return (ft_perr_sts(), 0);
+	}
+	if (!ft_wait_childs(table, childs))
+		return (ft_freedptr(pipe, size - 1), 0);
+	return (ft_freedptr(pipe, size - 1), 1);
 }

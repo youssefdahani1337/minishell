@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:17:44 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/21 21:00:48 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:32:04 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	ft_fillnew(t_env *new, char *str)
 	i = 0;
 	while (str[i] != '=' && str[i])
 		i++;
-	if (!ft_strncmp(str, "OLDPWD", i))
-		g_shell.opwd = 1;
-	if (!str[i])
+	if (!str[i] || !ft_strncmp(str, "OLDPWD", i))
 	{
+		if (str[i])
+			g_shell.opwd = 1;
 		new->equal = 0;
 		new->value = 0;
 	}

@@ -1,0 +1,14 @@
+0.addons
+1.tokenizer
+2.lexer
+3.parser
+4.built-ins
+5.pipes
+Makefile
+debug
+include
+l
+libft
+ls
+minishell
+sources

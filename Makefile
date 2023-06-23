@@ -33,7 +33,7 @@ MPIPE_DIR=./5.pipes/
 MPIPE_SRCS=multipipes.c path.c multi_childs.c
 
 ADDS_DIR=./0.addons/
-ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c execution_utils.c
+ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c execution_utils.c change_cmd.c
 
 DEBUG=-Ldebug -ldebug
 

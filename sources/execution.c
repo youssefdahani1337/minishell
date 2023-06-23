@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:45:52 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/22 16:49:03 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/22 21:36:22 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	ft_execution(t_cmdtable *table)
 	if (table)
 	{
 		if (table->cmd && table->cmd[0] && !table->next && ft_isbuiltins(table))
+		{
+			ft_cmd_change(table->cmd);
 			return ;
+		}
 		else
 			ft_multipipes(table);
 	}

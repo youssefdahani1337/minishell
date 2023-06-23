@@ -6,11 +6,12 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:22:49 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 16:49:09 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 02:39:53 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+#include "../debug/debug.h"
 
 int	ft_minishell(char *line)
 {
