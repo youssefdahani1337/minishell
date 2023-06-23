@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:31:10 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/22 23:35:31 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 18:29:06 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_parser(t_parser **parser, t_tokens *token)
 	ft_cleartoken(token);
 	if (status)
 		ft_clearparse(*parser);
+	if (status)
+		g_shell.exitsts = status;
 	return (status);
 }
 
@@ -30,8 +32,7 @@ void	parser_parse(t_parser **parser, t_tokens *token, int *status)
 	while (token->type != terminator && *status == 0)
 		parser_parsing(parser, &token, status);
 	ft_parseadd_back(parser, ft_newparse(NULL, p_terminator, 0));
-	if (!*status)
-		open_heredoc(*parser, status);
+	open_heredoc(*parser, status);
 }
 
 void	parser_parsing(t_parser **parser, t_tokens **token, int *error)

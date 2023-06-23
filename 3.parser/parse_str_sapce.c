@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:32:45 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/22 10:23:04 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 15:13:33 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	add_parse(t_parser **parser, t_tokens **token)
 	value = ft_strdup((*token)->value);
 	type = get_typeparse(*token);
 	if ((*token)->type == pip)
-		g_shell.exitsts = 0;
+	 	g_shell.exitsts = 0;
 	(*token) = (*token)->next;
 	ft_parseadd_back(parser, ft_newparse(value, type, 0));
 }
