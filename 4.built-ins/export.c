@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:46:17 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 13:55:16 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:15:10 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,12 @@ void	ft_filladd(t_export *infos)
 	else if (infos->type)
 	{
 		infos->node->equal = infos->type;
+		free(infos->node->value);
+		free(infos->key);
 		infos->node->value = infos->value;
 	}
+	else
+		free(infos->key);
 }
 
 int	ft_changeadd(char *arg)

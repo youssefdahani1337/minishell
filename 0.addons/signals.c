@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:11:08 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/22 18:53:44 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:55:12 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	hand(int sig)
 {
 	(void)sig;
-	// write(1, "\n", 1);
+	write(1, "\n", 1);
 	exit(1);
 }
 
@@ -32,8 +32,27 @@ void	handler(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-	// rl_on_new_line();
-	// rl_replace_line("", 0);
-	// rl_redisplay();
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 	g_shell.exitsts = 1;
+}
+
+void	handler_df(void)
+{
+	struct termios	term;
+
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	tcgetattr(STDIN_FILENO, &term);
+	term.c_lflag |= ECHOCTL;
+	tcsetattr(STDIN_FILENO, 0, &term);
+}
+
+void	exit_with_sig(int status)
+{
+	g_shell.exitsts = WTERMSIG(status) + 128;
+	if (g_shell.exitsts == 131)
+		ft_putstr_fd("Quit: 3", 2);
+	ft_putchar_fd('\n', 2);
 }

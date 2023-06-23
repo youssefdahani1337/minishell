@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 10:27:45 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:46:21 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,12 @@ char	*ft_getdir(char *direc, int *print)
 	if (str)
 	{
 		dir = get_env_val(str);
+		printf("dir = %s\n", dir );
 		if (!dir)
 			ft_errmsg_sts("minishell: cd: ", str, " not set\n");
 		else if (direc && direc[0] == '~' && (direc[1] && direc[1] == '/'))
-			dir = ft_strjoin_m(dir, direc + 1);
+			dir = ft_strjoin_m(dir, ft_strdup(direc + 1));
+			//segfault when direc ~/goinfre
 	}
 	else
 		dir = ft_strdup(direc);
@@ -110,7 +112,10 @@ void	ft_cd(t_cmdtable *table)
 	char	pwd[MAXPATHLEN];
 
 	print = 0;
-	dir = ft_getdir(table->cmd[1], &print);
+	if (table->cmd[1] && !table->cmd[1][0])
+		dir = ft_strdup(".");
+	else
+		dir = ft_getdir(table->cmd[1], &print);
 	if (!dir)
 		return ;
 	opwd = ft_getopwd(&oldp);

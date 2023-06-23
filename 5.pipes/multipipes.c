@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 21:24:56 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:53:17 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	**ft_pipe(int size)
 
 void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 {
+	handler_df();
 	if (table->in && table->in->fd == -1)
 		ft_pipes_msg(NULL, table->in->error, 1);
 	if (table->out && table->out->fd == -1)
@@ -52,7 +53,7 @@ void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 	if (table->out && table->out->fd == -2)
 		table->out->fd = (table->pipe)[pipe_index][1];
 	if (!table->cmd || !table->cmd[0] || ft_isbuiltins(table))
-		exit(0);
+		exit(g_shell.exitsts);
 	else
 		ft_execute_cmd(ft_check_cmd(table->cmd, path), table, size);
 }
@@ -65,7 +66,6 @@ int	ft_forking(t_cmdtable *table, char **path, int **pipe, int size)
 	while (table)
 	{
 		table->pid = fork();
-		ft_cmd_change(table->cmd);
 		if (table->pid == 0)
 		{
 			table->pipe = pipe;
@@ -90,12 +90,15 @@ int	ft_wait_childs(t_cmdtable *table, int childs)
 	i = 0;
 	while (i < childs)
 	{
-		if (waitpid(table->pid, &status, 0) == -1 || !WIFEXITED(status))
+		if (waitpid(table->pid, &status, 0) == -1)
 		{
 			ft_perr_sts();
 			return (0);
 		}
-		g_shell.exitsts = WEXITSTATUS(status);
+		if (WIFSIGNALED(status))
+		 	exit_with_sig(status);
+		else
+			g_shell.exitsts = WEXITSTATUS(status);
 		table = table->next;
 		i++;
 	}
@@ -120,12 +123,13 @@ int	ft_multipipes(t_cmdtable *table)
 		return (ft_perr_sts(), 0);
 	path = ft_checkpath(path);
 	childs = ft_forking(table, path, pipe, size);
-	if (!ft_close(pipe, size))
-		return (ft_perr_sts(), 0);
-	if (!ft_wait_childs(table, childs))
-		return (0);
-	if (pipe)
-		ft_freedptr(pipe, size - 1);
 	free_sp(path);
-	return (1);
+	if (!ft_close(pipe, size))
+	{
+		ft_freedptr(pipe, size - 1);
+		return (ft_perr_sts(), 0);
+	}
+	if (!ft_wait_childs(table, childs))
+		return (ft_freedptr(pipe, size - 1), 0);
+	return (ft_freedptr(pipe, size - 1), 1);
 }

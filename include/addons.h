@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   addons.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:11:50 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/22 19:18:48 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 09:43:48 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		check_space(const char *line);
 void	hand(int sig);
 void	remove_ctrl_c(void);
 void	handler(int sig);
-
 void	ft_errmsg_sts(char *cmd, char *str, char *err);
 void	ft_perr_sts(void);
 void	ft_pipes_msg(char *name, char *str, int exitsts);
@@ -42,5 +41,6 @@ int		ft_tablesize(t_cmdtable *table);
 void	ft_freedptr(int **pipes, int size);
 t_env	*ft_getenv(char *key);
 void	ft_cmd_change(char **cmd);
-
+void	exit_with_sig(int status);
+void	handler_df(void);
 #endif

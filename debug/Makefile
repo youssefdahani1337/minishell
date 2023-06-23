@@ -6,12 +6,13 @@
 #    By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 09:58:51 by yodahani          #+#    #+#              #
-#    Updated: 2023/06/12 10:18:37 by yodahani         ###   ########.fr        #
+#    Updated: 2023/06/20 22:31:34 by yodahani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra 
+#-fsanitize=address -g3
 RM=rm -rf
 NAME=libdebug.a
 SRC= $(wildcard *.c)

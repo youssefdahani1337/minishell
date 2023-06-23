@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:10:47 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/12 12:59:58 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/22 10:57:42 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ t_tokens	*lexer_str(t_lexer *lexer)
 t_tokens	*lexer_red(t_lexer *lexer)
 {
 	char		type;
+	char		*value;
 
 	type = lexer->c;
+	value = ft_join_char(0, type);
 	lexer_iter(lexer);
 	if (type == lexer->c)
 	{
 		lexer_iter(lexer);
-		return (ft_newtoken(NULL, get_t(type)));
+		return (ft_newtoken(ft_join_char(value, type), get_t(type)));
 	}
-	return (ft_newtoken(NULL, type));
+	return (ft_newtoken(value, type));
 }
 
 t_tokens	*lexer_quote(t_lexer *lexer)

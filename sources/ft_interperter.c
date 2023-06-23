@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_interperter.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:22:49 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 18:39:27 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 02:39:53 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+#include "../debug/debug.h"
 
 int	ft_minishell(char *line)
 {
