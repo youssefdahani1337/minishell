@@ -6,16 +6,29 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:12:12 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 18:40:53 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:22:16 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/executils.h"
 
+int	ft_envsize(t_env *env_ptr)
+{
+	int	i;
+
+	i = 0;
+	while (env_ptr)
+	{
+		env_ptr = env_ptr->next;
+		i++;
+	}
+	return (i);
+}
+
 char	**ft_env_save(t_env *env_ptr)
 {
 	char	**env_save;
-	char	**ptr;
+	char	*ptr;
 	int		i;
 
 	i = 0;
@@ -28,13 +41,14 @@ char	**ft_env_save(t_env *env_ptr)
 		{
 			ptr = ft_strjoin(env_ptr->key, "=");
 			if (!ptr)
-				return (ft_free_dstr(env_save), NULL);
+				return (ft_free_dstr(env_save, i), NULL);
 			env_save[i] = ft_strjoin_m(ptr, ft_strdup(env_ptr->value));
 			if (!env_save[i])
-				return (ft_free_dstr(env_save), NULL);
+				return (ft_free_dstr(env_save, i), NULL);
 			i++;
 		}
 		env_ptr = env_ptr->next;
 	}
+	env_save[i] = NULL;
 	return (env_save);
 }

@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:22:49 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 19:07:36 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:16:53 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	ft_minishell(char *line)
 	if (ft_parser(&parser, token))
 		return (0);
 	fill_struct(&g_shell.table, parser);
-	if (!ft_execution(g_shell.table))
-		return (0);
+	ft_execution(g_shell.table);
 	free_cmd(g_shell.table);
 	return (1);
 }

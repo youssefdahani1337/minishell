@@ -36,7 +36,7 @@ ADDS_DIR=./0.addons/
 ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c
 
 EXS_DIR=./4.exec_utils/
-EXS_SRCS=change_cmd.c env_fill.c env_utils.c env_utils2.c err_msg.c utils.c
+EXS_SRCS=change_cmd.c env_fill.c env_utils.c env_utils2.c err_msg.c utils.c env_save.c
 
 DEBUG=-Ldebug -ldebug
 
