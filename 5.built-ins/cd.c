@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 10:46:21 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:17:52 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,6 @@ void	ft_newpwdval(char *pwd, char *opwd)
 		g_shell.unsetpwd = 2;
 	else if (g_shell.unsetpwd != 1 && !g_shell.opwd)
 		g_shell.opwd = 1;
-}
-
-t_env	*ft_getenv(char *key)
-{
-	t_env	*ptr;
-
-	ptr = g_shell.env;
-	while (ptr)
-	{
-		if (!ft_strcmp(ptr->key, key))
-			return (ptr);
-		ptr = ptr->next;
-	}
-	return (NULL);
 }
 
 char	*ft_getopwd(int *oldp)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:17:00 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/23 11:36:08 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:52:39 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	main(int ac, char **av, char **env)
 {
 	char	*line;
 
-	ft_intialize_shell(env, ac, av);
+	if (!ft_intialize_shell(env, ac, av))
+		return (g_shell.exitsts);
 	while (1337)
 	{
 		remove_ctrl_c();

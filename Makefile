@@ -26,21 +26,24 @@ PAR_SRCS=parser_addons.c parser_helper.c ft_parser.c heredoc.c expand_helper.c f
 SRCS_DIR=./sources/
 SRCS=minishell.c ft_interperter.c ft_intialiser.c files_adds.c fill_s_adds.c fill_struct.c execution.c free_me.c
 
-BUILT_DIR=./4.built-ins/
-BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c exit.c env_utils.c is_builtin.c export_helper.c export.c export_rank.c
+BUILT_DIR=./5.built-ins/
+BUILT_SRCS=echo.c cd.c env.c pwd.c unset.c exit.c is_builtin.c export_helper.c export.c export_rank.c
 
-MPIPE_DIR=./5.pipes/
+MPIPE_DIR=./6.pipes/
 MPIPE_SRCS=multipipes.c path.c multi_childs.c
 
 ADDS_DIR=./0.addons/
-ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c execution_utils.c change_cmd.c
+ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_error.c split_adds.c
+
+EXS_DIR=./4.exec_utils/
+EXS_SRCS=change_cmd.c env_fill.c env_utils.c env_utils2.c err_msg.c utils.c
 
 DEBUG=-Ldebug -ldebug
 
 LIBFT=-Llibft -lft
 RL=-L /goinfre/$(USER)/homebrew/opt/readline/lib  -lreadline
 
-OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o)  $(PAR_SRCS:%.c=$(PAR_DIR)%.o) $(BUILT_SRCS:%.c=$(BUILT_DIR)%.o) $(MPIPE_SRCS:%.c=$(MPIPE_DIR)%.o)
+OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o)  $(PAR_SRCS:%.c=$(PAR_DIR)%.o) $(EXS_SRCS:%.c=$(EXS_DIR)%.o) $(BUILT_SRCS:%.c=$(BUILT_DIR)%.o) $(MPIPE_SRCS:%.c=$(MPIPE_DIR)%.o)
 all: debug msg libft $(NAME)
 	@echo $(allmsg)
 

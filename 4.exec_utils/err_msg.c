@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution_utils.c                                  :+:      :+:    :+:   */
+/*   err_msg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/17 09:35:41 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 02:14:57 by yodahani         ###   ########.fr       */
+/*   Created: 2023/06/23 14:03:03 by hbenabad          #+#    #+#             */
+/*   Updated: 2023/06/23 14:03:34 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/addons.h"
+#include "../include/executils.h"
 
 void	ft_errmsg_sts(char *cmd, char *str, char *err)
 {
@@ -35,27 +35,4 @@ void	ft_pipes_msg(char *name, char *str, int exitsts)
 	ft_putstr_fd(str, 2);
 	ft_putchar_fd('\n', 2);
 	exit(exitsts);
-}
-
-int	ft_tablesize(t_cmdtable *table)
-{
-	int	i;
-
-	i = 0;
-	while (table)
-	{
-		i++;
-		table = table->next;
-	}
-	return (i);
-}
-
-void	ft_freedptr(int **pipes, int size)
-{
-	if (!pipes)
-		return ;
-	while (size >= 0)
-		free(pipes[size--]);
-	free(pipes);
-	return ;
 }

@@ -6,11 +6,11 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:17:44 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 18:32:04 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:37:59 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/builtins.h"
+#include "../include/executils.h"
 
 void	ft_envclear(t_env **lst)
 {
@@ -26,7 +26,6 @@ void	ft_envclear(t_env **lst)
 		free(*lst);
 		*lst = t;
 	}
-	*lst = NULL;
 }
 
 int	ft_fillnew(t_env *new, char *str)
@@ -36,10 +35,10 @@ int	ft_fillnew(t_env *new, char *str)
 	i = 0;
 	while (str[i] != '=' && str[i])
 		i++;
-	if (!str[i] || !ft_strncmp(str, "OLDPWD", i))
+	if (!ft_strncmp(str, "OLDPWD", i))
+		g_shell.opwd = 1;
+	if (!str[i] || g_shell.opwd)
 	{
-		if (str[i])
-			g_shell.opwd = 1;
 		new->equal = 0;
 		new->value = 0;
 	}
@@ -61,10 +60,11 @@ t_env	*ft_envnew(char *str)
 	t_env	*new;
 
 	new = malloc(sizeof(t_env));
-	if (!new)
+	if (!new || !ft_fillnew(new, str))
+	{
+		ft_perr_sts();
 		return (NULL);
-	if (ft_fillnew(new, str) == 0)
-		return (NULL);
+	}
 	new->next = NULL;
 	return (new);
 }
@@ -84,17 +84,14 @@ int	ft_envadd_back(t_env **lst, t_env *new)
 {
 	t_env	*last;
 
-	if (lst && new)
-	{
-		if (!(*lst))
-			*lst = new;
-		else
-		{
-			last = ft_envlast(*lst);
-			last -> next = new;
-		}
-	}
 	if (!new)
 		return (ft_envclear(lst), 0);
+	if (!(*lst))
+		*lst = new;
+	else
+	{
+		last = ft_envlast(*lst);
+		last->next = new;
+	}
 	return (1);
 }

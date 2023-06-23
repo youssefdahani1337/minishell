@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:12:28 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/21 22:12:54 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:16:08 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@
 # include "parser.h"
 # include "../debug/debug.h"
 # include <sys/types.h>
-# include "builtins.h"
 # include "multipipes.h"
 
 int			ft_minishell(char *line);
-void		ft_intialize_shell(char **env, int ac, char **av);
+int			ft_intialize_shell(char **env, int ac, char **av);
 
 void		ft_execution(t_cmdtable *table);
 int			ft_isbuiltins(t_cmdtable *table);

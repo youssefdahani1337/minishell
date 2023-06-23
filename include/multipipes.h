@@ -6,26 +6,19 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:00:46 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 16:16:18 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:15:19 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MULTIPIPES_H
 # define MULTIPIPES_H
-# include <stdio.h>
-# include <stdlib.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include <sys/errno.h>
-# include <sys/param.h>
 # include <sys/stat.h>
-# include "../libft/libft.h"
-# include "../include/structs.h"
-# include "../include/builtins.h"
-# include "../include/addons.h"
-# include <readline/readline.h>
-# include <readline/history.h>
 # include <dirent.h>
+# include "../libft/libft.h"
+# include "structs.h"
+# include "builtins.h"
 
 char	*ft_modify_path(char *path_val);
 char	**ft_checkpath(char **path);
