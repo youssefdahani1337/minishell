@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_fill.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:57:23 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 20:09:30 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:12:56 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/executils.h"
 
-int	ft_setpwd()
+int	ft_setpwd(void)
 {
 	char	pwd[MAXPATHLEN];
 	t_env	*pwdnode;

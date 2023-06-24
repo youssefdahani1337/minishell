@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:02:47 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 20:29:24 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:12:44 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_cmd_change(char **cmd)
 {
 	int		i;
-	t_env 	*cmd_saver;
+	t_env	*cmd_saver;
 	char	*l_cmd;
 
 	i = -1;
