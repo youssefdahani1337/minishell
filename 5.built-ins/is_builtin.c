@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 10:23:06 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 18:10:57 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 16:05:03 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_isbuiltins(t_cmdtable *table)
 {
+	g_shell.exitsts = 0;
 	if (!ft_strcmp(table->cmd[0], "echo"))
 		ft_echo(table);
 	else if (!ft_strcmp(table->cmd[0], "pwd"))

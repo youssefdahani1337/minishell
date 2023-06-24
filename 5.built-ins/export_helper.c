@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 19:35:28 by mac               #+#    #+#             */
-/*   Updated: 2023/06/23 01:32:42 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:08:16 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,16 @@ char	*find_value(t_lexer *lexer, t_export *infos)
 	}
 	value = ft_strdup(lexer->src + lexer->i);
 	return (value);
+}
+
+void	init_infos(t_export *infos)
+{
+	infos->key = NULL;
+	infos->node = NULL;
+	infos->value = NULL;
+}
+void	free_infos(t_export *infos)
+{
+	free(infos->key);
+	free(infos->value);
 }

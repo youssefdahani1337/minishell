@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 18:09:58 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 16:09:25 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_newpwdval(char *pwd, char *opwd)
 	pwdnode = ft_getenv("PWD");
 	if (pwdnode)
 	{
-		if (pwdnode->value && ft_strcmp(pwdnode->value, opwd))
+		if (pwdnode->value)
 			free(pwdnode->value);
 		pwdnode->equal = 1;
 		pwdnode->value = pwd;
@@ -33,6 +33,10 @@ void	ft_newpwdval(char *pwd, char *opwd)
 		opwdnode->equal = 1;
 		opwdnode->value = opwd;
 	}
+	if (!pwdnode)
+		free(pwd);
+	if (!opwdnode)
+		free(opwd);
 	if (g_shell.unsetpwd == 1)
 		g_shell.unsetpwd = 2;
 }
@@ -51,7 +55,7 @@ char	*ft_getopwd(int *oldp)
 			*oldp = 0;
 			return (NULL);
 		}
-		return (ft_strdup(opwd));
+		opwd_val = ft_strdup(opwd);
 	}
 	else if (1 == g_shell.unsetpwd)
 		opwd_val = NULL;
@@ -65,9 +69,12 @@ char	*ft_getdir(char *direc, int *print)
 	char	*dir;
 
 	str = NULL;
+	*print = 0;
+	if (direc && !direc[0])
+		return (ft_strdup("."));
 	if (!(direc) || (direc[0] == '~' && (!direc[1] || direc[1] == '/')))
 		str = "HOME";
-	else if (!ft_strcmp(direc, "-"))
+	else if (!ft_strcmp(direc, "-")) 
 	{
 		str = "OLDPWD";
 		*print = 1;
@@ -93,17 +100,14 @@ void	ft_cd(t_cmdtable *table)
 	char	*opwd;
 	char	pwd[MAXPATHLEN];
 
-	print = 0;
-	if (table->cmd[1] && !table->cmd[1][0])
-		dir = ft_strdup(".");
-	else
-		dir = ft_getdir(table->cmd[1], &print);
+	dir = ft_getdir(table->cmd[1], &print);
 	if (!dir)
 		return ;
 	opwd = ft_getopwd(&oldp);
 	if (!oldp || (dir[0] && chdir(dir) == -1) || !getcwd(pwd, MAXPATHLEN))
 	{
 		free(dir);
+		free(opwd);
 		ft_perr_sts();
 		return ;
 	}
