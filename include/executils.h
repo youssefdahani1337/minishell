@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:58:36 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 19:21:23 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 15:54:52 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_export
 void	ft_errmsg_sts(char *cmd, char *str, char *err);
 void	ft_perr_sts(void);
 void	ft_pipes_msg(char *name, char *str, int exitsts);
-void	ft_print_msg(char *name, char *str, int exitsts);
+void	ft_print_msg(char *str, int exitsts);
 void	ft_envclear(t_env **lst);
 int		ft_fillnew(t_env *new, char *str);
 t_env	*ft_envnew(char *str);
