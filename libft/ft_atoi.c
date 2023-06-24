@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:10:39 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/22 11:26:49 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:07:12 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static	void	init(int *i, int *j, int *sign, long *result)
+{
+	*i = 0;
+	*j = 0;
+	*sign = 1;
+	*result = 0;
+}
 
 int	ft_atoi(const char *str)
 {
@@ -19,10 +27,7 @@ int	ft_atoi(const char *str)
 	int		sign;
 	long	result;
 
-	j = 0;
-	result = 0;
-	sign = 1;
-	i = 0;
+	init(&i, &j, &sign, &result);
 	if (str[i] == '-' || str[i] == '+')
 		sign = -1 * (str[i ++] - 44);
 	while (str[i])
