@@ -6,15 +6,12 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:00:54 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/24 12:54:50 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:11:24 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
-
-# define HERE_DOC "\033[0;34m──(\033[0m\033[0;32mheredoc\033[0m\033[0;34m)──\033[0m"
-
 # include "lexer.h"
 # include "expand.h"
 

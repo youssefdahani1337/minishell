@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:34:27 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/24 22:09:45 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:11:35 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	herdoc_iter(t_parser *parser, int fd[2])
 	signal(SIGINT, hand);
 	while (1)
 	{
-		line = readline(HERE_DOC);
+		line = readline("> ");
 		if (!line || ft_strcmp(line, parser->value) == 0)
 			break ;
 		write_in_her(line, fd[1], parser->state);
