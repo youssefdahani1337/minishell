@@ -6,12 +6,12 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:34:27 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/23 18:29:37 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:44:28 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parser.h"
-#include "../debug/debug.h"
+
 
 void	open_heredoc(t_parser *parser, int *status)
 {

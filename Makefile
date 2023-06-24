@@ -1,19 +1,13 @@
 
 CC=cc
-include= -I/goinfre/hbenabad/homebrew/opt/readline/include
-CFLAGS= -Wall -Werror -Wextra 
-#-fsanitize=address -g3
+include= -I/goinfre/$(USER)/homebrew/opt/readline/include
+CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
 
 RM=rm -rf
 NAME=minishell
-GREEN=\033[0;32m
-RED=\033[0;31m
-BLUE=\033[0;34m
-PURPLE=\033[0;35m
-COLOR_END=\033[0m
-allmsg="$(GREEN)DONE$(COLOR_END)"
-msgfclean="$(BLUE)Fclean$(COLOR_END)"
-msgclean="$(BLUE)Clean$(COLOR_END)"
+allmsg="DONE"
+msgfclean="Fclean"
+msgclean="Clean"
 
 TOKEN_DIR=./1.tokenizer/
 TOKEN_SRCS= token.c
@@ -38,45 +32,35 @@ ADDS_SRCS=signals.c atoi_m.c check_space.c ft_strjoin_m.c ft_join_char.c print_e
 EXS_DIR=./4.exec_utils/
 EXS_SRCS=change_cmd.c env_fill.c env_utils.c env_utils2.c err_msg.c utils.c env_save.c
 
-DEBUG=-Ldebug -ldebug
-
 LIBFT=-Llibft -lft
 RL=-L /goinfre/$(USER)/homebrew/opt/readline/lib  -lreadline
 
 OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.c=$(TOKEN_DIR)%.o)  $(LXR_SRCS:%.c=$(LXR_DIR)%.o)  $(PAR_SRCS:%.c=$(PAR_DIR)%.o) $(EXS_SRCS:%.c=$(EXS_DIR)%.o) $(BUILT_SRCS:%.c=$(BUILT_DIR)%.o) $(MPIPE_SRCS:%.c=$(MPIPE_DIR)%.o)
-all: debug msg libft $(NAME)
+all:msg libft $(NAME)
 	@echo $(allmsg)
-
 msg:
-	@echo "$(GREEN)Compiling MINISHELL... $(COLOR_END)"
+	@echo "Compiling minishell"
 
 $(NAME):$(OBJS)
-	@$(CC) $(CFLAGS) $(include) $(LIBFT) $(RL) $(DEBUG) $(OBJS) -o $(NAME)
-	@printf "\n"
+	@$(CC) $(CFLAGS) $(include) $(LIBFT) $(RL) $(OBJS) -o $(NAME)
 %.o: %.c
 	@$(CC) -c $(CFLAGS) -o $@ $<
-	@printf "$(GREEN)██"
-
 libft:
 	@$(MAKE) -C libft -s
 
-debug:
-	@$(MAKE) -C debug -s
 
 clean:
 	@echo $(msgclean)
 	@$(RM) $(OBJS)
-	@$(MAKE) -C debug clean -s
 	@$(MAKE) -C libft clean -s
 
 fclean: clean
 	@$(RM) $(NAME)
-	@$(MAKE) -C debug fclean -s
 	@$(MAKE) -C libft fclean -s
 	@echo $(msgfclean)
 
 re:fclean all
 
-.PHONY: all clean fclean re libft debug
+.PHONY: all clean fclean re libft
 
 .SILENT: $(OBJS)

@@ -6,12 +6,11 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 15:56:37 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/21 12:55:29 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:44:06 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-#include "../debug/debug.h"
 
 int	count_t_parse(t_parser *parser)
 {

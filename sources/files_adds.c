@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 15:28:20 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/23 00:42:41 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/24 13:36:26 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_file	*open_file(t_parser *parser, int *status)
 	char	*msg;
 
 	if (parser->state == -1)
-		return (new_file(-1, ft_strdup(": ambiguous redirect")));
+		return (new_file(-1, ft_strdup("ambiguous redirect")));
 	msg = NULL;
 	if (parser->type == infile)
 		fd = open(parser->value, O_RDONLY);

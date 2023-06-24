@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:12:28 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 19:13:44 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:39:54 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define MINISHELL_PROMPT "\033[0;32m[MiniShell] %> \033[0m"
+# define MINISHELL_PROMPT "[MiniShell] %> "
 
 # include "parser.h"
-# include "../debug/debug.h"
 # include <sys/types.h>
 # include "multipipes.h"
 

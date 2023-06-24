@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 18:00:54 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/21 22:12:19 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:54:50 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		add_str_parse(t_parser **parser, t_lexer *lexer);
 void		add_space_parse(t_parser **parser, t_lexer *lexer);
 void		parser_add_quote(t_parser **parser, t_tokens **token);
 void		parser_add_herdoc(t_parser **parser, t_tokens **token, int *error);
-void		add_parse(t_parser **parser, t_tokens **token);
+void		add_parse(t_parser **parser, t_tokens **token, int *error);
 int			in_join(int type, int *state);
 void		parser_add_redirect(t_parser **parser, t_tokens **token,
 				int *error);

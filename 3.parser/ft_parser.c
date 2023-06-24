@@ -6,12 +6,11 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:31:10 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/23 18:29:06 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:55:27 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parser.h"
-#include "../debug/debug.h"
 
 int	ft_parser(t_parser **parser, t_tokens *token)
 {
@@ -48,7 +47,7 @@ void	parser_parsing(t_parser **parser, t_tokens **token, int *error)
 	else if ((*token)->type == red_in)
 		parser_add_redirect(parser, token, error);
 	else if ((*token)->type == pip || (*token)->type == space)
-		add_parse(parser, token);
+		add_parse(parser, token, error);
 	else if ((*token)->type == terminator)
-		add_parse(parser, token);
+		add_parse(parser, token, error);
 }

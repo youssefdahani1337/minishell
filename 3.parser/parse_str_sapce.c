@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:32:45 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/23 15:13:33 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/24 13:28:12 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,29 @@ void	parser_add_quote(t_parser **parser, t_tokens **token)
 	(*token) = (*token)->next;
 }
 
-void	add_parse(t_parser **parser, t_tokens **token)
+void	add_parse(t_parser **parser, t_tokens **token, int *error)
 {
-	int		type;
-	char	*value;
+	int			type;
+	char		*value;
+	t_tokens	*tmp;
 
 	value = ft_strdup((*token)->value);
 	type = get_typeparse(*token);
+	tmp = (*token)->next;
 	if ((*token)->type == pip)
-	 	g_shell.exitsts = 0;
+	{
+		g_shell.exitsts = 0;
+		while (tmp && tmp->type == space)
+			tmp = tmp->next;
+		if (tmp && tmp->type == pip)
+		{
+			*error = 258;
+			ft_parseadd_back(parser, ft_newparse(NULL, p_error, 0));
+			print_error("syntax error near unexpected token ", tmp->value);
+			g_shell.exitsts = 258;
+			return ;
+		}
+	}
 	(*token) = (*token)->next;
 	ft_parseadd_back(parser, ft_newparse(value, type, 0));
 }
