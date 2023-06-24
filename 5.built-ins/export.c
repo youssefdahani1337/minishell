@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:46:17 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 12:20:51 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:58:58 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_changeadd_export(char **arg)
 	int			i;
 	t_export	*infos;
 	t_lexer		*lexer;
-	
+
 	i = -1;
 	infos = malloc(sizeof(t_export));
 	if (!infos)

@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 19:35:28 by mac               #+#    #+#             */
-/*   Updated: 2023/06/24 12:08:16 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:42:55 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	init_infos(t_export *infos)
 	infos->node = NULL;
 	infos->value = NULL;
 }
+
 void	free_infos(t_export *infos)
 {
 	free(infos->key);

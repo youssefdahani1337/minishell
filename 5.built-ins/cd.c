@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 18:41:26 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:58:41 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_getdir(char *direc, int *print)
 		return (ft_strdup("."));
 	if (!(direc) || (direc[0] == '~' && (!direc[1] || direc[1] == '/')))
 		str = "HOME";
-	else if (!ft_strcmp(direc, "-")) 
+	else if (!ft_strcmp(direc, "-"))
 	{
 		str = "OLDPWD";
 		*print = 1;
