@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:25:48 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 14:21:45 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:20:47 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ void	ft_rank(t_list **keys);
 void	ft_rank_env(void);
 void	ft_export_display(t_env *leader, int out);
 void	ft_changeadd_export(char **arg);
-int		ft_changeadd(char *arg);
+int		ft_changeadd(t_lexer *lexer, t_export *infos);
 char	*find_key(t_lexer *lexer);
 char	find_type_exp(t_lexer *lexer);
-
+void	init_infos(t_export *infos);
+void	free_infos(t_export *infos);
 char	*find_value(t_lexer *lexer, t_export *infos);
 #endif

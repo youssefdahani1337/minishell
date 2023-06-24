@@ -1,6 +1,6 @@
 
 CC=cc
-include= -I/goinfre/hbenabad/homebrew/opt/readline/include
+include= -I/goinfre/$(USER)/homebrew/opt/readline/include
 CFLAGS= -Wall -Werror -Wextra 
 #-fsanitize=address -g3
 

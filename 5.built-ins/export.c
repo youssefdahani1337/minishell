@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 10:46:17 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 18:06:00 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:20:51 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,27 @@ void	ft_export(t_cmdtable *table)
 
 void	ft_changeadd_export(char **arg)
 {
-	int	i;
-
+	int			i;
+	t_export	*infos;
+	t_lexer		*lexer;
+	
 	i = -1;
+	infos = malloc(sizeof(t_export));
+	if (!infos)
+		return ;
 	while (arg[++i])
 	{
-		if (!ft_changeadd(arg[i]))
+		lexer = init_lexer(arg[i]);
+		init_infos(infos);
+		if (!ft_changeadd(lexer, infos))
+		{
 			ft_errmsg_sts("minishell: export: `", arg[i],
 				"': not a valid identifier\n");
+			free_infos(infos);
+		}
+		free(lexer);
 	}
+	free(infos);
 }
 
 void	ft_filladd(t_export *infos)
@@ -58,16 +70,9 @@ void	ft_filladd(t_export *infos)
 		free(infos->key);
 }
 
-int	ft_changeadd(char *arg)
+int	ft_changeadd(t_lexer	*lexer, t_export *infos)
 {
-	t_lexer		*lexer;
-	t_export	*infos;
-
-	lexer = init_lexer(arg);
 	if (!lexer)
-		return (0);
-	infos = malloc(sizeof(t_export));
-	if (!infos)
 		return (0);
 	infos->key = find_key(lexer);
 	if (!infos->key)
@@ -80,7 +85,5 @@ int	ft_changeadd(char *arg)
 	if (!ft_strcmp(infos->key, "PWD"))
 		g_shell.unsetpwd = 0;
 	ft_filladd(infos);
-	free(lexer);
-	free(infos);
 	return (1);
 }
