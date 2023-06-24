@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:20:52 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 18:43:33 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:12:13 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ int	ft_intialize_shell(char **env, int ac, char **av)
 	g_shell.exitsts = 0;
 	g_shell.env = ft_env_fill(env);
 	if (!g_shell.env)
+		return (0);
+	if (!ft_getenv("PWD") && !ft_setpwd())
+		return (0);
+	if (!ft_shlvl())
 	{
 		g_shell.exitsts = 1;
 		return (0);
 	}
-	g_shell.unsetpwd = 0;
 	g_shell.opwd = 0;
+	g_shell.unsetpwd = 0;
 	g_shell.table = NULL;
 	return (1);
 }

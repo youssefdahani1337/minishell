@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:02:47 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 14:14:39 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:29:24 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,24 @@ void	ft_cmd_change(char **cmd)
 {
 	int		i;
 	t_env 	*cmd_saver;
+	char	*l_cmd;
 
-	i = 0;
+	i = -1;
+	l_cmd = NULL;
+	while (cmd && cmd[++i])
+	{
+		if (!cmd[i + 1])
+			l_cmd = ft_strdup(cmd[i]);
+	}
 	cmd_saver = ft_getenv("_");
 	if (!cmd_saver)
 	{
-		//ft_env_addback(&g_shell.env, ft_envnew("_", cmd[0]));
-		return ;
+		cmd_saver = ft_envnew("_");
+		ft_envadd_back(&g_shell.env, cmd_saver);
 	}
-	if (cmd_saver->value)
+	else if (cmd_saver->value)
 		free(cmd_saver->value);
-	if (!cmd || !cmd[0])
-		cmd_saver->value = NULL;
-	else
-	{
-		while (cmd[i])
-		{
-			if (!cmd[i + 1])
-				cmd_saver->value = ft_strdup(cmd[i]);
-			i++;
-		}
-	}
+	cmd_saver->value = l_cmd;
+	cmd_saver->equal = 1;
 	return ;
 }
-// void	ft_env_save(t_env *envlst)
-// {
-// 	int		env_size;
-// 	char	**env_save;
-
-// 	env_size = ft_env_size(g_shell.env);
-// 	env_save = malloc(sizeof(char *) * (env_size + 1));
-// 	while (envlst)
-// 	{
-// 		if (envlst->equal == 1)
-// 		{
-// 			ft_strjoin_m()
-// 		}
-// 	}
-// }

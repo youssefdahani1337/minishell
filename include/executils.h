@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:58:36 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 15:54:52 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 18:30:22 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,8 @@ char	**ft_env_save(t_env *env_ptr);
 int		ft_tablesize(t_cmdtable *table);
 void	ft_freedptr(int **pipes, int size);
 void	ft_cmd_change(char **cmd);
+void	ft_cmd_change(char **cmd);
+int		ft_shlvl(void);
+int		ft_setpwd();
 
 #endif

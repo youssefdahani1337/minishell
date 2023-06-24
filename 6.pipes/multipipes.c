@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 18:48:47 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:26:32 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	**ft_pipe(int size)
 void	ft_child(t_cmdtable *table, char **path, int size, int pipe_index)
 {
 	handler_df();
+	ft_cmd_change(table->cmd);
 	if (table->in && table->in->fd == -1)
 		ft_pipes_msg(NULL, table->in->error, 1);
 	if (table->out && table->out->fd == -1)

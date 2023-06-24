@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:17:00 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/24 14:53:07 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/24 22:04:39 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+void	printes(void)
+{
+	printf("%d", g_shell.exitsts);
+}
 
 int	main(int ac, char **av, char **env)
 {
@@ -20,6 +24,7 @@ int	main(int ac, char **av, char **env)
 		return (g_shell.exitsts);
 	while (1337)
 	{
+		printes();
 		remove_ctrl_c();
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, handler);

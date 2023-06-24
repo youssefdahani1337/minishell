@@ -6,11 +6,34 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:57:23 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 14:01:00 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:09:30 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/executils.h"
+
+int	ft_setpwd()
+{
+	char	pwd[MAXPATHLEN];
+	t_env	*pwdnode;
+
+	pwdnode = ft_envnew("PWD");
+	if (!ft_envadd_back(&g_shell.env, pwdnode))
+		return (0);
+	if (!getcwd(pwd, MAXPATHLEN))
+	{
+		ft_perr_sts();
+		return (0);
+	}
+	pwdnode->equal = 1;
+	pwdnode->value = ft_strdup(pwd);
+	if (!pwdnode->value)
+	{
+		ft_perr_sts();
+		return (0);
+	}
+	return (1);
+}
 
 t_env	*ft_env_fill(char **env)
 {

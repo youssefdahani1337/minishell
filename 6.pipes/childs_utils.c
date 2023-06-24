@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 18:30:04 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 19:22:39 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:15:12 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	ft_check_dir(char *cmd)
 	struct stat	buf;
 
 	if (stat(cmd, &buf) == -1)
-	{
-		perror("minishell");
-		exit(1);
-	}
+		return ;
 	if (S_ISDIR(buf.st_mode))
 		ft_pipes_msg(cmd, "is a directory", 126);
 }

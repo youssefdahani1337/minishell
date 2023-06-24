@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -77,8 +78,7 @@ char	*ft_check_cmd(char **cmd, char **path)
 	slash_dot = ft_slash_dot(cmd[0]);
 	if (slash_dot || !path)
 	{
-		if (slash_dot)
-			ft_check_dir(cmd[0]);
+		ft_check_dir(cmd[0]);
 		if (!access(cmd[0], F_OK))
 		{
 			if (!access(cmd[0], X_OK))
