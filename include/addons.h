@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:11:50 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/23 18:29:05 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 17:38:31 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		print_error(char *msg, char *speciel);
 int		count_sp(char **sp);
 void	free_sp(char **sp);
 void	ft_free_dstr(char **sp, int size);
-int		atoi_m(const char	*str);
+int		atoi_m(const char *str);
 int		check_space(const char *line);
 void	hand(int sig);
 void	remove_ctrl_c(void);

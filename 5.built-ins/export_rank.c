@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:04:53 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/23 18:08:10 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 16:33:53 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ t_list	*ft_keyslst(t_env *getkeys)
 	keys = NULL;
 	while (getkeys)
 	{
-		ft_lstadd_back(&keys, ft_lstnew(getkeys->key));
+		if (ft_strcmp(getkeys->key, "_"))
+			ft_lstadd_back(&keys, ft_lstnew(getkeys->key));
 		getkeys = getkeys->next;
 	}
 	return (keys);
@@ -57,23 +58,22 @@ void	ft_rank(t_list **keys)
 	int		fst;
 
 	fst = 0;
+	g_shell.leader = NULL;
 	ptr = *keys;
 	while (ptr)
 	{
-		if (ft_strcmp(ptr->content, "_"))
-		{
-			env_save = g_shell.env;
-			while (env_save && ft_strcmp(env_save->key, ptr->content))
-				env_save = env_save->next;
-			if (fst)
-				lead->follow = env_save;
-			if (!fst++)
-				g_shell.leader = env_save;
-			lead = env_save;
-		}
+		env_save = g_shell.env;
+		while (env_save && ft_strcmp(env_save->key, ptr->content))
+			env_save = env_save->next;
+		if (fst)
+			lead->follow = env_save;
+		if (!fst++)
+			g_shell.leader = env_save;
+		lead = env_save;
 		ptr = ptr->next;
 	}
-	lead->follow = NULL;
+	if (lead)
+		lead->follow = NULL;
 }
 
 void	ft_rank_env(void)
