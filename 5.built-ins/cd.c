@@ -6,7 +6,7 @@
 /*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 20:24:45 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 22:58:41 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/25 02:35:00 by hbenabad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ char	*ft_getopwd(int *oldp)
 	else if (1 == g_shell.unsetpwd)
 		opwd_val = NULL;
 	*oldp = 1;
-	if (!g_shell.opwd)
-		g_shell.opwd = 1;
 	return (opwd_val);
 }
 
