@@ -1,7 +1,7 @@
 
 CC=cc
 include= -I/goinfre/$(USER)/homebrew/opt/readline/include
-CFLAGS= -Wall -Werror -Wextra #-fsanitize=address -g3
+CFLAGS= -Wall -Werror -Wextra -fsanitize=address -g3
 
 RM=rm -rf
 NAME=minishell
@@ -39,7 +39,7 @@ OBJS= $(ADDS_SRCS:%.c=$(ADDS_DIR)%.o) $(SRCS:%.c=$(SRCS_DIR)%.o) $(TOKEN_SRCS:%.
 all:msg libft $(NAME)
 	@echo $(allmsg)
 msg:
-	@echo "Compiling minishell"
+	@echo "Compiling minishell..."
 
 $(NAME):$(OBJS)
 	@$(CC) $(CFLAGS) $(include) $(LIBFT) $(RL) $(OBJS) -o $(NAME)

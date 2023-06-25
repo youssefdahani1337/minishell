@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:22:49 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 12:43:56 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/25 01:09:33 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	ft_minishell(char *line)
 {
 	t_tokens	*token;
 	t_parser	*parser;
+	t_cmdtable	*table;
 
+	table = NULL;
 	parser = NULL;
 	token = NULL;
 	if (check_space(line))
@@ -25,8 +27,8 @@ int	ft_minishell(char *line)
 		return (0);
 	if (ft_parser(&parser, token))
 		return (0);
-	fill_struct(&g_shell.table, parser);
-	ft_execution(g_shell.table);
-	free_cmd(g_shell.table);
+	fill_struct(&table, parser);
+	ft_execution(table);
+	free_cmd(table);
 	return (1);
 }

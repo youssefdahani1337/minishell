@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:11:20 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/21 22:12:00 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/25 01:09:52 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_cmdtable
 typedef struct s_shell
 {
 	t_env		*env;
-	t_cmdtable	*table;
 	t_env		*leader;
 	int			exitsts;
 	int			unsetpwd;

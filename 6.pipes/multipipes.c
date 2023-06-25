@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multipipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 11:19:03 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 20:26:32 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 23:20:43 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	ft_wait_childs(t_cmdtable *table, int childs)
 			return (0);
 		}
 		if (WIFSIGNALED(status))
-		 	exit_with_sig(status);
+			exit_with_sig(status);
 		else
 			g_shell.exitsts = WEXITSTATUS(status);
 		table = table->next;

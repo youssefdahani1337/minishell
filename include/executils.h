@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbenabad <hbenabad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 13:58:36 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 18:30:22 by hbenabad         ###   ########.fr       */
+/*   Updated: 2023/06/24 23:20:23 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void	ft_freedptr(int **pipes, int size);
 void	ft_cmd_change(char **cmd);
 void	ft_cmd_change(char **cmd);
 int		ft_shlvl(void);
-int		ft_setpwd();
+int		ft_setpwd(void);
 
 #endif

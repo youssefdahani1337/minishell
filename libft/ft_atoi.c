@@ -6,11 +6,25 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:10:39 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 22:07:12 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/25 01:30:27 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	check_white(char c)
+{
+	char	*sp;
+
+	sp = " \t\r\n\f\v";
+	while (*sp)
+	{
+		if (*sp == c)
+			return (1);
+		sp ++;
+	}
+	return (0);
+}
 
 static	void	init(int *i, int *j, int *sign, long *result)
 {
@@ -18,6 +32,14 @@ static	void	init(int *i, int *j, int *sign, long *result)
 	*j = 0;
 	*sign = 1;
 	*result = 0;
+}
+
+static	int	return_value(int sign, long result)
+{
+	if (sign == -1)
+		return (256 + ((result * sign) % 256));
+	else
+		return ((result * sign) % 256);
 }
 
 int	ft_atoi(const char *str)
@@ -28,6 +50,8 @@ int	ft_atoi(const char *str)
 	long	result;
 
 	init(&i, &j, &sign, &result);
+	while (check_white(str[i]))
+		i++;
 	if (str[i] == '-' || str[i] == '+')
 		sign = -1 * (str[i ++] - 44);
 	while (str[i])
@@ -42,8 +66,5 @@ int	ft_atoi(const char *str)
 		result = (result * 10) + (str[i ++] - 48);
 		j++;
 	}
-	if (sign == -1)
-		return (256 + ((result * sign) % 256));
-	else
-		return ((result * sign) % 256);
+	return (return_value(sign, result));
 }

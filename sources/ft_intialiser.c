@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 22:20:52 by hbenabad          #+#    #+#             */
-/*   Updated: 2023/06/24 22:59:39 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/25 01:10:10 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ int	ft_intialize_shell(char **env, int ac, char **av)
 	}
 	g_shell.opwd = 0;
 	g_shell.unsetpwd = 0;
-	g_shell.table = NULL;
 	return (1);
 }

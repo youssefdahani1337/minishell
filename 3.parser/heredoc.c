@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 01:34:27 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/24 22:11:35 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/25 01:36:47 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	herdoc_iter(t_parser *parser, int fd[2])
 		if (!line || ft_strcmp(line, parser->value) == 0)
 			break ;
 		write_in_her(line, fd[1], parser->state);
-		ft_putstr_fd("\n", fd[1]);
 	}
 	close(fd[1]);
 	free(line);
@@ -76,7 +75,7 @@ void	write_in_her(char *line, int fd, int state)
 {
 	if (!state)
 		line = ft_exp(line);
-	ft_putstr_fd(line, fd);
+	ft_putendl_fd(line, fd);
 	free(line);
 }
 

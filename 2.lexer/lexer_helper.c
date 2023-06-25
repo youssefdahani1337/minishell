@@ -6,7 +6,7 @@
 /*   By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:27:14 by yodahani          #+#    #+#             */
-/*   Updated: 2023/06/22 15:54:22 by yodahani         ###   ########.fr       */
+/*   Updated: 2023/06/25 01:13:46 by yodahani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	lexer_iter(t_lexer *lexer)
 
 void	ft_skip_whitespace(t_lexer *lexer)
 {
-	while (lexer->c != '\0' && ft_strchr(" \t\n", lexer->c))
+	while (lexer->c != '\0' && ft_strchr(" \t\n\r\f\v", lexer->c))
 		lexer_iter(lexer);
 }
 
