@@ -6,7 +6,7 @@
 #    By: yodahani <yodahani@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/20 16:02:51 by yodahani          #+#    #+#              #
-#    Updated: 2023/06/24 12:46:23 by yodahani         ###   ########.fr        #
+#    Updated: 2023/06/25 02:47:23 by yodahani         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 
 %.o: %.c
-	@$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) -o $@ $<
 clean:
 	rm -f ${OBJ}
 	rm -f ${OBJ_bonus}
